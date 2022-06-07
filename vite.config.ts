@@ -78,7 +78,7 @@ export default defineConfig({
   resolve: {
     alias: {
       // Here we tell Vite the "fake" modules that we want to define
-      ...aliases,
+      ...frontendAliases,
     },
   },
   server: {
