@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import Intro from "./Intro.vue"
-import Auth from "./Auth.vue"
+import Intro from "@/Intro.vue"
+import Auth from "@/Auth.vue"
 
 export default defineComponent({
   name: "App",

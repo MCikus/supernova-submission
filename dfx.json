@@ -1,7 +1,7 @@
 {
   "canisters": {
     "counter": {
-      "main": "counter-canister/main.mo",
+      "main": "src/backend/counter-canister/main.mo",
       "type": "motoko"
     },
     "assets": {
@@ -25,7 +25,7 @@
   "dfx": "0.9.3",
   "networks": {
     "local": {
-      "bind": "127.0.0.1:8080",
+      "bind": "127.0.0.1:8081",
       "type": "ephemeral"
     },
     "ic": {
