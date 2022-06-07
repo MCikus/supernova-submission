@@ -1,6 +1,6 @@
 <template>
   <header class="App-header">
-    <img src="./assets/logo-dark.svg" class="App-logo" alt="logo" />
+    <img :src="dfinityLogoDarkUrl" class="App-logo" alt="logo" />
     <p style="font-size: 2em; margin-bottom: 0.5em">Ready. Lets build the new web</p>
     <div
       style="display: flex; font-size: 0.7em; text-align: left; padding: 2em; border-radius: 30px; flex-direction: column; background: rgb(220 218 224 / 25%);">
@@ -54,6 +54,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue"
 import { counter } from "canisters/counter"
+import dfinityLogoDarkUrl from "@/app/assets/logo-dark.svg"
+
 
 export default defineComponent({
   name: "Intro",
@@ -72,7 +74,7 @@ export default defineComponent({
 
     onMounted(refreshCounter)
 
-    return { increment, count }
+    return { increment, count, dfinityLogoDarkUrl }
   },
 })
 </script>

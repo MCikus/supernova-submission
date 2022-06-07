@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/frontend/assets/favicon.svg" />
+  <link id="favicon" rel="icon" type="image/svg+xml" href="/app/assets/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
 </head>
@@ -13,10 +13,13 @@
    * @dfinity/agent requires this. Can be removed once it's fixed
    */
   import { Buffer } from "buffer"
+  import faviconUrl from "@/app/assets/favicon.svg"
+
+  document.getElementById('favicon').src = faviconUrl
 
   window.global = window
   window.Buffer = Buffer
 </script>
-<script type="module" src="/frontend/main.ts"></script>
+<script type="module" src="/main.ts"></script>
 </body>
 </html>

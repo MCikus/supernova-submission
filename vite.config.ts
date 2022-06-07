@@ -1,6 +1,8 @@
 import vue from "@vitejs/plugin-vue"
 import { defineConfig } from "vite"
-import path from "path"
+import * as path from "path"
+import { resolve } from "path"
+// @ts-ignore
 import dfxJson from "./dfx.json"
 import * as fs from "fs"
 
@@ -26,9 +28,9 @@ try {
   console.error("\n⚠️  Before starting the dev server run: dfx deploy\n\n")
 }
 
-// List of all aliases for canisters
+// List of all canisterAliases for canisters
 // This will allow us to: import { canisterName } from "canisters/canisterName"
-const aliases = Object.entries(dfxJson.canisters).reduce(
+const canisterAliases = Object.entries(dfxJson.canisters).reduce(
     (acc, [name, _value]) => {
       // Get the network name, or `local` by default.
       const networkName = process.env["DFX_NETWORK"] || "local"
@@ -60,6 +62,12 @@ const canisterDefinitions = Object.entries(canisterIds).reduce(
     {},
 )
 
+export const frontendAliases = {
+      ...canisterAliases,
+      '~': `${resolve(__dirname, 'src/frontend')}/`,
+      '@': `${resolve(__dirname, 'src/frontend')}/`,
+}
+
 // Gets the port dfx is running on from dfx.json
 const DFX_PORT = dfxJson.networks.local.bind.split(":")[1]
 
@@ -67,11 +75,15 @@ const DFX_PORT = dfxJson.networks.local.bind.split(":")[1]
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  root: resolve(__dirname, "src/frontend"),
   resolve: {
     alias: {
       // Here we tell Vite the "fake" modules that we want to define
-      ...aliases,
+      ...frontendAliases,
     },
+  },
+  build: {
+    outDir: "../../dist",
   },
   server: {
     fs: {
