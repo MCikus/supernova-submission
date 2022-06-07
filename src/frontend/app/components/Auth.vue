@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,ref, onMounted } from "vue"
+import { defineComponent, ref, onMounted } from "vue"
 import { AuthClient } from "@dfinity/auth-client"
 import dfinityIconUrl from "@/app/assets/dfinity.svg"
 

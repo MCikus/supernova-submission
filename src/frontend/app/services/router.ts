@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteRecordRaw } from "vue-router"
+
 import Home from '@/app/components/Home.vue'
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
@@ -14,7 +16,7 @@ const routes = [
 
 export { routes }
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(),
   routes,
 })
