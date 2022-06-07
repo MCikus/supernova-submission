@@ -3,7 +3,7 @@
   <div class="auth-section">
     <button v-if="!signedIn && clientReady" @click="signIn()" class="auth-button">
       Sign In
-      <img alt="" style="width: 33px; margin-right: -1em; margin-left: 0.7em;" src="../assets/dfinity.svg" />
+      <img alt="" style="width: 33px; margin-right: -1em; margin-left: 0.7em;" :src="dfinityIconUrl" />
     </button>
 
     <template v-if="signedIn">
@@ -16,6 +16,7 @@
 <script lang="ts">
 import { defineComponent,ref, onMounted } from "vue"
 import { AuthClient } from "@dfinity/auth-client"
+import dfinityIconUrl from "@/app/assets/dfinity.svg"
 
 let signedIn = ref(false)
 let client
@@ -61,7 +62,7 @@ export default defineComponent({
 
     onMounted(initAuth)
 
-    return { clientReady, principal, signedIn, signOut, signIn }
+    return { clientReady, principal, signedIn, signOut, signIn, dfinityIconUrl }
   },
 })
 </script>
