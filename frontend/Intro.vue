@@ -52,10 +52,10 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted } from "vue"
+import { defineComponent, ref, onMounted } from "vue"
 import { counter } from "canisters/counter"
 
-export default {
+export default defineComponent({
   name: "Intro",
   setup: () => {
     const count = ref(0)
@@ -74,7 +74,7 @@ export default {
 
     return { increment, count }
   },
-}
+})
 </script>
 
 <style scoped>

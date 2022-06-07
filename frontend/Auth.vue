@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted } from "vue"
+import { defineComponent,ref, onMounted } from "vue"
 import { AuthClient } from "@dfinity/auth-client"
 
 let signedIn = ref(false)
@@ -34,7 +34,7 @@ const initAuth = async () => {
   }
 }
 
-export default {
+export default defineComponent({
   name: "Auth",
   setup: () => {
     const signIn = async () => {
@@ -63,7 +63,7 @@ export default {
 
     return { clientReady, principal, signedIn, signOut, signIn }
   },
-}
+})
 </script>
 
 <style scoped>

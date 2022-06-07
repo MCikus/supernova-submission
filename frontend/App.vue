@@ -6,16 +6,17 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue"
 import Intro from "./Intro.vue"
 import Auth from "./Auth.vue"
 
-export default {
+export default defineComponent({
   name: "App",
   components: {
     Intro,
     Auth,
   },
-}
+})
 </script>
 
 <style>
