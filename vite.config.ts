@@ -2,7 +2,7 @@ import vue from "@vitejs/plugin-vue"
 import { defineConfig } from "vite"
 import path from "path"
 import dfxJson from "./dfx.json"
-import fs from "fs"
+import * as fs from "fs"
 
 const isDev = process.env["DFX_NETWORK"] !== "ic"
 
@@ -12,7 +12,8 @@ interface CanisterIds {
   [key: string]: { [key in Network]: string }
 }
 
-let canisterIds: CanisterIds
+let canisterIds: CanisterIds = {}
+
 try {
   canisterIds = JSON.parse(
       fs
