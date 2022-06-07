@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from "vue-router"
 
-import Home from '@/app/components/Home.vue'
+import PCard from '@/app/components/PCard.vue'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: PCard,
     meta: {
       isMainRoute: true,
     },
