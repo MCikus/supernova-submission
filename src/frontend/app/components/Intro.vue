@@ -52,27 +52,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue"
-import { counter } from "canisters/counter"
+import { defineComponent, onMounted } from "vue"
+import { useCounterStore } from '@/app/services/useCounterStore.js'
+import { storeToRefs } from 'pinia'
 import dfinityLogoDarkUrl from "@/app/assets/logo-dark.svg"
+
 
 
 export default defineComponent({
   name: "Intro",
   setup: () => {
-    const count = ref(0)
-
-    const refreshCounter = async () => {
-      const res: any = await counter.getValue()
-      count.value = res.toString()
-    }
+    const counterStore = useCounterStore()
+    const { count } = storeToRefs(counterStore)
 
     const increment = async () => {
-      await counter.increment()
-      refreshCounter()
+      await counterStore.increment()
     }
 
-    onMounted(refreshCounter)
+    onMounted(counterStore.refreshCounter)
 
     return { increment, count, dfinityLogoDarkUrl }
   },
