@@ -1,7 +1,8 @@
 import vue from "@vitejs/plugin-vue"
 import { defineConfig } from "vite"
-import path from "path"
-import { resolve } from 'path'
+import * as path from "path"
+import { resolve } from "path"
+// @ts-ignore
 import dfxJson from "./dfx.json"
 import * as fs from "fs"
 
@@ -74,12 +75,15 @@ const DFX_PORT = dfxJson.networks.local.bind.split(":")[1]
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  root: resolve(__dirname, 'src/frontend'),
+  root: resolve(__dirname, "src/frontend"),
   resolve: {
     alias: {
       // Here we tell Vite the "fake" modules that we want to define
       ...frontendAliases,
     },
+  },
+  build: {
+    outDir: "../../dist",
   },
   server: {
     fs: {

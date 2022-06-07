@@ -6,7 +6,9 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-    "prj:clean": "if [ -d '.dfx' ]; then rm -rf .dfx; fi"
+    "clean": "yarn backend:stop;",
+    "backend:up": "yarn clean; dfx start --background; dfx deploy",
+    "backend:stop": "dfx stop; if [ -d '.dfx' ]; then rm -rf .dfx; fi; if [ -d 'dist' ]; then rm -rf dist; fi"
   },
   "dependencies": {
     "@dfinity/agent": "^0.11.3",
