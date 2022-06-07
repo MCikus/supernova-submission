@@ -9,10 +9,10 @@
         "counter"
       ],
       "frontend": {
-        "entrypoint": "dist/index.html"
+        "entrypoint": "src/frontend/dist/index.html"
       },
       "source": [
-        "dist/"
+        "src/frontend/dist/"
       ],
       "type": "assets"
     }
