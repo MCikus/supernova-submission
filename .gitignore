@@ -8,7 +8,5 @@ dist-ssr
 .venv
 
 # exclude ts generated files
-src/frontend/**/*.js
-src/frontend/**/*.map
 vite.config.js
 vite.config.js.map
