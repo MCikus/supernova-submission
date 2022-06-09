@@ -15,8 +15,11 @@
         <ProfileMenu :showAvatar="true">
           <template #middle>
             <div class="px-3 py-2 flex flex-col items-center">
-              <div class="border rounded-full pulse w-16 h-16" :class="energyColor"></div>
-              <h4 class="font-semibold mt-3">{{ MJNE }}</h4>
+              <div
+                class="border bg-white relative rounded-full animation-pulse w-14 h-14 my-4"
+                :class="energyColor"
+              ></div>
+              <h4 class="font-semibold">{{ MJNE }}</h4>
               <h4>$MJNE</h4>
 
               <button
@@ -87,11 +90,18 @@ export default defineComponent({
   setup() {
     const { topicsSearchString } = storeToRefs(useDashboardSearchStore())
     const { energyLevel, $MJNE: MJNE } = storeToRefs(useEnergyStore())
-    const energyColor = computed(() => ({
-      'border-red-500': energyLevel.value == 'low',
-      'border-yellow-500': energyLevel.value == 'medium',
-      'border-green-500': energyLevel.value == 'high',
-    }))
+    // {
+    //   'border-red-500 before:bg-red-500 after:bg-red-500': energyLevel.value == 'low',
+    //   'border-yellow-500 before:bg-yellow-500 after:bg-yellow-500': energyLevel.value == 'medium',
+    //   'border-green-500 before:bg-green-500 after:bg-green-500': energyLevel.value == 'high',
+    // }
+    const energyColor = computed(() => {
+      let color
+      if (energyLevel.value == 'low') color = 'red'
+      else if (energyLevel.value == 'medium') color = 'yellow'
+      else color = 'green'
+      return [`border-${color}-500 before:bg-${color}-500 after:bg-${color}-500`]
+    })
     const pulseCount = computed(() => {
       if (energyLevel.value == 'low') return 3
       else if (energyLevel.value == 'medium') return 5
@@ -110,20 +120,35 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.pulse {
-  animation: pulse-animation 2s infinite;
+.animation-pulse:after,
+.animation-pulse:before {
+  position: absolute;
+  content: '';
+  height: 110%;
+  width: 110%;
+  top: 50%;
+  left: 50%;
+  filter: blur(0.25px);
+  transform: translate(-50%, -50%);
+  -webkit-animation: anim-pulse 1.5s linear infinite;
+  animation: anim-pulse 1.5s linear infinite;
+  z-index: -10;
+  opacity: 0.5;
+  border-radius: 9999px;
 }
-@keyframes pulse-animation {
+.animation-pulse:before {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+@keyframes anim-pulse {
   0% {
-    transform: scale(0.95);
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.5;
   }
-
-  70% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(0.95);
+  to {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
   }
 }
 </style>
