@@ -15,7 +15,7 @@ runtime dependencies:
 
 ### 2.1 Running project in local environment
 
-For local development the (1) internet computer backend and the (1) vite.js dev server has to be running.
+For local development the (1) internet computer backend and the (1) vite.js dev server has to be running
 
 #### 2.1.1 Starting & Stopping local dev environment
 
