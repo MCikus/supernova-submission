@@ -77,6 +77,7 @@ export default defineConfig({
   },
   build: {
     outDir: '../../dist',
+    target: ['es2020'], // @warn we have to clarify whether that affects our audience
   },
   server: {
     fs: {

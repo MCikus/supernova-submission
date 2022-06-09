@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
 import PCard from '@/app/components/PCard.vue'
+import DemoHome from "@/domain/demo/components/DemoHome.vue"
 
 const routes: RouteRecordRaw[] = [
   {
@@ -11,6 +12,11 @@ const routes: RouteRecordRaw[] = [
     meta: {
       isMainRoute: true,
     },
+  },
+  {
+    path: '/__canister-demo',
+    name: 'DemoHome',
+    component: DemoHome,
   },
 ]
 
