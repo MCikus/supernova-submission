@@ -90,11 +90,7 @@ export default defineComponent({
   setup() {
     const { topicsSearchString } = storeToRefs(useDashboardSearchStore())
     const { energyLevel, $MJNE: MJNE } = storeToRefs(useEnergyStore())
-    // {
-    //   'border-red-500 before:bg-red-500 after:bg-red-500': energyLevel.value == 'low',
-    //   'border-yellow-500 before:bg-yellow-500 after:bg-yellow-500': energyLevel.value == 'medium',
-    //   'border-green-500 before:bg-green-500 after:bg-green-500': energyLevel.value == 'high',
-    // }
+   
     const energyColor = computed(() => {
       let color
       if (energyLevel.value == 'low') color = 'red'
