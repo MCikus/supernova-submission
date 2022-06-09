@@ -8,7 +8,7 @@ variables:
   ARTIFACT_BRANCH_NAME: '$(Build.SourceBranchName)'
   ARTIFACT_TIMESTAMP: 'null'
   ARTIFACT_DATETIME: 'null'
-  ARTIFACT_JS_NAME: 'website'
+  ARTIFACT_JS_NAME: 'MiljnOnIC'
 
   DEPLOY_TIMESTAMP: 'null'
   DEPLOY_DATETIME: 'null'

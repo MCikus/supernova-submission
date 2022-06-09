@@ -9,7 +9,7 @@ stages:
         timeoutInMinutes: 15
         cancelTimeoutInMinutes: 5
         pool: 'Default'
-        environment: 'Staging'
+        environment: 'StagingOnIC'
         strategy:
           runOnce:
             deploy:
@@ -83,20 +83,18 @@ stages:
                   condition: eq(variables['debug__staging_artifact_deployment_info'], true)
 
                 - bash: |
-                    rsync -avzr --delete \
-                      '$(System.ArtifactsDirectory)/$(ARTIFACT_JS_NAME)/' \
-                      '$(staging_env_user)'@'$(staging_env_host)':'$(staging_env_project_directory_path)'
+                    echo "WARN:  'do deployment to IC here, but currently not implemented'"
                   displayName: 'Deployment: publish frontend'
 
                 # //////////////////////////////////////////////////////////////////////
                 # // Test
                 - bash: |
-                    echo '$(staging_env_public_url)'
-                    LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS='$(STAGING_ENV_PUBLIC_URL_CREDENTIALS)'
-                    if [[ -n "${LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS}" ]]; then
-                      curl -fsSL --user "${LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS}" '$(staging_env_public_url)'
-                    else
-                      curl -fsSL '$(staging_env_public_url)'
-                    fi
-                    echo ""
+                    echo 'INFO:  Check $(staging_env_public_url)'
+                    # LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS='$(STAGING_ENV_PUBLIC_URL_CREDENTIALS)'
+                    # if [[ -n "${LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS}" ]]; then
+                    #   curl -fsSL --user "${LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS}" '$(staging_env_public_url)'
+                    # else
+                    #   curl -fsSL '$(staging_env_public_url)'
+                    # fi
+                    # echo ""
                   displayName: 'Test: is application up and running'
