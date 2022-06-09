@@ -99,9 +99,18 @@ stages:
             displayName: 'Artifact: define version'
 
           - bash: |
-              . ${NVM_DIR}/nvm.sh
+              . ${NVM_DIR}/nvm.sh 
               nvm use
+              /home/forge/bin/dfx start --background
+              /home/forge/bin/dfx canister create --all
+              /home/forge/bin/dfx generate
+              
+              if [[ -d src/declarations ]]; then
+                rm -rf src/declarations
+              fi
+
               yarn build
+              /home/forge/bin/dfx stop
             displayName: 'JS: build'
 
           - bash: |
@@ -139,3 +148,11 @@ stages:
               artifactName: '$(ARTIFACT_JS_NAME)'
             displayName: 'Artifact: publish frontend'
             condition: eq(variables['stage_build_publish_artifact'], true)
+
+          - bash: |
+              /home/forge/bin/dfx stop
+              . ${NVM_DIR}/nvm.sh 
+              nvm use
+              yarn clean
+            displayName: 'Cleanup'
+            condition: always()
