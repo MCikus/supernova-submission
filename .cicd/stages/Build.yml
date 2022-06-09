@@ -1,0 +1,137 @@
+stages:
+  - stage: 'Build'
+    displayName: 'Build'
+    condition: eq(variables['stage_build_enabled'], true)
+    jobs:
+      - job: 'from_source_to_artifact'
+        timeoutInMinutes: 30
+        cancelTimeoutInMinutes: 5
+        pool: 'Default'
+        steps:
+          - bash: |
+              NEW_ARTIFACT_TIMESTAMP="$(date "+%s")"
+              echo "##vso[task.setvariable variable=ARTIFACT_TIMESTAMP]${NEW_ARTIFACT_TIMESTAMP}"
+            displayName: 'Preparation: evaluate ARTIFACT_TIMESTAMP'
+
+          - bash: |
+              NEW_ARTIFACT_DATETIME="$(date "+%Y-%m-%dT%H:%M:%S")"
+              echo "##vso[task.setvariable variable=ARTIFACT_DATETIME]${NEW_ARTIFACT_DATETIME}"
+            displayName: 'Preparation: evaluate ARTIFACT_DATETIME'
+
+          - bash: |
+              echo "##vso[task.setvariable variable=NODE_VERSION]v14.17.5"
+            displayName: 'Preparation: evaluate NODE_VERSION'
+
+          - bash: |
+              echo "##vso[task.setvariable variable=NVM_DIR]/home/forge/.nvm"
+            displayName: 'Preparation: evaluate NVM_DIR'
+
+          # //////////////////////////////////////////////////////////////////////
+          # // DEBUG
+          - bash: |
+              echo "\$PROJECT_NAME                            = '${PROJECT_NAME}'"
+              echo "\$PROJECT_ROOT                            = '${PROJECT_ROOT}'"
+              echo "\$BUILD_DIRECTORY                         = '${BUILD_DIRECTORY}'"
+
+              echo "stage_build_publish_artifact            = '$(stage_build_publish_artifact)'"
+
+              echo "\$ARTIFACT_VERSION                        = '${ARTIFACT_VERSION}'"
+              echo "\$ARTIFACT_BUILD_ID                       = '${ARTIFACT_BUILD_ID}'"
+              echo "\$ARTIFACT_BRANCH_NAME                    = '${ARTIFACT_BRANCH_NAME}'"
+              echo "\$ARTIFACT_TIMESTAMP                      = '${ARTIFACT_TIMESTAMP}'"
+              echo "\$ARTIFACT_DATETIME                       = '${ARTIFACT_DATETIME}'"
+              echo "\$ARTIFACT_JS_NAME                        = '${ARTIFACT_JS_NAME}'"
+              echo "\$ARTIFACT_DESIGN_SYSTEM                  = '${ARTIFACT_DESIGN_SYSTEM}'"
+
+              echo "stage_staging_enabled                     = '$(stage_staging_enabled)'"
+              echo "stage_production_enabled                  = '$(stage_production_enabled)'"
+
+              echo "\$NODE_VERSION                            = '${NODE_VERSION}'"
+              echo "\$NVM_DIR                                 = '${NVM_DIR}'"
+
+              echo "\$DEPLOY_TIMESTAMP                        = '${DEPLOY_TIMESTAMP}'"
+              echo "\$DEPLOY_DATETIME                         = '${DEPLOY_DATETIME}'"
+
+            displayName: 'DEBUG: print Environment Variables'
+            condition: eq(variables['debug__build_variables'], true)
+
+          - bash: |
+              tree -aL 3
+            displayName: 'Debug: list directory content'
+
+          - bash: |
+              /home/forge/.nvm/versions/node/v14.16.0/bin/npm config delete prefix    # avoid a warning
+              . ${NVM_DIR}/nvm.sh
+              nvm install ${NODE_VERSION}
+              nvm use ${NODE_VERSION}
+              nvm alias default ${NODE_VERSION}
+              VERSION_PATH="$(nvm_version_path ${NODE_VERSION})"
+              echo "##vso[task.prependPath]$VERSION_PATH"
+            displayName: 'Preparation: Install Node.js through nvm'
+
+          - bash: |
+              . ${NVM_DIR}/nvm.sh
+              nvm use
+              yarn install --frozen-lockfile
+            displayName: 'JS: dependency installation'
+
+          - bash: |
+              . ${NVM_DIR}/nvm.sh
+              nvm use
+              yarn code:style
+            displayName: 'JS: check code style'
+
+          - bash: |
+              . ${NVM_DIR}/nvm.sh
+              nvm use
+              yarn code:analyse
+            displayName: 'JS: analyse code'
+
+          - bash: |
+              sed -i "s/__ARTIFACT_VERSION__/${ARTIFACT_VERSION}/" public/__version.json
+              sed -i "s/__ARTIFACT_BRANCH_NAME__/${ARTIFACT_BRANCH_NAME}/" public/__version.json
+              sed -i "s/__ARTIFACT_BUILD_ID__/${ARTIFACT_BUILD_ID}/" public/__version.json
+              sed -i "s/__ARTIFACT_TIMESTAMP__/${ARTIFACT_TIMESTAMP}/" public/__version.json
+              sed -i "s/__ARTIFACT_DATETIME__/${ARTIFACT_DATETIME}/" public/__version.json
+            displayName: 'Artifact: define version'
+
+          - bash: |
+              . ${NVM_DIR}/nvm.sh
+              nvm use
+              yarn build
+            displayName: 'JS: build'
+
+          - bash: |
+              if [ -f dist/__version.json ]; then
+                echo 'dist'
+                ls -al dist
+                cat dist/__version.json
+              else
+                echo 'public'
+                ls -al public
+                cat public/__version.json
+              fi
+            displayName: 'Artifact: debug version'
+            condition: eq(variables['debug__artifact_version'], true)
+
+          - bash: |
+              . ${NVM_DIR}/nvm.sh
+              nvm use
+              yarn code:test:ci
+            displayName: 'JS: test'
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: 'miljn-frontend-tests-*.xml'
+              searchFolder: '.test-results'
+              testRunTitle: 'jest - unit and integration'
+              publishRunAttachments: true
+            displayName: 'JS: publish jest results'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: '$(PROJECT_ROOT)/dist'
+              artifactName: '$(ARTIFACT_JS_NAME)'
+            displayName: 'Artifact: publish frontend'
+            condition: eq(variables['stage_build_publish_artifact'], true)
