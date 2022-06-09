@@ -96,6 +96,7 @@
 </template>
 
 <script>
+import {defineComponent} from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'
@@ -111,7 +112,7 @@ import { log } from '@/app/services/errorService.js'
 import { useAnalyticsInfoStore } from '@/app/services/useAnalyticsInfoStore.js'
 import { storeToRefs } from 'pinia'
 
-export default {
+export default defineComponent({
   name: 'PCard',
   components: {
     BaseAppLayout,
@@ -223,7 +224,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <style scoped></style>

@@ -1,14 +1,9 @@
-const range = (start, end) => [...Array(end + 1 - start).keys()].map((i) => i + start)
-const spans = (start, end) =>
-  Object.fromEntries(range(start, end).map((i) => [`span-${i}`, `span ${i} / span ${i}`]))
-const start_ends = (start, end) =>
-  Object.fromEntries(range(start, end).map((i) => ['' + i, '' + i]))
-
 const round = (num) =>
   num
     .toFixed(7)
     .replace(/(\.[0-9]+?)0+$/, '$1')
     .replace(/\.0$/, '')
+
 const rem = (px) => `${round(px / 16)}rem`
 const em = (px, base) => `${round(px / base)}em`
 
@@ -228,12 +223,6 @@ module.exports = {
       transitionProperty: {
         size: 'height, min-height, width, min-width',
       },
-      gridColumn: spans(13, 16),
-      gridRow: spans(7, 16),
-      gridRowStart: start_ends(8, 16),
-      gridRowEnd: start_ends(8, 16),
-      gridColumnStart: start_ends(13, 16),
-      gridColumnEnd: start_ends(13, 16),
     },
     fontFamily: {
       sans: ['Raleway', 'Inter', 'Roboto', 'system-ui', '-apple-system'],
