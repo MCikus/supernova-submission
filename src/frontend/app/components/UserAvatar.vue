@@ -24,13 +24,27 @@ export default defineComponent({
         const name = computed(() => props.name)
 
         const computedInitials = computed(() => {
-            if (name.value) {
-                const splittedName = name.value.split(' ')
-                const initials =
-                    splittedName.shift().charAt(0) + splittedName.pop().charAt(0)
-                return initials.toUpperCase()
+          if (name.value) {
+            const parts = name.value.split(" ")
+            const initials = []
+
+            parts.forEach((item) => {
+              if (item.length > 0 && item !== "") {
+                initials.push(item[0])
+              }
+            })
+
+            const resultingInitials = []
+
+            resultingInitials.push(initials[0])
+            if (initials.length > 1) {
+              resultingInitials.push(initials[initials.length - 1])
             }
-            return null
+
+            return resultingInitials.join("").toUpperCase()
+          }
+
+          return "JD"
         })
 
         return {
