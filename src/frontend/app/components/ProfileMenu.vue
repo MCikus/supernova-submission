@@ -13,15 +13,19 @@
         :closeMenu="closeMenu"
         :openMenu="openMenu"
       />
-      <div class="flex cursor-text hover:bg-gray-50">
+      <div class="flex items-center px-3 mt-2 cursor-text hover:bg-gray-50">
+        <div v-if="showAvatar" class="w-8 h-8 rounded-full bg-blue-200 text-blue-800 text-xs flex justify-center items-center"><h5>TC</h5></div>
         <InlineInput
-          class="w-full cursor-pointer px-4 py-3 text-sm font-normal leading-none text-gray-700"
+          class="cursor-pointer px-4 py-3 text-sm font-normal leading-none text-gray-700 flex justify-between"
           :value="userName"
           :multiline="false"
           :edit-by-inline-click="false"
           @inline-input-changed="userNameChanged"
         />
       </div>
+       <slot
+        name="middle"
+      />
       <div class="w-full border-t border-gray-100" />
       <a
         href="/logout"
@@ -56,6 +60,7 @@ export default defineComponent({
     UserAvatar,
     InlineInput,
   },
+  props: ['showAvatar'],
   setup() {
     const userStore = useUserStore()
     const { userName } = storeToRefs(userStore)
