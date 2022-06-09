@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from "vue-router"
+import type { RouteRecordRaw } from 'vue-router'
 
 import PCard from '@/app/components/PCard.vue'
 

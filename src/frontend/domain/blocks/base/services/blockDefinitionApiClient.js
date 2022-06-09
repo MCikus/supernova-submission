@@ -4,9 +4,9 @@ import { blockDefinitions } from '@/app/services/miljnApiEndpoints.js'
 // @todo: handle Errors
 
 export const allBlockDefinitions = async () => {
-    return (await httpClient.get(blockDefinitions.index))?.data?.data ?? []
+  return (await httpClient.get(blockDefinitions.index))?.data?.data ?? []
 }
 
 export default {
-    allBlockDefinitions,
+  allBlockDefinitions,
 }

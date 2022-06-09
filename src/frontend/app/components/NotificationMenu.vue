@@ -1,36 +1,36 @@
 <template>
-    <BaseDropDown @closed="markAllNotificationsAsRead()" :class="componentName">
-        <template #menuButton="{ toggleMenu }">
-            <button class="relative" @click="toggleMenu">
-                <span class="sr-only">Open options</span>
-                <span
-                    v-if="unreadNotifications.length > 0"
-                    class="absolute top-0 right-0 flex h-4 w-4 -translate-y-1/3 translate-x-1/3 items-center justify-center rounded-full bg-red-700 text-xs leading-none text-white"
-                >
-                    {{ unreadNotifications.length }}
-                </span>
-                <BellIcon class="h-[1.125rem] w-[1.125rem] text-white" />
-            </button>
-        </template>
-        <template #items="{ closeMenu }">
-            <div
-                v-for="notification in notifications"
-                :key="notification.id"
-                @click="closeMenu"
-            >
-                <div
-                    class="relative block w-full truncate py-3 pl-6 pr-4 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
-                >
-                    {{ notification.title }}
-                    <span
-                        v-if="!notification.markAsRead"
-                        class="absolute top-1/2 left-2 flex h-2 w-2 -translate-y-1/2 items-center justify-center rounded-full bg-red-300"
-                    ></span>
-                </div>
-                <div class="w-full border-t border-gray-100" />
-            </div>
-        </template>
-    </BaseDropDown>
+  <BaseDropDown :class="componentName" @closed="markAllNotificationsAsRead()">
+    <template #menuButton="{ toggleMenu }">
+      <button class="relative" @click="toggleMenu">
+        <span class="sr-only">Open options</span>
+        <span
+          v-if="unreadNotifications.length > 0"
+          class="absolute top-0 right-0 flex h-4 w-4 -translate-y-1/3 translate-x-1/3 items-center justify-center rounded-full bg-red-700 text-xs leading-none text-white"
+        >
+          {{ unreadNotifications.length }}
+        </span>
+        <BellIcon class="h-[1.125rem] w-[1.125rem] text-white" />
+      </button>
+    </template>
+    <template #items="{ closeMenu }">
+      <div
+        v-for="notification in notifications"
+        :key="notification.id"
+        @click="closeMenu"
+      >
+        <div
+          class="relative block w-full truncate py-3 pl-6 pr-4 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
+        >
+          {{ notification.title }}
+          <span
+            v-if="!notification.markAsRead"
+            class="absolute top-1/2 left-2 flex h-2 w-2 -translate-y-1/2 items-center justify-center rounded-full bg-red-300"
+          ></span>
+        </div>
+        <div class="w-full border-t border-gray-100" />
+      </div>
+    </template>
+  </BaseDropDown>
 </template>
 
 <script>
@@ -42,40 +42,40 @@ import { storeToRefs } from 'pinia'
 
 export const componentName = 'NotificationMenu'
 export default defineComponent({
-    name: componentName,
-    components: {
-        BaseDropDown,
-        BellIcon,
-    },
-    setup() {
-        const notificationStore = useNotificationsStore()
-        const { notifications } = storeToRefs(notificationStore)
-        const unreadNotifications = computed(() => {
-            return (
-                notifications?.value?.filter(
-                    (notification) => notification.markAsRead === false
-                ) ?? []
-            )
-        })
+  name: componentName,
+  components: {
+    BaseDropDown,
+    BellIcon,
+  },
+  setup() {
+    const notificationStore = useNotificationsStore()
+    const { notifications } = storeToRefs(notificationStore)
+    const unreadNotifications = computed(() => {
+      return (
+        notifications?.value?.filter(
+          (notification) => notification.markAsRead === false,
+        ) ?? []
+      )
+    })
 
-        onBeforeMount(async () => {
-            await notificationStore.getAllNotifications()
-        })
+    onBeforeMount(async () => {
+      await notificationStore.getAllNotifications()
+    })
 
-        const markAllNotificationsAsRead = async () => {
-            const promises = unreadNotifications.value.map((notification) => {
-                return notificationStore.markNotificationAsRead(notification.id)
-            })
+    const markAllNotificationsAsRead = async () => {
+      const promises = unreadNotifications.value.map((notification) => {
+        return notificationStore.markNotificationAsRead(notification.id)
+      })
 
-            await Promise.all(promises)
-        }
+      await Promise.all(promises)
+    }
 
-        return {
-            componentName,
-            notifications,
-            unreadNotifications,
-            markAllNotificationsAsRead,
-        }
-    },
+    return {
+      componentName,
+      notifications,
+      unreadNotifications,
+      markAllNotificationsAsRead,
+    }
+  },
 })
 </script>

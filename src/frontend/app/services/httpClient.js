@@ -2,23 +2,23 @@ import axios from 'axios'
 import { log } from '@/app/services/errorService.js'
 
 const httpClient = axios.create({
-    baseURL: '/',
-    timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json',
-        // @todo Handle caching
-        'Cache-Control': 'no-cache',
-    },
+  baseURL: '/',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+    // @todo Handle caching
+    'Cache-Control': 'no-cache',
+  },
 })
 
 const errorInterceptor = (error) => {
-    if (!error.response) {
-        log('Network/Server error')
-        return Promise.reject(error)
-    }
-
-    log(error)
+  if (!error.response) {
+    log('Network/Server error')
     return Promise.reject(error)
+  }
+
+  log(error)
+  return Promise.reject(error)
 }
 
 const responseInterceptor = (response) => response

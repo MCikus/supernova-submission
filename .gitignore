@@ -10,3 +10,4 @@ dist-ssr
 # exclude ts generated files
 vite.config.js
 vite.config.js.map
+yarn-error.log

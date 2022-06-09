@@ -4,7 +4,7 @@
 
 runtime dependencies:
 
-- Ubuntu 20*/MacOS
+- Ubuntu 20\*/MacOS
 - [Internet Computer SDK](https://internetcomputer.org/docs/current/developer-docs/build/install-upgrade-remove)
 - [nvm](https://github.com/nvm-sh/nvm)
 - node v18.3.0
@@ -31,9 +31,9 @@ yarn dev
 - kill vite.js dev server `[ctrl] + [c]`
 - stop internet computer backend & cleanup
 
-    ```shell
-    yarn backend:up
-    yarn dev
-    ```
+  ```shell
+  yarn backend:up
+  yarn dev
+  ```
 
 <!-- ## 3 Code Quality tools @todo -->
