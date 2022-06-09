@@ -4,20 +4,20 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "noImplicitAny":  false,
+    "noImplicitAny": false,
     "jsx": "preserve",
     "sourceMap": true,
+    "allowJs": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "lib": ["esnext", "dom"],
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "canisters/counter": [
-        ".dfx/local/canisters/counter"
-      ],
+      "canisters/counter": [".dfx/local/canisters/counter"],
       "@/*": ["src/frontend/*"],
-      "~/*": ["src/frontend/*"],
+      "~/*": ["src/frontend/*"]
     }
   },
   "include": [

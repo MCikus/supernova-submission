@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link id="favicon" rel="icon" type="image/svg+xml" href="/app/assets/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
-</head>
-<body>
-<div id="root"></div>
-<script type="module">
-  /**
-   * @dfinity/agent requires this. Can be removed once it's fixed
-   */
-  import { Buffer } from "buffer"
-  import faviconUrl from "@/app/assets/favicon.svg"
+  <head>
+    <meta charset="UTF-8" />
+    <link id="favicon" rel="icon" type="image/svg+xml" href="/app/assets/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      /**
+       * @dfinity/agent requires this. Can be removed once it's fixed
+       */
+      import { Buffer } from 'buffer'
+      import faviconUrl from '@/app/assets/favicon.svg'
 
-  document.getElementById('favicon').src = faviconUrl
+      document.getElementById('favicon').src = faviconUrl
 
-  window.global = window
-  window.Buffer = Buffer
-</script>
-<script type="module" src="/main.ts"></script>
-</body>
+      window.global = window
+      window.Buffer = Buffer
+    </script>
+    <script type="module" src="/main.ts"></script>
+  </body>
 </html>

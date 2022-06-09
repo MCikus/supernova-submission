@@ -1,0 +1,47 @@
+name: '$(Build.BuildId)  [$(Build.SourceBranchName)]  '
+
+trigger:
+  - main
+
+variables:
+  - name: should_deploy
+    value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
+  - template: variables/base.yml
+
+  # ///////////////////////////////////////////////////////////////////////////
+  # // Pipeline Configuration /////////////////////////////////////////////////
+
+  - name: debug__build_variables
+    value: true
+  - name: debug__artifact_version
+    value: true
+
+  # // @info disable husky in ci/cd environment
+  - name: HUSKY
+    value: 0
+
+  # // stage variables
+  - name: stage_build_enabled
+    value: true
+
+  - name: stage_build_publish_artifact
+    value: true
+
+  # // stage variables
+  - name: stage_staging_enabled
+    value: true
+  - template: variables/staging.yml
+
+  # // production variables
+  - name: stage_production_enabled
+    value: true
+  - template: variables/production.yml
+
+  - name: should_deploy
+    value: true
+
+stages:
+  - template: 'stages/Build.yml'
+  - template: 'stages/ReleaseToStaging.yml'
+  - template: 'stages/ReleaseToProduction.yml'

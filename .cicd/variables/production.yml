@@ -1,0 +1,10 @@
+variables:
+  - name: production_env_public_url
+    value: 'https://miljn.com/__version.json'
+
+  - name: debug__production_variables
+    value: true
+  - name: debug__production_artifact_deployment_info
+    value: true
+  - name: debug__production_downloaded_frontend_artifact
+    value: true

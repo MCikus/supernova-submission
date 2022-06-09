@@ -1,27 +1,40 @@
 <template>
-
-  <div class="auth-section">
-    <button v-if="!signedIn && clientReady" @click="signIn()" class="auth-button">
+  <div v-if="!signedIn && clientReady">
+    <button
+      class="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      @click="signIn()"
+    >
       Sign In
-      <img alt="" style="width: 33px; margin-right: -1em; margin-left: 0.7em;" :src="dfinityIconUrl" />
+      <img
+        alt=""
+        style="width: 33px; margin-right: -1em; margin-left: 0.7em"
+        :src="dfinityIconUrl"
+      />
     </button>
-
-    <template v-if="signedIn">
-      <p>Signed in as: {{ principal }}</p>
-      <button @click="signOut()" class="auth-button">Sign out</button>
-    </template>
+  </div>
+  <div v-else class="flex flex-row space-x-6">
+    <p>
+      Signed in as:
+      <code>{{ principal }}</code>
+    </p>
+    <button
+      class="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      @click="signOut()"
+    >
+      Sign out
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent,ref, onMounted } from "vue"
-import { AuthClient } from "@dfinity/auth-client"
-import dfinityIconUrl from "@/app/assets/dfinity.svg"
+import { defineComponent, ref, onMounted } from 'vue'
+import { AuthClient } from '@dfinity/auth-client'
+import dfinityIconUrl from '@/app/assets/dfinity.svg'
 
 let signedIn = ref(false)
 let client
 let clientReady = ref(false)
-let principal = ref("")
+let principal = ref('')
 
 const initAuth = async () => {
   client = await AuthClient.create()
@@ -36,12 +49,12 @@ const initAuth = async () => {
 }
 
 export default defineComponent({
-  name: "Auth",
+  name: 'DemoAuth',
   setup: () => {
     const signIn = async () => {
       const result: any = await new Promise((resolve, reject) => {
         client.login({
-          identityProvider: "https://identity.ic0.app",
+          identityProvider: 'https://identity.ic0.app',
           onSuccess: () => {
             const identity = client.getIdentity()
             const principal = identity.getPrincipal().toString()
@@ -57,7 +70,7 @@ export default defineComponent({
     const signOut = async () => {
       await client.logout()
       signedIn.value = false
-      principal.value = ""
+      principal.value = ''
     }
 
     onMounted(initAuth)

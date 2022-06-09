@@ -1,0 +1,10 @@
+variables:
+  - name: staging_env_public_url
+    value: 'https://website-frontend.stage.miljn.com/__version.json'
+
+  - name: debug__staging_variables
+    value: true
+  - name: debug__staging_artifact_deployment_info
+    value: true
+  - name: debug__staging_downloaded_frontend_artifact
+    value: true
