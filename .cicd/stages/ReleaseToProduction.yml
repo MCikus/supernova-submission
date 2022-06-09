@@ -46,18 +46,6 @@ stages:
 
                 # //////////////////////////////////////////////////////////////////////
                 # // Preparation
-                - task: InstallSSHKey@0
-                  inputs:
-                    knownHostsEntry: $(PRODUCTION_ENV_SSH_KNOWN_HOST_ENTRY)
-                    sshPublicKey: $(PRODUCTION_ENV_SSH_PUBLIC_KEY)
-                    sshKeySecureFile: $(PRODUCTION_ENV_SSH_PRIVATE_KEY_SECURE_FILENAME)
-                  displayName: 'Preparation: install ssh key'
-
-                - bash: |
-                    ssh -vT '$(production_env_user)'@'$(production_env_host)' 'exit 0'
-                  displayName: 'DEBUG: ssh connection'
-                  condition: eq(variables['debug__production_ssh_host_connection'], true)
-
                 - task: DownloadBuildArtifacts@0
                   inputs:
                     buildType: 'current'
@@ -90,11 +78,5 @@ stages:
                 # // Test
                 - bash: |
                     echo 'INFO:  Check $(production_env_public_url)'
-                    # LOCAL_PRODUCTION_ENV_PUBLIC_URL_CREDENTIALS='$(PRODUCTION_ENV_PUBLIC_URL_CREDENTIALS)'
-                    # if [[ -n "${LOCAL_PRODUCTION_ENV_PUBLIC_URL_CREDENTIALS}" ]]; then
-                    #   curl -fsSL --user "${LOCAL_PRODUCTION_ENV_PUBLIC_URL_CREDENTIALS}" '$(production_env_public_url)'
-                    # else
-                    #   curl -fsSL '$(production_env_public_url)'
-                    # fi
-                    # echo ""
+                    # curl -fsSL '$(production_env_public_url)'
                   displayName: 'Test: is application up and running'

@@ -119,14 +119,15 @@ stages:
               yarn code:test:ci
             displayName: 'JS: test'
 
-          - task: PublishTestResults@2
-            inputs:
-              testResultsFormat: 'JUnit'
-              testResultsFiles: 'miljn-frontend-tests-*.xml'
-              searchFolder: '.test-results'
-              testRunTitle: 'jest - unit and integration'
-              publishRunAttachments: true
-            displayName: 'JS: publish jest results'
+          # @info there is currently nothing to upload because the tests are not implemented
+          # - task: PublishTestResults@2
+          #   inputs:
+          #     testResultsFormat: 'JUnit'
+          #     testResultsFiles: 'miljn-frontend-tests-*.xml'
+          #     searchFolder: '.test-results'
+          #     testRunTitle: 'jest - unit and integration'
+          #     publishRunAttachments: true
+          #   displayName: 'JS: publish jest results'
 
           - task: PublishBuildArtifacts@1
             inputs:

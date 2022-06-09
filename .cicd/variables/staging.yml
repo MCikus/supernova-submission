@@ -1,31 +1,10 @@
 variables:
-  - name: staging_env_host
-    value: '164.90.242.171'
-  - name: staging_env_user
-    value: 'mjn'
-  - name: staging_env_project_directory_path
-    value: '/home/mjn/website-frontend.stage.miljn.com'
   - name: staging_env_public_url
     value: 'https://website-frontend.stage.miljn.com/__version.json'
-  - name: STAGING_ENV_PUBLIC_URL_CREDENTIALS
-    value: 'mjn:ca1b9604-faf9-4246-abbe-4e10989531e4'
 
   - name: debug__staging_variables
-    value: true
-  - name: debug__staging_ssh_host_connection
     value: true
   - name: debug__staging_artifact_deployment_info
     value: true
   - name: debug__staging_downloaded_frontend_artifact
     value: true
-
-  # // specify pipeline secret variables
-  #  - name: STAGING_ENV_PUBLIC_URL_CREDENTIALS
-  #    value: null
-
-  - name: STAGING_ENV_SSH_KNOWN_HOST_ENTRY
-    value: '164.90.242.171 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHcVHyIvlPdITUP/noFisW5SzXoYrzV0reNlvjCSUq2A8H/ZxQZNws7qLHd5k+MBr33W4LdHqVgjUCCDDLVG8Ow='
-  - name: STAGING_ENV_SSH_PUBLIC_KEY
-    value: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCju4HCiGVZE2ykl2t/z9Sleq3PJnBJFfb+pjfzjIhLaQ6xcFKsxX9GxpB9nVXIS1DItiGohiz8A+ePd2WnaVtZJaRidxItI3XX+6GTdcNg3ye+8yBBpC6H/NPy4uKppooxc7K2AcLftd0RHC9NSfrKrCVwKd8sQHSwqH+eiHVyO8E62xin9/NCr+CLu+IGch2DKJjLQwrP0gUjfxLTrvrRiOC2P94pYVxHtPjkLbGwmwj1BHOXkxldTBvihI6/49q1FYHUmhrzTrMmAbgDRe+UKhTSr2ZfMK6QqV118C7X/EymSDAQmd3Y6LyCw4JiIbuH4wn9WhkjV8eKAdD+1MtSSr0ak0aV6gFzTcsWmeqN3cRF6uCocMb6RkZAo2cyH174OgUKUZxsvYm8Jo1KEQHXjkwRG1ATl63pjdjs+q7zg75P250j/1UTJem/P1cagLqjFhi2JKVkyL7wZp+sbpk8Q5mrhawPGsIjnlz0wpAPwEtMFPI85ETD5uIqi7nAMQOIRZvwzRd9YfFX753SzyXfiZ34p5BZfqlcJbTvflrsm7LOM+JxOmVOwCfQ3nn0xTefB7AS0C7Hp5tGJ0zJczyFog4FNLmyt9g1fSRJPTdGwq8aV00P2uf4RVsrr14A83DmbIVHvlblUErffzxoqlJvqqMNgFuS2gd8PE1HfI19Ow== mjn-2021'
-  - name: STAGING_ENV_SSH_PRIVATE_KEY_SECURE_FILENAME
-    value: 'mjn-2021-private-key'

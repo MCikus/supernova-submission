@@ -46,18 +46,6 @@ stages:
 
                 # //////////////////////////////////////////////////////////////////////
                 # // Preparation
-                - task: InstallSSHKey@0
-                  inputs:
-                    knownHostsEntry: $(STAGING_ENV_SSH_KNOWN_HOST_ENTRY)
-                    sshPublicKey: $(STAGING_ENV_SSH_PUBLIC_KEY)
-                    sshKeySecureFile: $(STAGING_ENV_SSH_PRIVATE_KEY_SECURE_FILENAME)
-                  displayName: 'Preparation: install ssh key'
-
-                - bash: |
-                    ssh -vT '$(staging_env_user)'@'$(staging_env_host)' 'exit 0'
-                  displayName: 'DEBUG: ssh connection'
-                  condition: eq(variables['debug__staging_ssh_host_connection'], true)
-
                 - task: DownloadBuildArtifacts@0
                   inputs:
                     buildType: 'current'
@@ -90,11 +78,5 @@ stages:
                 # // Test
                 - bash: |
                     echo 'INFO:  Check $(staging_env_public_url)'
-                    # LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS='$(STAGING_ENV_PUBLIC_URL_CREDENTIALS)'
-                    # if [[ -n "${LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS}" ]]; then
-                    #   curl -fsSL --user "${LOCAL_STAGING_ENV_PUBLIC_URL_CREDENTIALS}" '$(staging_env_public_url)'
-                    # else
                     #   curl -fsSL '$(staging_env_public_url)'
-                    # fi
-                    # echo ""
                   displayName: 'Test: is application up and running'
