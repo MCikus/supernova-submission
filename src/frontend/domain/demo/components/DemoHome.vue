@@ -3,7 +3,10 @@
     <DemoAuth />
 
     <div>
-      <button class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" @click="increment()">
+      <button
+        class="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        @click="increment()"
+      >
         Count is: {{ count }}
       </button>
     </div>
@@ -11,13 +14,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,onMounted } from "vue"
+import { defineComponent, onMounted } from 'vue'
 import { useCounterStore } from '@/domain/demo/services/useCounterStore.js'
-import DemoAuth from "@/domain/demo/components/DemoAuth.vue"
+import DemoAuth from '@/domain/demo/components/DemoAuth.vue'
 import { storeToRefs } from 'pinia'
 
 export default defineComponent({
-  name: "Home",
+  name: 'Home',
   components: {
     DemoAuth,
   },
@@ -32,17 +35,15 @@ export default defineComponent({
     onMounted(counterStore.refreshCounter)
 
     return { increment, count }
-
-  }
+  },
 })
 </script>
 
 <style>
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

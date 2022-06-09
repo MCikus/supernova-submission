@@ -14,6 +14,7 @@
     "code:analyse": "eslint  --ext .js --ext .vue --ext .yaml --ext .yml --ext .ts --ignore-path .eslintignore .",
     "code:analyse:fix": "eslint --ext .js --ext .vue --ext .yaml --ext .yml --ext .ts --ignore-path .eslintignore --fix .",
     "code:test": "jest",
+    "code:test:ci": "echo \"yarn jest --ci --testResultsProcessor='jest-junit'\"",
     "code:quality-suite": "yarn git:pre-push",
     "postinstall": "if [ -n \"${HUSKY}\" ] && [ \"${HUSKY}\" -eq 0 ]; then echo 'INFO: skip husky for ci/cd' ; else husky install; fi",
     "git:pre-push": ".husky/pre-push"

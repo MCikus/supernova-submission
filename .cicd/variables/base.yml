@@ -1,5 +1,5 @@
 variables:
-  PROJECT_NAME: 'mjn-2021-website'
+  PROJECT_NAME: 'miljn-on-ic'
   PROJECT_ROOT: '$(Build.SourcesDirectory)'
   BUILD_DIRECTORY: '$(PROJECT_ROOT)/dist'
 
@@ -9,7 +9,6 @@ variables:
   ARTIFACT_TIMESTAMP: 'null'
   ARTIFACT_DATETIME: 'null'
   ARTIFACT_JS_NAME: 'website'
-  ARTIFACT_DESIGN_SYSTEM: 'design-system'
 
   DEPLOY_TIMESTAMP: 'null'
   DEPLOY_DATETIME: 'null'

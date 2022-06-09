@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
 import PCard from '@/app/components/PCard.vue'
-import DemoHome from "@/domain/demo/components/DemoHome.vue"
+import DemoHome from '@/domain/demo/components/DemoHome.vue'
 
 const routes: RouteRecordRaw[] = [
   {

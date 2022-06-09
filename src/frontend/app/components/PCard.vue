@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'

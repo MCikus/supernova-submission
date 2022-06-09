@@ -19,7 +19,7 @@ stages:
             displayName: 'Preparation: evaluate ARTIFACT_DATETIME'
 
           - bash: |
-              echo "##vso[task.setvariable variable=NODE_VERSION]v14.17.5"
+              echo "##vso[task.setvariable variable=NODE_VERSION]v18.3.0"
             displayName: 'Preparation: evaluate NODE_VERSION'
 
           - bash: |
@@ -41,7 +41,6 @@ stages:
               echo "\$ARTIFACT_TIMESTAMP                      = '${ARTIFACT_TIMESTAMP}'"
               echo "\$ARTIFACT_DATETIME                       = '${ARTIFACT_DATETIME}'"
               echo "\$ARTIFACT_JS_NAME                        = '${ARTIFACT_JS_NAME}'"
-              echo "\$ARTIFACT_DESIGN_SYSTEM                  = '${ARTIFACT_DESIGN_SYSTEM}'"
 
               echo "stage_staging_enabled                     = '$(stage_staging_enabled)'"
               echo "stage_production_enabled                  = '$(stage_production_enabled)'"
