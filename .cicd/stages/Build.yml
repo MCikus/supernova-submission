@@ -87,11 +87,15 @@ stages:
             displayName: 'JS: analyse code'
 
           - bash: |
-              sed -i "s/__ARTIFACT_VERSION__/${ARTIFACT_VERSION}/" public/__version.json
-              sed -i "s/__ARTIFACT_BRANCH_NAME__/${ARTIFACT_BRANCH_NAME}/" public/__version.json
-              sed -i "s/__ARTIFACT_BUILD_ID__/${ARTIFACT_BUILD_ID}/" public/__version.json
-              sed -i "s/__ARTIFACT_TIMESTAMP__/${ARTIFACT_TIMESTAMP}/" public/__version.json
-              sed -i "s/__ARTIFACT_DATETIME__/${ARTIFACT_DATETIME}/" public/__version.json
+              if [[ ! -d dist ]]; then
+                mkdir -p dist
+              fi
+              cp version.template dist/__version.json
+              sed -i "s/__ARTIFACT_VERSION__/${ARTIFACT_VERSION}/" dist/__version.json
+              sed -i "s/__ARTIFACT_BRANCH_NAME__/${ARTIFACT_BRANCH_NAME}/" dist/__version.json
+              sed -i "s/__ARTIFACT_BUILD_ID__/${ARTIFACT_BUILD_ID}/" dist/__version.json
+              sed -i "s/__ARTIFACT_TIMESTAMP__/${ARTIFACT_TIMESTAMP}/" dist/__version.json
+              sed -i "s/__ARTIFACT_DATETIME__/${ARTIFACT_DATETIME}/" dist/__version.json
             displayName: 'Artifact: define version'
 
           - bash: |
