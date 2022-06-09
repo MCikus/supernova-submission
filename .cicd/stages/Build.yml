@@ -104,7 +104,7 @@ stages:
               /home/forge/bin/dfx start --background
               /home/forge/bin/dfx canister create --all
               /home/forge/bin/dfx generate
-              
+
               if [[ -d src/declarations ]]; then
                 rm -rf src/declarations
               fi
@@ -153,6 +153,12 @@ stages:
               /home/forge/bin/dfx stop
               . ${NVM_DIR}/nvm.sh 
               nvm use
-              yarn clean
+              /home/forge/bin/dfx stop
+              if [ -d '.dfx' ]; then 
+                rm -rf .dfx 
+              fi; 
+              if [ -d 'dist' ]; then 
+                rm -rf dist 
+              fi
             displayName: 'Cleanup'
             condition: always()
