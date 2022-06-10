@@ -7,6 +7,8 @@ const round = (num) =>
 const rem = (px) => `${round(px / 16)}rem`
 const em = (px, base) => `${round(px / base)}em`
 
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: ['./src/**/index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
@@ -229,6 +231,7 @@ module.exports = {
     },
     screens: {
       xs: '480px',
+      ...defaultTheme.screens,
       '3xl': '1920px',
     },
   },
