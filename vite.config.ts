@@ -13,6 +13,17 @@ interface CanisterIds {
   [key: string]: { [key in Network]: string }
 }
 
+const DFX_HOST = process.env?.DFX_HOST ?? dfxJson.networks.local.bind.split(':')[0]
+const DFX_PORT = process.env?.DFX_PORT ?? dfxJson.networks.local.bind.split(':')[1]
+const DFX_PROTOCOL = process.env?.DFX_PROTOCOL ?? 'http'
+
+// eslint-disable-next-line no-console
+console.log('⚠️', 'Network settings of the replica', {
+  DFX_HOST,
+  DFX_PORT,
+  DFX_PROTOCOL,
+})
+
 let canisterIds: CanisterIds = {}
 
 try {
@@ -61,9 +72,6 @@ export const frontendAliases = {
   '@': `${resolve(__dirname, 'src/frontend')}/`,
 }
 
-// Gets the port dfx is running on from dfx.json
-const DFX_PORT = dfxJson.networks.local.bind.split(':')[1]
-
 // See guide on how to configure Vite at:
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -86,7 +94,7 @@ export default defineConfig({
     proxy: {
       // This proxies all http requests made to /api to our running dfx instance
       '/api': {
-        target: `http://localhost:${DFX_PORT}`,
+        target: `${DFX_PROTOCOL}://${DFX_HOST}:${DFX_PORT}`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '/api'),
       },
