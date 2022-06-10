@@ -14,7 +14,7 @@
         :openMenu="openMenu"
       />
       <div
-        class="mt-4 flex cursor-text items-center justify-center gap-4 px-5 hover:bg-gray-50"
+        class="mt-2 flex cursor-text items-center gap-4 px-5 py-2 hover:bg-gray-50"
       >
         <div
           v-if="showAvatar"
@@ -22,7 +22,7 @@
         >
           <h5>TC</h5>
         </div>
-        <div class="flex w-1/2 items-center gap-4">
+        <div class="flex w-full max-w-[120px] items-center gap-4 justify-between">
           <InlineInput
             class="cursor-pointer text-sm font-normal leading-none text-gray-700"
             :value="userName"
@@ -31,9 +31,6 @@
             @inline-input-changed="userNameChanged"
           />
         </div>
-        <!-- <input type="text"> -->
-        <!-- <h5>Frederick</h5>
-        <button>Edit</button> -->
       </div>
       <slot name="middle" />
       <div class="w-full border-t border-gray-100" />
