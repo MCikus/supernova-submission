@@ -13,16 +13,14 @@
         :closeMenu="closeMenu"
         :openMenu="openMenu"
       />
-      <div
-        class="mt-2 flex cursor-text items-center gap-4 px-5 py-2 hover:bg-gray-50"
-      >
+      <div class="mt-2 flex cursor-text items-center gap-4 px-5 py-2 hover:bg-gray-50">
         <div
           v-if="showAvatar"
           class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-200 text-xs text-blue-800"
         >
           <h5>TC</h5>
         </div>
-        <div class="flex w-full max-w-[120px] items-center gap-4 justify-between">
+        <div class="flex w-full max-w-[120px] items-center justify-between gap-4">
           <InlineInput
             class="cursor-pointer text-sm font-normal leading-none text-gray-700"
             :value="userName"
