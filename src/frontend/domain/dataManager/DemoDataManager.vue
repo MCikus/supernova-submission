@@ -665,12 +665,11 @@ export default defineComponent({
     window._cC = cardClient
     window._bC = blockClient
 
-
-    const resolveBlock = id => {
+    const resolveBlock = (id) => {
       return blockClient.find(id)
     }
 
-    const resolveCard = async id => {
+    const resolveCard = async (id) => {
       const card = await cardClient.find(id)
       card.children = await Promise.all(card.children.map(resolveCard))
       card.blocks = await Promise.all(card.blocks.map(resolveBlock))

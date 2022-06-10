@@ -12,7 +12,7 @@ export const find = async (blockId: string) => {
   return {
     id: block.id,
     typeId: block.typeId,
-    payload: JSON.parse(block.payload)
+    payload: JSON.parse(block.payload),
   }
 }
 
