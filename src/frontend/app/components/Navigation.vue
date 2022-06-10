@@ -14,11 +14,10 @@
         <SearchInput :value="topicsSearchString" @input="topicsSearchString = $event" />
         <ProfileMenu :showAvatar="true">
           <template #middle>
-            <div class="px-3 py-2 flex flex-col items-center">
-              <div
-                class="border bg-white relative rounded-full animation-pulse w-14 h-14 my-4"
-                :class="energyColor"
-              ></div>
+            <div class="px-3 py-4 flex flex-col items-center">
+              <div class="my-2">
+                <img :src="energyIntensityIndicator" alt="">
+              </div>
               <h4 class="font-semibold">{{ MJNE }}</h4>
               <h4>$MJNE</h4>
 
@@ -55,6 +54,7 @@
                 </span>
                 <span>Recharge $MJNE</span>
               </button>
+
             </div>
           </template>
         </ProfileMenu>
@@ -72,7 +72,10 @@ import NavigationActionGroup from '@/app/components/NavigationActionGroup.vue'
 import MiljnLogo from './MiljnLogo.vue'
 import NotificationMenu from '@/app/components/NotificationMenu.vue'
 import { useDashboardSearchStore } from '@/app/services/useDashboardSearchStore.js'
-import { useEnergyStore } from '@/app/services/useEnergyStore'
+import { low, medium, useEnergyStore } from '@/app/services/useEnergyStore'
+import highIndicator from '@/app/assets/indicators/high.svg'
+import mediumIndicator from '@/app/assets/indicators/medium.svg'
+import lowIndicator from '@/app/assets/indicators/low.svg'
 import { storeToRefs } from 'pinia'
 
 export const componentName = 'Navigation'
@@ -88,63 +91,31 @@ export default defineComponent({
     NotificationMenu,
   },
   setup() {
+    const energyStore = useEnergyStore()
     const { topicsSearchString } = storeToRefs(useDashboardSearchStore())
-    const { energyLevel, $MJNE: MJNE } = storeToRefs(useEnergyStore())
-   
-    const energyColor = computed(() => {
-      let color
-      if (energyLevel.value == 'low') color = 'red'
-      else if (energyLevel.value == 'medium') color = 'yellow'
-      else color = 'green'
-      return [`border-${color}-500 before:bg-${color}-500 after:bg-${color}-500`]
+    const { energyLevel, $MJNE: MJNE } = storeToRefs(energyStore)
+
+    const energyIntensityIndicator = computed(() => {
+      let indicator
+      if (energyLevel.value == low) indicator = lowIndicator
+      else if (energyLevel.value == medium) indicator = mediumIndicator
+      else indicator = highIndicator
+      return indicator
     })
-    const pulseCount = computed(() => {
-      if (energyLevel.value == 'low') return 3
-      else if (energyLevel.value == 'medium') return 5
-      else return 6
-    })
+
+    const changeLevel = (level) => {
+      energyStore.update$MJNE(level)
+    }
 
     return {
       componentName,
       topicsSearchString,
-      energyColor,
-      pulseCount,
+      energyIntensityIndicator,
       MJNE,
+      changeLevel,
     }
   },
 })
 </script>
 
-<style scoped>
-.animation-pulse:after,
-.animation-pulse:before {
-  position: absolute;
-  content: '';
-  height: 110%;
-  width: 110%;
-  top: 50%;
-  left: 50%;
-  filter: blur(0.25px);
-  transform: translate(-50%, -50%);
-  -webkit-animation: anim-pulse 1.5s linear infinite;
-  animation: anim-pulse 1.5s linear infinite;
-  z-index: -10;
-  opacity: 0.5;
-  border-radius: 9999px;
-}
-.animation-pulse:before {
-  -webkit-animation-delay: 0.5s;
-  animation-delay: 0.5s;
-}
-
-@keyframes anim-pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0.5;
-  }
-  to {
-    transform: translate(-50%, -50%) scale(2);
-    opacity: 0;
-  }
-}
-</style>
+<style scoped></style>
