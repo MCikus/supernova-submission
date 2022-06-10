@@ -15,12 +15,12 @@
         <ProfileMenu :showAvatar="true">
           <template #middle>
             <div class="flex flex-col items-center px-3 py-5">
-              <div class="mb-3 min-h-[100px] flex justify-center items-center">
+              <div class="mb-3 flex min-h-[100px] items-center justify-center">
                 <img :src="energyIntensityIndicator" alt="" />
               </div>
-              <div class="text-xl text-center">
+              <div class="text-center text-xl">
                 <h4 class="font-semibold">{{ MJNE }}</h4>
-              <h4>$MJNE</h4>
+                <h4>$MJNE</h4>
               </div>
 
               <button
@@ -43,7 +43,6 @@
                   </svg>
                 </span>
                 <span>Recharge $MJNE</span>
-
               </button>
             </div>
           </template>
