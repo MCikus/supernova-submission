@@ -4,7 +4,17 @@
     "title": "Become a Miljn frontend developer",
     "meta": {
       "priority": 1,
-      "progress": "in_progress"
+      "progress": "in_progress",
+      "status" : {
+        "type": "card_meta",
+        "id": "067a9185-fcc1-490a-9a83-d0d35561a098",
+        "typeId": "b6e6311c-343b-4b79-bf45-113b8b20186e",
+        "payload": {
+          "value": false
+        },
+        "createdAt": "2022-05-25T04:06:33.000000Z",
+        "updatedAt": "2022-05-25T04:06:33.000000Z"
+      }
     },
     "blocks": [
       "c24d5842-f7f0-4af0-8ad6-ad999a079da0",
