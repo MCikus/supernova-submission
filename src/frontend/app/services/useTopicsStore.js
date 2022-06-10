@@ -7,8 +7,8 @@ export const useTopicsStore = defineStore('useTopicsStore', {
   actions: {
     addNewTopic(topicName) {
       this.topics.push({
-        title: topicName
+        title: topicName,
       })
-    }
-  }
+    },
+  },
 })

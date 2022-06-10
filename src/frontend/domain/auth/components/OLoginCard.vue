@@ -1,6 +1,6 @@
 <template>
-  <div :class="$options.name" class="sm:mx-auto sm:w-full sm:max-w-md mt-8">
-    <div class="sm:rounded-lg sm:px-10 space-y-4 bg-white px-4 py-8 shadow">
+  <div :class="$options.name" class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="space-y-4 bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
       <ATextInput
         :component-data="componentData"
         :required="true"

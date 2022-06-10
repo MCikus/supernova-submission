@@ -9,10 +9,10 @@
     :maxlength="maxlength"
     :value="computedValue"
     :placeholder="computedPlaceholder"
+    rows="1"
     @keydown.enter="handleKeyDownEnter"
     @blur="handleInputChanged"
     @input="resizeTextArea($event.target)"
-    rows="1"
   />
   <input
     v-if="editing && !multiline"
@@ -22,14 +22,14 @@
     type="text"
     :value="computedValue"
     :placeholder="computedPlaceholder"
+    :maxlength="maxlength"
     @keydown.enter="handleKeyDownEnter"
     @blur="handleInputChanged"
-    :maxlength="maxlength"
   />
   <div
     v-if="!editing"
     ref="labelEl"
-    class="break-words w-full overflow-hidden hyphens-auto hover:cursor-text hover:text-gray-600"
+    class="hyphens-auto w-full overflow-hidden break-words hover:cursor-text hover:text-gray-600"
     :class="[
       $attrs.class,
       multiline ? 'line-clamp-' + maxLines : 'truncate',
@@ -96,7 +96,7 @@ export default {
 
       if (editing.value) {
         await nextTick(() => {
-          if(props.multiline){
+          if (props.multiline) {
             resizeTextArea(inputEl.value)
           }
 
@@ -130,9 +130,8 @@ export default {
 
     const computedPlaceholder = computed(() => props.placeholder)
 
-
     const resizeTextArea = (element) => {
-      element.style.height = "auto"
+      element.style.height = 'auto'
       element.style.height = `${element.scrollHeight}px`
     }
     return {

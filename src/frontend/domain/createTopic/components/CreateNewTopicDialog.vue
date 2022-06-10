@@ -1,34 +1,48 @@
 <template>
-  <BaseFullscreenDialog class="pt-24 md:pt-40" :class="componentName" :dialog-is-visible="dialogIsVisible" @dialogVisibilityChanged="dialogIsVisible = $event">
-      <template #dialogContent>
-        <div class="flex flex-col justify-start items-start w-full max-w-3xl h-full">
-          <div class="flex flex-nowrap w-full">
-            <span class="inline-flex h-10 w-1 mr-6 bg-[#01D17F]" />
-            <InlineInput
-              class="text-4xl text-white hover:text-white placeholder-white placeholder-opacity-50"
-              :multiline="true"
-              :value="topicName"
-              @inline-input-changed="topicNameHasChanged"
-              placeholder="Name your topic"
-            />
-          </div>
-          <div class="flex flex-nowrap items-center mt-12">
-            <button type="button" @click="handleButtonClick" class="px-4 py-2.5 mr-4 rounded-md bg-[#01D17F] text-white text-sm">Next</button>
-            <span class="text-white text-sm cursor-default">Press <span class="font-bold">Enter ↵</span></span>
-          </div>
+  <BaseFullscreenDialog
+    class="pt-24 md:pt-40"
+    :class="componentName"
+    :dialog-is-visible="dialogIsVisible"
+    @dialogVisibilityChanged="dialogIsVisible = $event"
+  >
+    <template #dialogContent>
+      <div class="flex h-full w-full max-w-3xl flex-col items-start justify-start">
+        <div class="flex w-full flex-nowrap">
+          <span class="mr-6 inline-flex h-10 w-1 bg-[#01D17F]" />
+          <InlineInput
+            class="text-4xl text-white placeholder-white placeholder-opacity-50 hover:text-white"
+            :multiline="true"
+            :value="topicName"
+            placeholder="Name your topic"
+            @inline-input-changed="topicNameHasChanged"
+          />
         </div>
-      </template>
+        <div class="mt-12 flex flex-nowrap items-center">
+          <button
+            type="button"
+            class="mr-4 rounded-md bg-[#01D17F] px-4 py-2.5 text-sm text-white"
+            @click="handleButtonClick"
+          >
+            Next
+          </button>
+          <span class="cursor-default text-sm text-white">
+            Press
+            <span class="font-bold">Enter ↵</span>
+          </span>
+        </div>
+      </div>
+    </template>
   </BaseFullscreenDialog>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue"
-import BaseFullscreenDialog from "@/app/components/BaseFullscreenDialog.vue"
-import InlineInput from "@/domain/cards/components/InlineInput.vue"
-import { useCreateNewTopicDialogStore } from "@/domain/createTopic/services/useCreateNewTopicDialogStore.js"
-import { useTopicsStore } from "@/app/services/useTopicsStore.js"
+import { defineComponent, ref } from 'vue'
+import BaseFullscreenDialog from '@/app/components/BaseFullscreenDialog.vue'
+import InlineInput from '@/domain/cards/components/InlineInput.vue'
+import { useCreateNewTopicDialogStore } from '@/domain/createTopic/services/useCreateNewTopicDialogStore.js'
+import { useTopicsStore } from '@/app/services/useTopicsStore.js'
 import { onKeyStroke } from '@vueuse/core'
-import { storeToRefs } from "pinia"
+import { storeToRefs } from 'pinia'
 
 export const componentName = 'CreateNewTopicDialog'
 
@@ -36,7 +50,7 @@ export default defineComponent({
   name: componentName,
   components: {
     BaseFullscreenDialog,
-    InlineInput
+    InlineInput,
   },
   setup() {
     const useCreateNewTopicDialog = useCreateNewTopicDialogStore()
@@ -45,13 +59,12 @@ export default defineComponent({
     const { dialogIsVisible } = storeToRefs(useCreateNewTopicDialog)
     const topicName = ref('')
 
-
     const topicNameHasChanged = ({ event }) => {
       topicName.value = event.target.value
     }
 
     const handleButtonClick = () => {
-      if(topicName.value === ''){
+      if (topicName.value === '') {
         return
       }
       useTopics.addNewTopic(topicName.value)
@@ -61,14 +74,13 @@ export default defineComponent({
 
     onKeyStroke('Enter', (e) => {
       e.preventDefault()
-      if(topicName.value === ''){
+      if (topicName.value === '') {
         return
       }
       useTopics.addNewTopic(topicName.value)
       useCreateNewTopicDialog.close()
       topicName.value = ''
     })
-
 
     return {
       componentName,

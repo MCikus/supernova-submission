@@ -1,15 +1,15 @@
 <template>
   <div class="flex" :class="componentName">
-    <a href="/dashboard" class="md:inline-flex hidden">
+    <a href="/dashboard" class="hidden md:inline-flex">
       <HomeIcon class="h-[1.125rem] w-[1.125rem] text-white" />
     </a>
     <a
       href="/dashboard"
-      class="md:hidden block w-full px-4 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
+      class="block w-full px-4 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50 md:hidden"
     >
       <HomeIcon class="h-3.5 w-3.5" />
     </a>
-    <div class="md:hidden w-full border-t border-gray-100" />
+    <div class="w-full border-t border-gray-100 md:hidden" />
   </div>
 </template>
 

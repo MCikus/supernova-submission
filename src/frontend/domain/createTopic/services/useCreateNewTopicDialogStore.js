@@ -13,6 +13,6 @@ export const useCreateNewTopicDialogStore = defineStore('useCreateNewTopicDialog
     },
     toggle() {
       this.dialogIsVisible = !this.dialogIsVisible
-    }
-  }
+    },
+  },
 })
