@@ -43,8 +43,8 @@ export const useEnergyStore = defineStore('energyStore', {
         this.$MJNE = JSON.parse(localStorage.getItem('energyStore'))?.$MJNE ?? null
       }
     },
-    update$MJNE(status) {
-      this.$MJNE = EnergyLevel[getStatus(status)]
+    update$MJNE(value) {
+      this.$MJNE = value
       // window.localStorage.setItem(
       //   'energyStore',
       //   JSON.stringify({
