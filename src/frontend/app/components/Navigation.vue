@@ -14,12 +14,14 @@
         <SearchInput :value="topicsSearchString" @input="topicsSearchString = $event" />
         <ProfileMenu :showAvatar="true">
           <template #middle>
-            <div class="flex flex-col items-center px-3 py-4">
-              <div class="my-2">
+            <div class="flex flex-col items-center px-3 py-5">
+              <div class="mb-3 min-h-[100px] flex justify-center items-center">
                 <img :src="energyIntensityIndicator" alt="" />
               </div>
-              <h4 class="font-semibold">{{ MJNE }}</h4>
+              <div class="text-xl text-center">
+                <h4 class="font-semibold">{{ MJNE }}</h4>
               <h4>$MJNE</h4>
+              </div>
 
               <button
                 class="mt-4 mb-2 flex items-center gap-3 rounded-lg bg-indigo-50 px-5 py-2 font-normal text-gray-700"
@@ -41,6 +43,7 @@
                   </svg>
                 </span>
                 <span>Recharge $MJNE</span>
+
               </button>
             </div>
           </template>
@@ -90,8 +93,8 @@ export default defineComponent({
       return indicator
     })
 
-    const changeLevel = (level) => {
-      energyStore.update$MJNE(level)
+    const changeLevel = (value) => {
+      energyStore.update$MJNE(value)
     }
 
     return {

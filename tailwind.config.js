@@ -9,6 +9,7 @@ const em = (px, base) => `${round(px / base)}em`
 
 module.exports = {
   content: ['./src/**/index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  mode: 'jit',
   theme: {
     extend: {
       typography: {
