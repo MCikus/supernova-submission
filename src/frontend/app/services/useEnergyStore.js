@@ -10,6 +10,17 @@ export const EnergyLevel = {
   [high]: 1000,
 }
 
+const getStatus = (val) => {
+  switch (val) {
+    case 'low':
+      return low
+    case 'high':
+      return high
+    default:
+      return medium
+  }
+}
+
 export const useEnergyStore = defineStore('energyStore', {
   state: () => ({
     $MJNE: 2000,
@@ -32,14 +43,14 @@ export const useEnergyStore = defineStore('energyStore', {
         this.$MJNE = JSON.parse(localStorage.getItem('energyStore'))?.$MJNE ?? null
       }
     },
-    update$MJNE(name) {
-      this.$MJNE = name
-      window.localStorage.setItem(
-        'energyStore',
-        JSON.stringify({
-          $MJNE: name,
-        }),
-      )
+    update$MJNE(status) {
+      this.$MJNE = EnergyLevel[getStatus(status)]
+      // window.localStorage.setItem(
+      //   'energyStore',
+      //   JSON.stringify({
+      //     $MJNE: this.$MJNE,
+      //   }),
+      // )
     },
   },
 })
