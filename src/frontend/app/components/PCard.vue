@@ -92,6 +92,9 @@
         </OCardsContainer>
       </div>
     </template>
+    <template #dialog>
+      <CreateNewTopicDialog/>
+    </template>
   </BaseAppLayout>
 </template>
 
@@ -100,6 +103,7 @@ import { defineComponent } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'
+import CreateNewTopicDialog from "@/domain/createTopic/components/CreateNewTopicDialog.vue"
 import AParentCardButton from '@/domain/cards/components/AParentCardButton.vue'
 import OCardsContainer from '@/domain/cards/components/OCardsContainer.vue'
 import MCard from '@/domain/cards/components/MCard.vue'
@@ -116,6 +120,7 @@ export default defineComponent({
   name: 'PCard',
   components: {
     BaseAppLayout,
+    CreateNewTopicDialog,
     Navigation,
     AParentCardButton,
     OCardsContainer,
