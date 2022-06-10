@@ -1,15 +1,29 @@
 import { defineStore } from 'pinia'
 
+export const low = Symbol('energy-low')
+export const medium = Symbol('energy-medium')
+export const high = Symbol('energy-high')
+
+export const EnergyLevel = {
+  [low]: 100,
+  [medium]: 200,
+  [high]: 1000,
+}
+
 export const useEnergyStore = defineStore('energyStore', {
   state: () => ({
-    $MJNE: 1212123,
+    $MJNE: 2000,
   }),
   getters: {
     energyLevel: (state) => {
       const val = state.$MJNE
-      if (val >= 1212123) return 'high'
-      else if (val >= 12121) return 'medium'
-      else return 'low'
+      if (val < EnergyLevel[low]) {
+        return low
+      }
+      if (state.$MJNE < EnergyLevel[medium]) {
+        return medium
+      }
+      return high
     },
   },
   actions: {
