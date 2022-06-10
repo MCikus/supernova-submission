@@ -1,14 +1,65 @@
 <template>
-  <span
-    class="flex h-9 w-9 items-center justify-center rounded-full bg-base-300 text-base font-extrabold tracking-normal text-state-info"
-    :class="[$options.name]"
-  >
-    {{ computedInitials }}
-  </span>
+  <div class="relative">
+    <svg
+      class="center z-0"
+      width="60"
+      height="60"
+      viewBox="0 0 40 40"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="20"
+        cy="20"
+        fill="none"
+        r="10"
+        :stroke="energyIntensity.color"
+        stroke-width="2"
+      >
+        <animate
+          attributeName="r"
+          from="8"
+          to="20"
+          :dur="energyIntensity.duration"
+          begin="0s"
+          repeatCount="indefinite"
+        ></animate>
+        <animate
+          attributeName="opacity"
+          from="1"
+          to="0"
+          :dur="energyIntensity.duration"
+          begin="0s"
+          repeatCount="indefinite"
+        ></animate>
+      </circle>
+    </svg>
+    <span
+      class="
+        flex
+        relative
+        z-10
+        h-9
+        w-9
+        items-center
+        justify-center
+        rounded-full
+        bg-base-300
+        text-base
+        font-extrabold
+        tracking-normal
+        text-state-info
+      "
+      :class="[$options.name]"
+    >
+      {{ computedInitials }}
+    </span>
+  </div>
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
 import { computed, defineComponent } from 'vue'
+import { low, medium, useEnergyStore } from '../services/useEnergyStore'
 
 export const componentName = 'UserAvatar'
 
@@ -21,6 +72,22 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { energyLevel } = storeToRefs(useEnergyStore())
+
+    const energyIntensity = computed(() => {
+      let color, duration
+      if (energyLevel.value == low) {
+        color = '#FF9D8B'
+        duration = '1'
+      } else if (energyLevel.value == medium) {
+        color = '#FFC901'
+        duration = '1.5'
+      } else {
+        color = '#01D17F'
+        duration = '3'
+      }
+      return { color,duration }
+    })
     const name = computed(() => props.name)
 
     const computedInitials = computed(() => {
@@ -49,9 +116,14 @@ export default defineComponent({
 
     return {
       computedInitials,
+      energyIntensity,
     }
   },
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.center {
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+</style>
