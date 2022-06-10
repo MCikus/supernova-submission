@@ -34,21 +34,7 @@
       </circle>
     </svg>
     <span
-      class="
-        flex
-        relative
-        z-10
-        h-9
-        w-9
-        items-center
-        justify-center
-        rounded-full
-        bg-base-300
-        text-base
-        font-extrabold
-        tracking-normal
-        text-state-info
-      "
+      class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-base-300 text-base font-extrabold tracking-normal text-state-info"
       :class="[$options.name]"
     >
       {{ computedInitials }}
@@ -86,7 +72,7 @@ export default defineComponent({
         color = '#01D17F'
         duration = '3'
       }
-      return { color,duration }
+      return { color, duration }
     })
     const name = computed(() => props.name)
 
@@ -124,6 +110,6 @@ export default defineComponent({
 
 <style scoped>
 .center {
-  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform;
 }
 </style>

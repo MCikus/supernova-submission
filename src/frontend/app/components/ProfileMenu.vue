@@ -13,7 +13,9 @@
         :closeMenu="closeMenu"
         :openMenu="openMenu"
       />
-      <div class="mt-2 flex cursor-text items-center justify-center gap-4 px-5 hover:bg-gray-50">
+      <div
+        class="mt-2 flex cursor-text items-center justify-center gap-4 px-5 hover:bg-gray-50"
+      >
         <div
           v-if="showAvatar"
           class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-200 text-xs text-blue-800"
@@ -22,12 +24,12 @@
         </div>
         <div class="flex w-1/2 items-center gap-4">
           <InlineInput
-          class="cursor-pointer text-sm font-normal leading-none text-gray-700"
-          :value="userName"
-          :multiline="false"
-          :edit-by-inline-click="false"
-          @inline-input-changed="userNameChanged"
-        />
+            class="cursor-pointer text-sm font-normal leading-none text-gray-700"
+            :value="userName"
+            :multiline="false"
+            :edit-by-inline-click="false"
+            @inline-input-changed="userNameChanged"
+          />
         </div>
         <!-- <input type="text"> -->
         <!-- <h5>Frederick</h5>
