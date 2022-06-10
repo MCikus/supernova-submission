@@ -14,7 +14,7 @@
         :openMenu="openMenu"
       />
       <div
-        class="mt-2 flex cursor-text items-center justify-center gap-4 px-5 hover:bg-gray-50"
+        class="mt-4 flex cursor-text items-center justify-center gap-4 px-5 hover:bg-gray-50"
       >
         <div
           v-if="showAvatar"
