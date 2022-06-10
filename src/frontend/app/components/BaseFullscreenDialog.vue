@@ -9,13 +9,13 @@
   >
     <div
       v-if="isDialogVisible"
-      class="absolute flex justify-center p-24 w-screen h-screen z-50 bg-[#5F75D7]"
+      class="absolute flex justify-center py-10 px-4 md:p-20 w-screen h-screen z-50 bg-[#5F75D7]"
       :class="[componentName, $attrs.class]"
     >
-      <button @click="isDialogVisible = false" class="absolute top-10 right-10">
+      <button @click="isDialogVisible = false" class="absolute top-2 right-2 md:top-10 md:right-10">
           <XIcon class="h-10 w-10 text-white"/>
       </button>
-      <slot>
+      <slot name="dialogContent">
           <div class="flex justify-center items-center w-full h-full rounded-md bg-white">
             Default Dialog content
           </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent } from "vue"
 import { XIcon } from '@heroicons/vue/outline'
 
 export const componentName = 'BaseFullscreenDialog'
@@ -42,8 +42,15 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
-    const isDialogVisible = ref(props.dialogIsVisible)
+  setup(props, {emit}) {
+    const isDialogVisible = computed({
+      get(){
+        return props.dialogIsVisible
+      },
+      set(value) {
+        emit('dialogVisibilityChanged', value)
+      }
+    })
 
     return {
       componentName,
