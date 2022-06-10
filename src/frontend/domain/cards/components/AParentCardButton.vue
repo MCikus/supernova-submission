@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-row flex-nowrap items-center" :class="$options.name">
     <div
-      class="min-w[4rem] md:h-10 md:w-20 md:min-w-[5rem] h-8 w-16 cursor-pointer rounded-lg bg-primary-content"
+      class="min-w[4rem] h-8 w-16 cursor-pointer rounded-lg bg-primary-content md:h-10 md:w-20 md:min-w-[5rem]"
       @click="handleClick($event)"
     />
     <span
-      class="md:text-2xl ml-5 truncate text-lg font-normal leading-8 text-primary-content"
+      class="ml-5 truncate text-lg font-normal leading-8 text-primary-content md:text-2xl"
     >
       {{ computedParentName }}
     </span>

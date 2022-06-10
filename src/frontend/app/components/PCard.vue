@@ -8,7 +8,7 @@
       <div class="flex h-full flex-col">
         <div
           v-if="computedTTopicChildrenViewData.parent"
-          class="md:px-6 md:pb-3 md:pt-8 2xl:px-[10.5rem] px-4 pb-7 pt-10"
+          class="px-4 pb-7 pt-10 md:px-6 md:pb-3 md:pt-8 2xl:px-[10.5rem]"
         >
           <AParentCardButton
             :component-data="computedTTopicChildrenViewData"
@@ -92,6 +92,9 @@
         </OCardsContainer>
       </div>
     </template>
+    <template #dialog>
+      <CreateNewTopicDialog />
+    </template>
   </BaseAppLayout>
 </template>
 
@@ -100,6 +103,7 @@ import { defineComponent } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'
+import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopicDialog.vue'
 import AParentCardButton from '@/domain/cards/components/AParentCardButton.vue'
 import OCardsContainer from '@/domain/cards/components/OCardsContainer.vue'
 import MCard from '@/domain/cards/components/MCard.vue'
@@ -116,6 +120,7 @@ export default defineComponent({
   name: 'PCard',
   components: {
     BaseAppLayout,
+    CreateNewTopicDialog,
     Navigation,
     AParentCardButton,
     OCardsContainer,

@@ -6,11 +6,13 @@
     :class="[$attrs.class, componentName]"
     type="textarea"
     wrap="hard"
-    maxlength="208"
+    :maxlength="maxlength"
     :value="computedValue"
     :placeholder="computedPlaceholder"
+    rows="1"
     @keydown.enter="handleKeyDownEnter"
     @blur="handleInputChanged"
+    @input="resizeTextArea($event.target)"
   />
   <input
     v-if="editing && !multiline"
@@ -20,13 +22,14 @@
     type="text"
     :value="computedValue"
     :placeholder="computedPlaceholder"
+    :maxlength="maxlength"
     @keydown.enter="handleKeyDownEnter"
     @blur="handleInputChanged"
   />
   <div
     v-if="!editing"
     ref="labelEl"
-    class="hyphens-auto hover:cursor-text hover:text-gray-600"
+    class="hyphens-auto w-full overflow-hidden break-words hover:cursor-text hover:text-gray-600"
     :class="[
       $attrs.class,
       multiline ? 'line-clamp-' + maxLines : 'truncate',
@@ -64,6 +67,10 @@ export default {
       type: Number,
       default: () => 5,
     },
+    maxlength: {
+      type: Number,
+      default: () => 144,
+    },
     multiline: {
       type: Boolean,
       default: true,
@@ -89,6 +96,10 @@ export default {
 
       if (editing.value) {
         await nextTick(() => {
+          if (props.multiline) {
+            resizeTextArea(inputEl.value)
+          }
+
           inputEl.value.focus()
           inputEl.value.select()
         })
@@ -119,8 +130,13 @@ export default {
 
     const computedPlaceholder = computed(() => props.placeholder)
 
+    const resizeTextArea = (element) => {
+      element.style.height = 'auto'
+      element.style.height = `${element.scrollHeight}px`
+    }
     return {
       componentName,
+      resizeTextArea,
       labelEl,
       inputEl,
       computedLabel,
