@@ -4,6 +4,10 @@
       "main": "src/backend/counter-canister/main.mo",
       "type": "motoko"
     },
+    "data_manager": {
+      "main": "src/backend/data-manager/main.mo",
+      "type": "motoko"
+    },
     "assets": {
       "dependencies": ["counter"],
       "frontend": {
