@@ -13,10 +13,10 @@
         :closeMenu="closeMenu"
         :openMenu="openMenu"
       />
-      <div class="mt-2 flex cursor-text items-center gap-2 px-5 py-2 hover:bg-gray-50">
+      <div class="mt-2 flex cursor-text items-center gap-2 px-5 py-1 hover:bg-gray-50">
         <div
           v-if="showAvatar"
-          class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-200 text-xs text-blue-800"
+          class="flex p-2 items-center font-bold justify-center rounded-full bg-blue-200 text-sm text-blue-800"
         >
           <h5>TC</h5>
         </div>
@@ -31,7 +31,6 @@
         </div>
       </div>
       <slot name="middle" />
-      <div class="w-full border-t border-gray-100" />
       <a
         href="/logout"
         class="block w-full px-4 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
