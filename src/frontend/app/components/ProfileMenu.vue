@@ -16,7 +16,7 @@
       <div class="mt-2 flex cursor-text items-center gap-2 px-5 py-1 hover:bg-gray-50">
         <div
           v-if="showAvatar"
-          class="flex p-2 items-center font-bold justify-center rounded-full bg-blue-200 text-sm text-blue-800"
+          class="flex items-center justify-center rounded-full bg-blue-200 p-2 text-sm font-bold text-blue-800"
         >
           <h5>TC</h5>
         </div>

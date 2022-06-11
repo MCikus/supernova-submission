@@ -18,11 +18,11 @@
               <div class="mb-2 flex min-h-[120px] items-center justify-center">
                 <img :src="energyIntensityIndicator" alt="" />
               </div>
-                <h3 class="font-bold text-xl">{{ MJNE }}</h3>
-                <h2>$MJNE</h2>
+              <h3 class="text-xl font-bold">{{ MJNE }}</h3>
+              <h2>$MJNE</h2>
 
               <button
-                class="mt-4 mb-1 flex items-center gap-3 rounded-lg bg-indigo-50 px-7 py-3 font-normal text-gray-700 text-sm"
+                class="mt-4 mb-1 flex items-center gap-3 rounded-lg bg-indigo-50 px-7 py-3 text-sm font-normal text-gray-700"
               >
                 <span>
                   <svg
