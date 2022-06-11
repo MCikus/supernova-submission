@@ -38,11 +38,11 @@
   </div>
   <span
     v-if="!editByInlineClick"
-    class="inline-block w-fit text-[#5F75D7]"
+    class="inline-block w-fit text-[#5F75D7] underline"
     :class="$attrs.class"
     @click="toggle"
   >
-    Edit
+    edit
   </span>
 </template>
 <script>
