@@ -20,9 +20,9 @@
         >
           <h5>TC</h5>
         </div>
-        <div class="flex items-center justify-between gap-2 flex-grow">
+        <div class="flex flex-grow items-center justify-between gap-2">
           <InlineInput
-            class="cursor-pointer max-w-[100px] text-sm font-normal leading-none text-gray-700"
+            class="max-w-[100px] cursor-pointer text-sm font-normal leading-none text-gray-700"
             :value="userName"
             :multiline="false"
             :edit-by-inline-click="false"

@@ -26,7 +26,7 @@
     >
       <div
         v-if="isMenuVisible"
-        class="absolute min-w-[240px] right-0 -bottom-5 z-50 w-56 translate-y-full cursor-pointer overflow-hidden rounded-md bg-white shadow-lg focus:outline-none"
+        class="absolute right-0 -bottom-5 z-50 w-56 min-w-[240px] translate-y-full cursor-pointer overflow-hidden rounded-md bg-white shadow-lg focus:outline-none"
       >
         <slot
           name="items"
