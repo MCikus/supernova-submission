@@ -13,7 +13,7 @@
         :closeMenu="closeMenu"
         :openMenu="openMenu"
       />
-      <div class="mt-2 flex cursor-text items-center gap-2 px-3 py-1 hover:bg-gray-50">
+      <div class="mt-3 flex cursor-text items-center gap-2 px-3 hover:bg-gray-50">
         <div
           v-if="showAvatar"
           class="flex h-9 w-9 items-center justify-center rounded-full bg-blue-200 text-sm font-bold text-blue-800"
@@ -31,10 +31,10 @@
         </div>
       </div>
       <slot name="middle" />
-      <div class="pb-2">
+      <div class="mb-[2px] pb-2">
         <a
           href="/logout"
-          class="block w-full px-5 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
+          class="block w-full px-6 py-2 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
           @click="closeMenu"
         >
           Logout
