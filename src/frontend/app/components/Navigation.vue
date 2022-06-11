@@ -22,7 +22,7 @@
               <h2>$MJNE</h2>
 
               <button
-                class="mt-4 mb-1 flex items-center gap-3 rounded-lg bg-indigo-50 px-7 py-3 text-sm font-normal text-gray-700"
+                class="mt-4 flex items-center gap-3 rounded-lg bg-indigo-50 px-7 py-3 text-sm font-normal text-gray-700"
               >
                 <span>
                   <svg

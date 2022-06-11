@@ -13,10 +13,10 @@
         :closeMenu="closeMenu"
         :openMenu="openMenu"
       />
-      <div class="mt-2 flex cursor-text items-center gap-2 px-5 py-1 hover:bg-gray-50">
+      <div class="mt-2 flex cursor-text items-center gap-2 px-3 py-1 hover:bg-gray-50">
         <div
           v-if="showAvatar"
-          class="flex items-center justify-center rounded-full bg-blue-200 p-2 text-sm font-bold text-blue-800"
+          class="flex h-9 w-9 items-center justify-center rounded-full bg-blue-200 text-sm font-bold text-blue-800"
         >
           <h5>TC</h5>
         </div>
@@ -31,13 +31,15 @@
         </div>
       </div>
       <slot name="middle" />
-      <a
-        href="/logout"
-        class="block w-full px-4 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
-        @click="closeMenu"
-      >
-        Logout
-      </a>
+      <div class="pb-2">
+        <a
+          href="/logout"
+          class="block w-full px-5 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
+          @click="closeMenu"
+        >
+          Logout
+        </a>
+      </div>
       <slot
         name="appendItems"
         :toggleMenu="toggleMenu"
