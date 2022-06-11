@@ -31,14 +31,15 @@
         </div>
       </div>
       <slot name="middle" />
-      <div class="w-full border-t border-gray-100" />
-      <a
-        href="/logout"
-        class="block w-full px-4 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
-        @click="closeMenu"
-      >
-        Logout
-      </a>
+      <div>
+        <a
+          href="/logout"
+          class="block w-full px-4 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
+          @click="closeMenu"
+        >
+          Logout
+        </a>
+      </div>
       <slot
         name="appendItems"
         :toggleMenu="toggleMenu"
