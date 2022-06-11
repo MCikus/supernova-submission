@@ -14,17 +14,15 @@
         <SearchInput :value="topicsSearchString" @input="topicsSearchString = $event" />
         <ProfileMenu :showAvatar="true">
           <template #middle>
-            <div class="flex flex-col items-center px-3 py-5">
-              <div class="mb-3 flex min-h-[100px] items-center justify-center">
+            <div class="flex flex-col items-center px-3 py-3">
+              <div class="mb-2 flex min-h-[120px] items-center justify-center">
                 <img :src="energyIntensityIndicator" alt="" />
               </div>
-              <div class="text-center text-xl">
-                <h4 class="font-semibold">{{ MJNE }}</h4>
-                <h4>$MJNE</h4>
-              </div>
+                <h3 class="font-bold text-xl">{{ MJNE }}</h3>
+                <h2>$MJNE</h2>
 
               <button
-                class="mt-4 mb-2 flex items-center gap-3 rounded-lg bg-indigo-50 px-5 py-2 font-normal text-gray-700"
+                class="mt-4 mb-1 flex items-center gap-3 rounded-lg bg-indigo-50 px-7 py-3 font-normal text-gray-700 text-sm"
               >
                 <span>
                   <svg
