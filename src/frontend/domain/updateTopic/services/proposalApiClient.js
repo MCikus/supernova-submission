@@ -7,8 +7,9 @@ export const all = async () => {
     const fakeProposal = {
       id: 'SomeProposalId',
       topicId: 'TheTopicsId',
+      cardId: 'TheCardIdOfCardWithChanges',
       title: 'Improved and extended Javascript onboarding',
-      change: 'Let’s keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn’t distract ourselves with browser-specific implementations of it.',
+      description: 'Let’s keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn’t distract ourselves with browser-specific implementations of it.',
       proposer: 'Jon Doe'
     }
     return {

@@ -93,6 +93,7 @@
       </div>
     </template>
     <template #dialog>
+      <AcceptChangesDialog />
       <CreateNewTopicDialog />
     </template>
   </BaseAppLayout>
@@ -111,14 +112,17 @@ import ACreateCardButton from '@/domain/cards/components/ACreateCardButton.vue'
 import Draggable from 'vuedraggable'
 import { useBlocksStore } from '@/domain/blocks/base/services/stores/useBlocksStore.js'
 import { useBlockDefinitionsStore } from '@/domain/blocks/base/services/stores/useBlockDefinitionsStore.js'
+import { useProposalsStore } from "@/domain/updateTopic/services/useProposalsStore.js"
 import { reactive } from 'vue'
 import { log } from '@/app/services/errorService.js'
 import { useAnalyticsInfoStore } from '@/app/services/useAnalyticsInfoStore.js'
 import { storeToRefs } from 'pinia'
+import AcceptChangesDialog from "@/domain/updateTopic/components/AcceptChangesDialog.vue"
 
 export default defineComponent({
   name: 'PCard',
   components: {
+    AcceptChangesDialog,
     BaseAppLayout,
     CreateNewTopicDialog,
     Navigation,
@@ -157,6 +161,7 @@ export default defineComponent({
     try {
       await useBlocksStore().fetchAllBlocks()
       await useBlockDefinitionsStore().fetchAllBlockDefinitions()
+      await useProposalsStore().findAllProposals()
     } catch (error) {
       // @todo: handle errors properly instead logging them
       log(error)
