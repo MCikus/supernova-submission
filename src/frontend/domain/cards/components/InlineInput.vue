@@ -38,7 +38,7 @@
   </div>
   <span
     v-if="!editByInlineClick"
-    class="inline-block w-fit text-[#5F75D7] underline"
+    class="inline-block w-fit text-[#4338CA] underline"
     :class="$attrs.class"
     @click="toggle"
   >

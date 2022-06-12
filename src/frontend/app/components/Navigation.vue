@@ -15,14 +15,14 @@
         <ProfileMenu :showAvatar="true">
           <template #middle>
             <div class="mt-[10px] flex flex-col items-center px-3">
-              <div class="mb-5 flex min-h-[114px] items-center justify-center">
+              <div class="mb-4 flex min-h-[114px] items-center justify-center">
                 <img :src="energyIntensityIndicator" alt="" />
               </div>
               <h3 class="text-xl font-bold leading-6">{{ MJNE }}</h3>
               <h2>$MJNE</h2>
 
               <button
-                class="mt-5 mb-3 flex items-center gap-2 rounded-lg bg-indigo-50 px-5 py-3 text-sm font-normal text-gray-700"
+                class="mt-4 mb-4 flex items-center gap-2 rounded-lg bg-indigo-50 px-5 py-[10px] text-sm font-normal text-gray-700"
               >
                 <span>
                   <svg

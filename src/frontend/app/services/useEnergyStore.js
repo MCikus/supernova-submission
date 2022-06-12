@@ -23,7 +23,7 @@ const getStatus = (val) => {
 
 export const useEnergyStore = defineStore('energyStore', {
   state: () => ({
-    $MJNE: 2000,
+    $MJNE: 1212123,
   }),
   getters: {
     energyLevel: (state) => {
