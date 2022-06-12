@@ -25,3 +25,8 @@ export const openGraphMetaDataBasename = 'open-graph-proxy'
 export const openGraphMetaData = {
   index: `${apiPrefix}/${openGraphMetaDataBasename}`,
 }
+
+export const notificationsBasename = 'notifications'
+export const notifications = {
+  index: `${apiPrefix}/${notificationsBasename}`,
+}
