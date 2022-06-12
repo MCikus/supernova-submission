@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useProposalsStore } from "@/domain/updateTopic/services/useProposalsStore.js"
+import { useProposalsStore } from '@/domain/updateTopic/services/useProposalsStore.js'
 
 export const useAcceptChangesDialogStore = defineStore('useAcceptChangesDialogStore', {
   state: () => ({
@@ -8,7 +8,9 @@ export const useAcceptChangesDialogStore = defineStore('useAcceptChangesDialogSt
   }),
   actions: {
     open(proposalId) {
-      this.proposal = useProposalsStore().incoming.find(proposal => proposal.id === proposalId)
+      this.proposal = useProposalsStore().incoming.find(
+        (proposal) => proposal.id === proposalId,
+      )
       this.dialogIsVisible = true
     },
     close() {

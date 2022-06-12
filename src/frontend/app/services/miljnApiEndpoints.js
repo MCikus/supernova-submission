@@ -35,4 +35,3 @@ export const proposalsBasename = 'notifications'
 export const proposals = {
   index: `${apiPrefix}/${proposalsBasename}`,
 }
-

@@ -4,19 +4,20 @@ import { proposals } from '@/app/services/miljnApiEndpoints.js'*/
 // @todo: handle Errors
 
 export const all = async () => {
-    const fakeProposal = {
-      id: 'SomeProposalId',
-      topicId: 'TheTopicsId',
-      cardId: 'TheCardIdOfCardWithChanges',
-      title: 'Improved and extended Javascript onboarding',
-      description: 'Let’s keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn’t distract ourselves with browser-specific implementations of it.',
-      proposer: 'Jon Doe'
-    }
-    return {
-      incoming: [fakeProposal],
-      outgoing: [fakeProposal]
-    }
-   //return (await httpClient.get(proposals.index))?.data?.data ?? {}
+  const fakeProposal = {
+    id: 'SomeProposalId',
+    topicId: 'TheTopicsId',
+    cardId: 'TheCardIdOfCardWithChanges',
+    title: 'Improved and extended Javascript onboarding',
+    description:
+      'Let’s keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn’t distract ourselves with browser-specific implementations of it.',
+    proposer: 'Jon Doe',
+  }
+  return {
+    incoming: [fakeProposal],
+    outgoing: [fakeProposal],
+  }
+  //return (await httpClient.get(proposals.index))?.data?.data ?? {}
 }
 
 export const update = async (proposal) => {
@@ -34,10 +35,9 @@ export const reject = async (proposalId) => {
   console.error('Rejecting proposals is not implemented yet: ', proposalId)
 }
 
-
 export default {
   all,
   update,
   accept,
-  reject
+  reject,
 }
