@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import {
   all,
-  update,
+  propose,
   accept,
   reject,
 } from '@/domain/updateTopic/services/proposalApiClient.js'
@@ -13,11 +13,11 @@ export const useProposalsStore = defineStore('useProposalsStore', {
     outgoing: [],
   }),
   actions: {
-    async proposeChange(proposal) {
+    async submitProposal(proposal) {
       this.outgoing.push(proposal)
 
       try {
-        await update(proposal)
+        await propose(proposal)
       } catch (e) {
         log(e)
       }
