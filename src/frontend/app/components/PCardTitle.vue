@@ -1,5 +1,5 @@
 <template>
-    <h3 class="text-lg leading-6 font-medium text-gray-900 w-full" style="height: 72px;">Getting Started With Cryptocurrency</h3>
+    <h3 class="text-lg leading-6 font-medium text-gray-900 w-full h-72px">Getting Started With Cryptocurrency</h3>
 </template>
 
 <script>

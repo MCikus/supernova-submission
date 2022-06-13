@@ -26,6 +26,8 @@
       877 576 $MJNE Contributors
     </p>
   </div>
+  <hr>
+  <div class="mb-6"></div>
 </template>
 
 <script>
