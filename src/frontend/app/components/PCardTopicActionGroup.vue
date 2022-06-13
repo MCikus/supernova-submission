@@ -1,20 +1,32 @@
 <template>
-  <button type="button"
-          class="flex justify-center mb-4 items-center bg-accent-default w-full text-center border border-transparent text-base-100 font-medium rounded-md shadow-sm text-white h-38px"
-  >
-    Get started with topic
-  </button>
-  <div class="flex justify-center items-center w-full text-center text-primary-focus">
-    <u class="mt-[9px]">Preview Topic</u>
+  <div v-if="isMarketing?.payload?.value === false">
+    <button type="button"
+            class="flex justify-center mb-4 items-center bg-accent-default w-full text-center border border-transparent text-base-100 font-medium rounded-md shadow-sm text-white h-38px"
+    >
+      Get started with topic
+    </button>
+    <div class="flex justify-center items-center w-full text-center text-primary-focus">
+      <u class="mt-[9px]">Preview Topic</u>
+    </div>
   </div>
+  <div v-else>
+    <div class="flex justify-center items-center w-full text-center text-primary-default pt-27px">
+      Coming Soon
+    </div>
+  </div>
+
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 export const componentName = 'PCardTitle'
 
+let isMarketing;
 export default defineComponent({
   name: componentName,
+  props: {
+    isMarketing
+  },
   setup: () => ({ componentName }),
 })
 </script>

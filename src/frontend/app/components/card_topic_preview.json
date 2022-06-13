@@ -1,0 +1,50 @@
+{
+  "id": "867907c9-018a-44b6-961d-a272dd91b425",
+  "title": "Become a Miljn frontend developer",
+  "meta": {
+    "status": {
+      "type": "card_meta",
+      "id": "067a9185-fcc1-490a-9a83-d0d35561a098",
+      "typeId": "b6e6311c-343b-4b79-bf45-113b8b20186e",
+      "payload": {
+        "value": false
+      },
+      "createdAt": "2022-05-25T04:06:33.000000Z",
+      "updatedAt": "2022-05-25T04:06:33.000000Z"
+    },
+    "description": {
+      "type": "card_meta",
+      "id": "5deaa682-52f8-4b47-a9c3-7157d8c45300",
+      "typeId": "817fe63d-4baa-44e5-93c4-848c5364821a",
+      "payload": {
+        "value": "Brief description of this topic so that a user can get a first rough idea of what this topic is really about."
+      },
+      "createdAt": "2022-05-25T04:06:33.000000Z",
+      "updatedAt": "2022-05-25T04:06:33.000000Z"
+    },
+    "statistics": {
+      "type": "card_meta",
+      "id": "50c27725-79aa-45fd-9446-627b9498b8cb",
+      "typeId": "3faf7d06-e18b-4dd4-8a80-1674e33b51d9",
+      "payload": {
+        "value": {
+          "cardCount": 56,
+          "knowledgeContributors": 987,
+          "mjneContributors": 877576
+        }
+      },
+      "isMarketingCard": {
+        "type": "card_meta",
+        "id": "50c27725-79aa-45fd-9446-627b9498b8cb",
+        "typeId": "3faf7d06-e18b-4dd4-8a80-1674e33b51d9",
+        "payload": {
+          "value": false
+        },
+        "createdAt": "2022-05-25T04:06:33.000000Z",
+        "updatedAt": "2022-05-25T04:06:33.000000Z"
+      }
+    },
+    "blocks": [],
+    "children": []
+  }
+}
