@@ -15,7 +15,7 @@ export const topics = {
 
 export const cardsBasename = 'cards'
 export const cards = {
-  index(cardId){
+  index(cardId) {
     return `${apiPrefix}/${cardsBasename}/${cardId}`
   },
   modify(cardId) {

@@ -10,6 +10,7 @@ import * as blockClient from '@/domain/dataManager/services/blockClient'
 export default defineComponent({
   name: 'DemoDataManager',
   setup() {
+    /* eslint no-useless-escape: 0 */
     const topic = {
       id: '867907c9-018a-44b6-961d-a272dd91b425',
       title: 'Become a Miljn frontend developer',

@@ -4,9 +4,63 @@
       <Navigation />
     </template>
     <template #content>
-      {{ titleCardId }}
-      {{ parents }}
-      {{ children }}
+      <div class="no-scrollbar flex h-full w-full overflow-hidden overflow-x-scroll">
+        <Draggable
+          v-if="parents.length > 0"
+          class="flex flex-row"
+          :list="parents"
+          item-key="id"
+          v-bind="dragOptions"
+          :component-data="{
+            type: 'transition-group',
+            name: !drag ? 'transition-transform duration-500' : null,
+          }"
+          @start="drag = true"
+          @end="drag = false"
+        >
+          <template #item="{ element: parent }">
+            <div :key="parent.id" class="w-[350px]">
+              <div class="relative z-20 mx-2 h-[150px] bg-green-100 drop-shadow-md">
+                {{ parent.title }}
+              </div>
+              <div class="no-scrollbar relative z-10 h-full overflow-y-scroll pt-2">
+                <Draggable
+                  v-if="parent.children.length > 0"
+                  :list="children[parent.id]"
+                  item-key="id"
+                  v-bind="dragOptions"
+                  :component-data="{
+                    type: 'transition-group',
+                    name: !drag ? 'transition-transform duration-500' : null,
+                  }"
+                  @start="drag = true"
+                  @end="drag = false"
+                >
+                  <template #item="{ element: child }">
+                    <div
+                      :key="child.id"
+                      class="mx-2 mt-2 h-[150px] bg-blue-300 drop-shadow-md"
+                    >
+                      {{ child.title }}
+                    </div>
+                  </template>
+                  <template #footer>
+                    <div class="flex w-full justify-center py-4">
+                      <button>AddButton</button>
+                    </div>
+                    <div class="h-[150px]"></div>
+                  </template>
+                </Draggable>
+              </div>
+            </div>
+          </template>
+          <template #footer>
+            <div class="mx-2 flex items-start justify-start py-4">
+              <button>AddButton</button>
+            </div>
+          </template>
+        </Draggable>
+      </div>
     </template>
     <template #dialog>
       <AcceptChangesDialog />
@@ -17,14 +71,15 @@
 </template>
 
 <script>
-import { defineComponent, computed, onMounted } from 'vue'
+import { defineComponent, computed, onMounted, ref } from 'vue'
 import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'
 import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopicDialog.vue'
 import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
 import ProposeChangesDialog from '@/domain/updateTopic/components/ProposeChangesDialog.vue'
-import {useCardsStore} from "@/domain/cards/services/useCardsStore.js"
-import {storeToRefs} from "pinia"
+import Draggable from 'vuedraggable'
+import { useCardsStore } from '@/domain/cards/services/useCardsStore.js'
+import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
 
 export const componentName = 'PTopic'
@@ -37,14 +92,22 @@ export default defineComponent({
     AcceptChangesDialog,
     ProposeChangesDialog,
     CreateNewTopicDialog,
+    Draggable,
   },
   setup() {
     const titleCardId = computed(() => useRoute().params.titleCardId)
     const useCards = useCardsStore()
-    const {parents, children} = storeToRefs(useCards)
+    const { parents, children } = storeToRefs(useCards)
 
-    onMounted(() => {
-      useCards.findAllParentsAndChildren(titleCardId.value)
+    const drag = ref(false)
+    const dragOptions = {
+      animation: 200,
+      disabled: false,
+      ghostClass: 'opacity-50',
+    }
+
+    onMounted(async () => {
+      await useCards.findAllParentsAndChildren(titleCardId.value)
     })
 
     return {
@@ -52,8 +115,10 @@ export default defineComponent({
       titleCardId,
       parents,
       children,
+      drag,
+      dragOptions,
     }
-  }
+  },
 })
 </script>
 

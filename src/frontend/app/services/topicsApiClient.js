@@ -1,13 +1,13 @@
 /*import httpClient from '@/app/services/httpClient.js'
 import { topics } from '@/app/services/miljnApiEndpoints.js'*/
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 // @todo: handle Errors
 
 export const allTopics = async () => {
-  const topics = [{id: uuid()},{id: uuid()}]
+  const topics = [{ id: uuid() }, { id: uuid() }]
 
   return {
-    topics
+    topics,
   }
   // return (await httpClient.get(topics.index))?.data?.data ?? []
 }
@@ -19,6 +19,6 @@ export const updateTopic = async (topic) => {
 }
 
 export default {
-  allCards,
-  updateCard,
+  allTopics,
+  updateTopic,
 }

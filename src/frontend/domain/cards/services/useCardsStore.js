@@ -1,19 +1,22 @@
 import { defineStore } from 'pinia'
-import { allCards, updateCard } from "@/domain/cards/services/cardsApiClient.js"
+import { find, allByIds } from '@/domain/dataManager/services/cardClient'
 import { log } from '@/app/services/errorService.js'
 
 export const useCardsStore = defineStore('useCardsStore', {
   state: () => ({
     parents: [],
-    children: [],
+    children: {},
     expandedCardId: '',
   }),
   actions: {
-    async findAllParentsAndChildren(titleCardId) {
+    async findAllParentsAndChildren(cardId) {
       try {
-        const cards = await allCards(titleCardId)
-        this.parents = cards.parents
-        this.children = cards.children
+        const topic = await find(cardId)
+        this.parents = await allByIds(topic.children)
+
+        for (const parent of this.parents) {
+          this.children[parent.id] = await allByIds(parent.children)
+        }
       } catch (e) {
         log(e)
       }

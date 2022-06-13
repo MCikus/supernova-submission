@@ -6,7 +6,7 @@
     <div>
       <slot name="navigation" />
     </div>
-    <div class="grow">
+    <div class="grow overflow-hidden">
       <slot name="content" />
     </div>
     <slot name="dialog" />
