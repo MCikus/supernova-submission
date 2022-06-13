@@ -21,8 +21,8 @@ const routes: RouteRecordRaw[] = [
   },
 ]
 
-if( import.meta.env.DEV === true ) {
-  routes.push(  {
+if (import.meta.env.DEV === true) {
+  routes.push({
     path: '/playground/CardListingForATopic',
     name: 'CardTitle',
     component: CallPCardTopicPreviewComponent,

@@ -1,13 +1,19 @@
 <template>
   <div class="bg-white">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="mt-6 space-y-4 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
-        <div class="border border-gray-200 rounded-lg shadow-sm w-80 h-480px">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="mt-6 space-y-4 lg:mx-auto lg:max-w-4xl xl:mx-0 xl:max-w-none">
+        <div class="h-480px w-80 rounded-lg border border-gray-200 shadow-sm">
           <div class="px-5 pt-4">
             <PCardTitle :title="cardProps.title"></PCardTitle>
-            <p class="text-gray-600 mb-6">{{cardProps.meta.description.payload.value}}</p>
-            <PCardTopicStatisticsBlock :statistics="cardProps.meta.statistics"></PCardTopicStatisticsBlock>
-            <PCardTopicActionGroup :is-marketing="cardProps.meta.statistics?.isMarketingCard"></PCardTopicActionGroup>
+            <p class="mb-6 text-gray-600">
+              {{ cardProps.meta.description.payload.value }}
+            </p>
+            <PCardTopicStatisticsBlock
+              :statistics="cardProps.meta.statistics"
+            ></PCardTopicStatisticsBlock>
+            <PCardTopicActionGroup
+              :is-marketing="cardProps.meta.statistics?.isMarketingCard"
+            ></PCardTopicActionGroup>
           </div>
         </div>
       </div>
@@ -22,16 +28,16 @@ import PCardTitle from '@/app/components/PCardTitle.vue'
 import PCardTopicStatisticsBlock from '@/app/components/PCardTopicStatisticsBlock.vue'
 import PCardTopicActionGroup from '@/app/components/PCardTopicActionGroup.vue'
 
-let cardProps;
+let cardProps
 export default defineComponent({
   name: componentName,
   components: {
     PCardTitle,
     PCardTopicStatisticsBlock,
-    PCardTopicActionGroup
+    PCardTopicActionGroup,
   },
   props: {
-    cardProps
+    cardProps,
   },
   setup: () => ({ componentName }),
 })

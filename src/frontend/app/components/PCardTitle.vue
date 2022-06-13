@@ -1,5 +1,5 @@
 <template>
-    <h3 class="text-lg leading-6 font-medium text-gray-900 w-full h-72px">{{ title }}</h3>
+  <h3 class="h-72px w-full text-lg font-medium leading-6 text-gray-900">{{ title }}</h3>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export const componentName = 'PCardTitle'
 export default defineComponent({
   name: componentName,
   props: {
-    title: String
+    title: String,
   },
   setup: () => ({ componentName }),
 })
