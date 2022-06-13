@@ -49,7 +49,7 @@
   </span>
 </template>
 <script>
-import { computed, nextTick, ref } from 'vue'
+import { computed, nextTick, ref, onMounted, onUpdated } from 'vue'
 
 const componentName = 'InlineInput'
 
@@ -79,6 +79,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    focusOnMount: {
+      type: Boolean,
+      default: false,
+    }
   },
   emits: ['inline-input-changed', 'inline-input-is-editing'],
   setup(props, { emit }) {
@@ -100,15 +104,15 @@ export default {
             resizeTextArea(inputEl.value)
           }
 
-          inputEl.value.focus()
-          inputEl.value.select()
+          inputEl?.value?.focus()
+          inputEl?.value?.select()
         })
       }
     }
 
     const handleKeyDownEnter = (event) => {
       event.preventDefault()
-      inputEl.value.blur()
+      inputEl?.value?.blur()
     }
 
     const handleInputChanged = (event) => {
@@ -131,9 +135,30 @@ export default {
     const computedPlaceholder = computed(() => props.placeholder)
 
     const resizeTextArea = (element) => {
+      if(!element) {
+        return
+      }
       element.style.height = 'auto'
       element.style.height = `${element.scrollHeight}px`
     }
+
+    onMounted(() => {
+      if(props.focusOnMount){
+        editing.value = true
+        inputEl?.value?.focus()
+        resizeTextArea(inputEl?.value)
+      }
+    })
+
+    onUpdated(() =>{
+      if(props.focusOnMount) {
+        editing.value = true
+        inputEl?.value?.focus()
+        inputEl?.value?.select()
+        resizeTextArea(inputEl?.value)
+      }
+    })
+
     return {
       componentName,
       resizeTextArea,
