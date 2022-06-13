@@ -1,5 +1,5 @@
 <template>
-  <BaseNavigationLayout class="relative bg-[#5F75D7]" :class="componentName">
+  <BaseNavigationLayout class="relative bg-primary" :class="componentName">
     <template #left>
       <div class="flex w-fit justify-start">
         <a href="/dashboard">
@@ -18,11 +18,11 @@
               <div class="mb-4 flex min-h-[114px] items-center justify-center">
                 <img :src="energyIntensityIndicator" alt="" />
               </div>
-              <h3 class="text-xl font-bold leading-6">{{ MJNE }}</h3>
+              <h3 class="text-xl font-bold leading-6">{{ energyAmount }}</h3>
               <h2>$MJNE</h2>
 
               <button
-                class="mt-4 mb-4 flex items-center gap-2 rounded-lg bg-indigo-50 px-5 py-[10px] text-sm font-normal text-gray-700"
+                class="mt-4 mb-4 flex items-center gap-2 rounded-lg bg-primary-200 hover:bg-primary-300 px-5 py-[10px] text-sm font-normal text-base-700"
               >
                 <span>
                   <svg
@@ -59,7 +59,7 @@ import NavigationActionGroup from '@/app/components/NavigationActionGroup.vue'
 import MiljnLogo from './MiljnLogo.vue'
 import NotificationMenu from '@/app/components/NotificationMenu.vue'
 import { useDashboardSearchStore } from '@/app/services/useDashboardSearchStore.js'
-import { low, medium, useEnergyStore } from '@/app/services/useEnergyStore'
+import { low, medium, high, useEnergyStore } from '@/app/services/useEnergyStore'
 import highIndicator from '@/app/assets/indicators/high.svg'
 import mediumIndicator from '@/app/assets/indicators/medium.svg'
 import lowIndicator from '@/app/assets/indicators/low.svg'
@@ -80,25 +80,26 @@ export default defineComponent({
   setup() {
     const energyStore = useEnergyStore()
     const { topicsSearchString } = storeToRefs(useDashboardSearchStore())
-    const { energyLevel, $MJNE: MJNE } = storeToRefs(energyStore)
+    const { energyLevel, energyAmount } = storeToRefs(energyStore)
 
     const energyIntensityIndicator = computed(() => {
-      let indicator
-      if (energyLevel.value == low) indicator = lowIndicator
-      else if (energyLevel.value == medium) indicator = mediumIndicator
-      else indicator = highIndicator
-      return indicator
+      const indicators = {
+        [low]: lowIndicator,
+        [medium]: mediumIndicator,
+        [high]: highIndicator,
+      }
+      return indicators[energyLevel.value] ?? indicators[medium]
     })
 
     const changeLevel = (value) => {
-      energyStore.update$MJNE(value)
+      energyStore.updateEnergyAmount(value)
     }
 
     return {
       componentName,
       topicsSearchString,
       energyIntensityIndicator,
-      MJNE,
+      energyAmount,
       changeLevel,
     }
   },

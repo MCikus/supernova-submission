@@ -6,7 +6,7 @@
       <div class="flex grow p-2">
         <editor-content class="w-full" :editor="editor" />
       </div>
-      <div class="text-gray-500">
+      <div class="text-base-2000">
         <slot name="block-menu" />
       </div>
     </div>

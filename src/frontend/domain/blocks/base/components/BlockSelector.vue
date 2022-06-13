@@ -32,7 +32,7 @@
           </span>
           <span class="flex flex-col whitespace-nowrap">
             <span class="text-lg font-bold">{{ definition.title }}</span>
-            <span v-if="false" class="text-base text-gray-500">
+            <span v-if="false" class="text-base text-base-2000">
               {{ definition.description }}
             </span>
           </span>

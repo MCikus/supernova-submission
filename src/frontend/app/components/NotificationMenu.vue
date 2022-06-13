@@ -19,7 +19,7 @@
         @click="closeMenu"
       >
         <div
-          class="relative block w-full truncate py-3 pl-6 pr-4 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50"
+          class="relative block w-full truncate py-3 pl-6 pr-4 text-sm font-normal leading-none text-base-700 hover:bg-base-200"
         >
           {{ notification.title }}
           <span

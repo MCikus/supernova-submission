@@ -45,7 +45,7 @@
 <script>
 import { storeToRefs } from 'pinia'
 import { computed, defineComponent } from 'vue'
-import { low, medium, useEnergyStore } from '../services/useEnergyStore'
+import { low, medium,high, useEnergyStore } from '../services/useEnergyStore'
 
 export const componentName = 'UserAvatar'
 
@@ -61,18 +61,21 @@ export default defineComponent({
     const { energyLevel } = storeToRefs(useEnergyStore())
 
     const energyIntensity = computed(() => {
-      let color, duration
-      if (energyLevel.value == low) {
-        color = '#FF9D8B'
-        duration = '1'
-      } else if (energyLevel.value == medium) {
-        color = '#FFC901'
-        duration = '1.5'
-      } else {
-        color = '#01D17F'
-        duration = '3'
+      const states = {
+        [low]: {
+          color: '#FF364F',
+          duration: '1',
+        },
+        [medium]: {
+          color: '#FFC600',
+          duration: '1.5',
+        },
+        [high]: {
+          color: '#00D577',
+          duration: '3',
+        },
       }
-      return { color, duration }
+      return states[energyLevel.value] ?? states[medium]
     })
     const name = computed(() => props.name)
 

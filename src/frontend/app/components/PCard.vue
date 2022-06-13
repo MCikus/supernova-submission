@@ -1,6 +1,5 @@
-/* eslint-disable no-eval */
 <template>
-  <BaseAppLayout class="bg-secondary" :class="$options.name">
+  <BaseAppLayout class="bg-base-200" :class="$options.name">
     <template #navigation>
       <Navigation />
     </template>

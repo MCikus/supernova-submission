@@ -10,45 +10,38 @@ export const EnergyLevel = {
   [high]: 1000,
 }
 
-const getStatus = (val) => {
-  switch (val) {
-    case 'low':
-      return low
-    case 'high':
-      return high
-    default:
-      return medium
-  }
-}
-
 export const useEnergyStore = defineStore('energyStore', {
   state: () => ({
-    $MJNE: 1212123,
+    energyAmountState: 1212123,
   }),
   getters: {
     energyLevel: (state) => {
-      const val = state.$MJNE
-      if (val < EnergyLevel[low]) {
+      if (state.energyAmountState < EnergyLevel[low]) {
         return low
       }
-      if (state.$MJNE < EnergyLevel[medium]) {
+
+      if (state.energyAmountState < EnergyLevel[medium]) {
         return medium
       }
+
       return high
     },
+    energyAmount: ( state) => {
+      return state.energyAmountState
+    }
   },
   actions: {
-    readMJNEFromLocalStorage() {
+    readEnergyAmountFromLocalStorage() {
       if (localStorage.getItem('energyStore')) {
-        this.$MJNE = JSON.parse(localStorage.getItem('energyStore'))?.$MJNE ?? null
+        this.energyAmountState = JSON.parse(localStorage.getItem('energyStore'))?.energyState ?? null
       }
     },
-    update$MJNE(value) {
-      this.$MJNE = value
+    updateEnergyAmount(value) {
+      this.energyState = value
       // window.localStorage.setItem(
       //   'energyStore',
       //   JSON.stringify({
-      //     $MJNE: this.$MJNE,
+      //     energyState: this.energyAmountState,
       //   }),
       // )
     },
