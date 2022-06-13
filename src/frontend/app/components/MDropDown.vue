@@ -28,7 +28,7 @@
               :is-disabled="item.disabled"
               class="block w-full px-4 py-2 text-left text-sm"
               :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                active ? 'bg-gray-100 text-base-content' : 'text-base-700',
                 item.disabled ? 'pointer-events-none text-gray-400' : '',
               ]"
               @a-button-clicked="item.eventHandler"
