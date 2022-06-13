@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
+import PCard from '@/domain/cards/components/PCard.vue'
 import PTopic from '@/domain/cards/components/PTopic.vue'
 import DemoHome from '@/domain/demo/components/DemoHome.vue'
 
@@ -8,10 +9,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
+    component: PCard,
+  },
+  {
+    path: '/topic/:titleCardId',
+    name: 'Topic',
     component: PTopic,
-    meta: {
-      isMainRoute: true,
-    },
   },
   {
     path: '/__canister-demo',
