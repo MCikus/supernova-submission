@@ -82,7 +82,7 @@ export default {
     focusOnMount: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   emits: ['inline-input-changed', 'inline-input-is-editing'],
   setup(props, { emit }) {
@@ -135,7 +135,7 @@ export default {
     const computedPlaceholder = computed(() => props.placeholder)
 
     const resizeTextArea = (element) => {
-      if(!element) {
+      if (!element) {
         return
       }
       element.style.height = 'auto'
@@ -143,15 +143,15 @@ export default {
     }
 
     onMounted(() => {
-      if(props.focusOnMount){
+      if (props.focusOnMount) {
         editing.value = true
         inputEl?.value?.focus()
         resizeTextArea(inputEl?.value)
       }
     })
 
-    onUpdated(() =>{
-      if(props.focusOnMount) {
+    onUpdated(() => {
+      if (props.focusOnMount) {
         editing.value = true
         inputEl?.value?.focus()
         inputEl?.value?.select()

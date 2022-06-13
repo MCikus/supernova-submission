@@ -107,7 +107,7 @@ import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'
 import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopicDialog.vue'
 import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
-import ProposeChangesDialog from "@/domain/updateTopic/components/ProposeChangesDialog.vue"
+import ProposeChangesDialog from '@/domain/updateTopic/components/ProposeChangesDialog.vue'
 import AParentCardButton from '@/domain/cards/components/AParentCardButton.vue'
 import OCardsContainer from '@/domain/cards/components/OCardsContainer.vue'
 import MCard from '@/domain/cards/components/MCard.vue'

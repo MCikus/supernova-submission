@@ -6,17 +6,28 @@
     @dialogVisibilityChanged="dialogIsVisible = $event"
   >
     <template #dialogContent>
-      <div class="flex h-full w-full max-w-3xl flex-col items-start justify-start overflow-hidden">
-        <div v-for="(step, index) in finishedSteps" class="hyphens-auto w-full overflow-hidden break-words line-clamp-7">
+      <div
+        class="flex h-full w-full max-w-3xl flex-col items-start justify-start overflow-hidden"
+      >
+        <div
+          v-for="(step, index) in finishedSteps"
+          :key="step.id"
+          class="hyphens-auto line-clamp-7 w-full overflow-hidden break-words"
+        >
           <div
             v-if="step.stepType === 'input'"
             class="text-4xl text-white"
             :class="index > 0 ? 'mt-12' : ''"
-
             @click="currentStepIndex = index"
-          >{{step.value}}</div>
+          >
+            {{ step.value }}
+          </div>
         </div>
-        <div v-if="currentStep.stepType === 'input'" class="flex w-full flex-nowrap" :class="finishedSteps.length > 0 ? 'mt-12' : ''">
+        <div
+          v-if="currentStep.stepType === 'input'"
+          class="flex w-full flex-nowrap"
+          :class="finishedSteps.length > 0 ? 'mt-12' : ''"
+        >
           <span class="mr-6 inline-flex h-10 w-1 bg-[#01D17F]" />
           <InlineInput
             class="text-4xl text-white placeholder-white placeholder-opacity-50 hover:text-white"
@@ -28,7 +39,10 @@
             @inline-input-changed="inputValueHasChanged($event, currentStep)"
           />
         </div>
-        <div v-if="currentStep.stepType === 'input'" class="mt-12 flex flex-nowrap items-center">
+        <div
+          v-if="currentStep.stepType === 'input'"
+          class="mt-12 flex flex-nowrap items-center"
+        >
           <button
             type="button"
             class="mr-4 rounded-md bg-[#01D17F] px-4 py-2.5 text-sm text-white"
@@ -41,7 +55,10 @@
             <span class="font-bold">Enter ↵</span>
           </span>
         </div>
-        <div v-if="currentStep.stepType === 'submit'" class="mt-12 flex flex-nowrap items-center">
+        <div
+          v-if="currentStep.stepType === 'submit'"
+          class="mt-12 flex flex-nowrap items-center"
+        >
           <button
             type="button"
             class="mr-4 rounded-md bg-[#01D17F] px-4 py-2.5 text-sm text-white"
@@ -63,8 +80,8 @@
 import { defineComponent, computed } from 'vue'
 import BaseFullscreenDialog from '@/app/components/BaseFullscreenDialog.vue'
 import InlineInput from '@/domain/cards/components/InlineInput.vue'
-import {useProposeChangesDialogStore} from '@/domain/updateTopic/services/useProposeChangesDialogStore.js'
-import {useUserStore} from "@/app/services/useUserStore.js"
+import { useProposeChangesDialogStore } from '@/domain/updateTopic/services/useProposeChangesDialogStore.js'
+import { useUserStore } from '@/app/services/useUserStore.js'
 import { onKeyStroke } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 
@@ -78,54 +95,61 @@ export default defineComponent({
   },
   setup() {
     const useProposeChangesDialog = useProposeChangesDialogStore()
-    const { dialogIsVisible, steps, currentStepIndex } = storeToRefs(useProposeChangesDialog)
+    const { dialogIsVisible, steps, currentStepIndex } = storeToRefs(
+      useProposeChangesDialog,
+    )
 
     const proposal = computed(() => ({
       id: 'SomeProposalId',
       topicId: 'TheTopicsId',
       cardId: 'TheCardIdOfCardWithChanges',
-      title: steps.value.find(step => step.stepKey === 'title').value,
-      description: steps.value.find(step => step.stepKey === 'description').value,
+      title: steps.value.find((step) => step.stepKey === 'title').value,
+      description: steps.value.find((step) => step.stepKey === 'description').value,
       proposer: useUserStore().userName,
     }))
 
     const currentStep = computed({
-      get(){
+      get() {
         return steps.value[currentStepIndex.value]
       },
       set(value) {
         steps.value[currentStepIndex.value].value = value
-      }
+      },
     })
 
     const finishedSteps = computed(() => {
-      if(currentStepIndex.value === 0){
+      if (currentStepIndex.value === 0) {
         return []
       }
-      if(currentStepIndex.value === steps.value.length - 1 && currentStep.value.value !== ''){
+      if (
+        currentStepIndex.value === steps.value.length - 1 &&
+        currentStep.value.value !== ''
+      ) {
         return steps.value
       }
       return steps.value.slice(0, currentStepIndex.value)
     })
 
     const executeStepActions = (payload) => {
-         currentStep.value.actions.forEach(action => useProposeChangesDialog[action](payload))
-     }
+      currentStep.value.actions.forEach((action) =>
+        useProposeChangesDialog[action](payload),
+      )
+    }
 
     const handleButtonClick = () => {
       executeStepActions(proposal.value)
     }
 
-    const inputValueHasChanged = ({event}, step) => {
+    const inputValueHasChanged = ({ event }, step) => {
       step.value = event.target.value
     }
 
     onKeyStroke('Enter', (e) => {
       e.preventDefault()
-      if(currentStep.value.stepType === 'input'){
+      if (currentStep.value.stepType === 'input') {
         executeStepActions()
       }
-      if(currentStep.value.stepType === 'submit' && e.metaKey === true){
+      if (currentStep.value.stepType === 'submit' && e.metaKey === true) {
         executeStepActions(proposal.value)
       }
     })
