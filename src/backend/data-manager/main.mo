@@ -38,6 +38,8 @@ actor {
   // Internet Identity/User
   type PrincipalName = Text;
 
+  var admins : [Text] = ["2vxsx-fae", "2vxsx-saa"];
+
   // Stores all Topics for a user (i.e. Dashboard)
   private var topics_by_user = Map.HashMap<PrincipalName, [UUID]>(0, Text.equal, Text.hash);
 
@@ -73,6 +75,13 @@ actor {
     blocks_by_id.get(id)
   };
 
+  /*
+   * Deletes a block by id
+   */
+  public func block_delete(id : UUID):async () {
+    var _x = blocks_by_id.remove(id);
+  };
+
 
   //////////////////////////////////
   ///    WORK WITH CARDS        ///
@@ -99,6 +108,15 @@ actor {
   public query func card_lookup(id : UUID) : async ?Card {
     cards_by_id.get(id)
   };
+
+
+  /*
+   * Deletes a card by id
+   */
+  public func card_delete(id : UUID):async () {
+    var _x = cards_by_id.remove(id);
+  };
+
 
   /*
    * Bulk lookup a set of cards
@@ -321,4 +339,22 @@ actor {
      return energy;
   };
 
+  public query({ caller }) func whoami() : async PrincipalName {
+    return Principal.toText(caller);
+  };
+
+  /*
+   * Returns true for registered admin principals
+   */
+  public query({ caller }) func isAdmin() : async Bool {
+    var isAdmin = false;
+
+    for(adminId : Text in admins.vals()){
+      if(adminId == Principal.toText(caller)) {
+        isAdmin := true;
+      };
+    };
+
+    return isAdmin;
+  };
 };
