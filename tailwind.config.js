@@ -173,6 +173,7 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: '#5976DE',
+          default: '#5F75D7',
           focus: '#475FB2',
           content: '#FFFFFF',
           disabled: '#D8D8D8',
@@ -187,6 +188,7 @@ module.exports = {
         },
         accent: {
           DEFAULT: '#00D577',
+          default: '#01D17F',
           focus: '#00C06A',
           content: '#FFFFFF',
           disabled: '#D8D8D8',
@@ -225,10 +227,18 @@ module.exports = {
       },
       height: {
         '2/1': '200%',
+        '480px': '480px',
+        '38px': '38px',
+        '72px': '72px',
       },
       margin: {
         '-200': '-200%',
         200: '200%',
+        '9px': '9px',
+        '72px': '72px',
+      },
+      padding: {
+        '27px': '27px',
       },
       maxWidth: {
         56: '14rem',
