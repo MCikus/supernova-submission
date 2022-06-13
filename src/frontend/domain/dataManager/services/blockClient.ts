@@ -57,7 +57,7 @@ export const update = (block: Block) => {
 }
 
 export const remove = async (blockId: string) => {
-  await data_manager.block_delete(blockId);
+  await data_manager.block_delete(blockId)
 }
 
 export const all = () => {

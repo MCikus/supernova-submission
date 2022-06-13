@@ -63,7 +63,7 @@ export const update = (card: Card) => {
 }
 
 export const remove = async (cardId: string) => {
-  await data_manager.card_delete(cardId);
+  await data_manager.card_delete(cardId)
 }
 
 export const all = () => {
