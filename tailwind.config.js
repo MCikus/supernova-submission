@@ -216,7 +216,7 @@ module.exports = {
         },
         coral: {
           light: '#FFD6CF',
-        }
+        },
       },
       width: {
         '2/1': '200%',

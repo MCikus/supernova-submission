@@ -39,7 +39,7 @@
       >
         <div class="mb-[2px] pb-4">
           <button
-            class="block w-full px-6 py-2 text-sm font-normal leading-none text-base-700 hover:underline text-left"
+            class="block w-full px-6 py-2 text-left text-sm font-normal leading-none text-base-700 hover:underline"
             @click="closeMenu"
           >
             Logout

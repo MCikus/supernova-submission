@@ -45,7 +45,7 @@
 <script>
 import { storeToRefs } from 'pinia'
 import { computed, defineComponent } from 'vue'
-import { low, medium,high, useEnergyStore } from '../services/useEnergyStore'
+import { low, medium, high, useEnergyStore } from '../services/useEnergyStore'
 
 export const componentName = 'UserAvatar'
 

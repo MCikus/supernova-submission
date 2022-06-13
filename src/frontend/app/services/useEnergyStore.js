@@ -26,14 +26,15 @@ export const useEnergyStore = defineStore('energyStore', {
 
       return high
     },
-    energyAmount: ( state) => {
+    energyAmount: (state) => {
       return state.energyAmountState
-    }
+    },
   },
   actions: {
     readEnergyAmountFromLocalStorage() {
       if (localStorage.getItem('energyStore')) {
-        this.energyAmountState = JSON.parse(localStorage.getItem('energyStore'))?.energyState ?? null
+        this.energyAmountState =
+          JSON.parse(localStorage.getItem('energyStore'))?.energyState ?? null
       }
     },
     updateEnergyAmount(value) {

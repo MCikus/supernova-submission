@@ -12,7 +12,7 @@
         <NavigationActionGroup class="md:flex hidden" />
         <NotificationMenu />
         <SearchInput :value="topicsSearchString" @input="topicsSearchString = $event" />
-        <ProfileMenu :showAvatar="true">
+        <ProfileMenu :show-avatar="true">
           <template #middle>
             <div class="mt-[10px] flex flex-col items-center px-3">
               <div class="mb-4 flex min-h-[114px] items-center justify-center">
@@ -22,7 +22,7 @@
               <h2>$MJNE</h2>
 
               <button
-                class="mt-4 mb-4 flex items-center gap-2 rounded-lg bg-primary-200 hover:bg-primary-300 px-5 py-[10px] text-sm font-normal text-base-700"
+                class="mt-4 mb-4 flex items-center gap-2 rounded-lg bg-primary-200 px-5 py-[10px] text-sm font-normal text-base-700 hover:bg-primary-300"
               >
                 <span>
                   <svg
