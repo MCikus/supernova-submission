@@ -20,7 +20,7 @@ export const all = async () => {
   //return (await httpClient.get(proposals.index))?.data?.data ?? {}
 }
 
-export const update = async (proposal) => {
+export const propose = async (proposal) => {
   // eslint-disable-next-line no-console
   console.error('Updating topics is not implemented yet: ', proposal)
 }
@@ -37,7 +37,7 @@ export const reject = async (proposalId) => {
 
 export default {
   all,
-  update,
+  propose,
   accept,
   reject,
 }

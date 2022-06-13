@@ -26,7 +26,7 @@
             Next
           </button>
           <span class="cursor-default text-sm text-white">
-            Press
+            press
             <span class="font-bold">Enter ↵</span>
           </span>
         </div>
