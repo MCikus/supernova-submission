@@ -9,7 +9,7 @@
     </template>
     <template #right>
       <div class="flex w-auto grow items-center justify-end space-x-6">
-        <NavigationActionGroup class="md:flex hidden" />
+        <NavigationActionGroup class="hidden md:flex" />
         <NotificationMenu />
         <SearchInput :value="topicsSearchString" @input="topicsSearchString = $event" />
         <ProfileMenu :show-avatar="true">

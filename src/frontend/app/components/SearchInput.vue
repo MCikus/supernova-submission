@@ -1,17 +1,17 @@
 <template>
   <div ref="searchInputRef" class="flex" :class="componentName">
-    <div v-if="searchInputVisible" class="lg:max-w-xs w-full max-w-lg">
+    <div v-if="searchInputVisible" class="w-full max-w-lg lg:max-w-xs">
       <label for="search" class="sr-only">Search</label>
       <div class="relative">
         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-          <SearchIcon class="text-base-200 h-5 w-5" aria-hidden="true" />
+          <SearchIcon class="h-5 w-5 text-base-200" aria-hidden="true" />
         </div>
         <input
           id="search"
           ref="inputFieldRef"
           v-model="computedInputValue"
           name="search"
-          class="sm:text-sm text-base-200 placeholder-base-2000 block w-full rounded-md border border-transparent bg-white py-1.5 pl-10 pr-3 leading-5 focus:border-white focus:text-base-content focus:outline-none focus:ring-gray-300"
+          class="placeholder-base-2000 block w-full rounded-md border border-transparent bg-white py-1.5 pl-10 pr-3 leading-5 text-base-200 focus:border-white focus:text-base-content focus:outline-none focus:ring-gray-300 sm:text-sm"
           placeholder="Search"
           type="search"
           @keydown.esc="computedInputValue = ''"

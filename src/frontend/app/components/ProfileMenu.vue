@@ -66,7 +66,12 @@ export default defineComponent({
     UserAvatar,
     InlineInput,
   },
-  props: ['showAvatar'],
+  props: {
+    showAvatar: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup() {
     const userStore = useUserStore()
     const { userName } = storeToRefs(userStore)
