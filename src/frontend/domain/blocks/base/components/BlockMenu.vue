@@ -29,7 +29,7 @@
             <AButton
               is-unstyled
               class="block w-full px-4 py-2 text-left text-sm"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700']"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-base-700']"
               :data-test="definition.typeId"
               @a-button-clicked="updateBlock(definition.typeId)"
             >
@@ -44,7 +44,7 @@
             <AButton
               is-unstyled
               class="block w-full px-4 py-2 text-left text-sm"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700']"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-base-700']"
               :data-test="menuItem.id"
               @a-button-clicked="menuItem.callback()"
             >
@@ -55,7 +55,7 @@
             <AButton
               is-unstyled
               class="block w-full px-4 py-2 text-left text-sm"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700']"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-base-700']"
               data-test="delete-button"
               @a-button-clicked="deleteBlock"
             >

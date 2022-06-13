@@ -58,7 +58,7 @@
         class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-black border-opacity-30"
       />
     </div>
-    <div v-if="!previewIsLoading" class="text-gray-500">
+    <div v-if="!previewIsLoading" class="text-base-2000">
       <slot
         name="block-menu"
         :customBlockMenuItems="[

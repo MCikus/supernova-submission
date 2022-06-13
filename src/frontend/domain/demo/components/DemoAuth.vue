@@ -52,6 +52,7 @@ export default defineComponent({
   name: 'DemoAuth',
   setup: () => {
     const signIn = async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const result: any = await new Promise((resolve, reject) => {
         client.login({
           identityProvider: 'https://identity.ic0.app',

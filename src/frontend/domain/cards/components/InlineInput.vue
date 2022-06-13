@@ -41,15 +41,15 @@
   </div>
   <span
     v-if="!editByInlineClick"
-    class="inline-block w-fit text-[#5F75D7] underline"
+    class="inline-block w-fit text-secondary-content underline"
     :class="$attrs.class"
-    @click="toggle"
+    @click.stop="toggle"
   >
-    Edit
+    {{ actionTitle }}
   </span>
 </template>
 <script>
-import { computed, nextTick, ref, onMounted, onUpdated } from 'vue'
+import { computed, nextTick, ref, onMounted, onUpdated, watch } from 'vue'
 
 const componentName = 'InlineInput'
 
@@ -90,6 +90,12 @@ export default {
     const labelEl = ref(null)
     const inputEl = ref(null)
 
+    const actionTitle = ref('edit')
+
+    watch(editing, async () => {
+      actionTitle.value = editing.value === false ? 'edit' : 'save'
+    })
+
     const toggle = async () => {
       editing.value = !editing.value
 
@@ -116,7 +122,9 @@ export default {
     }
 
     const handleInputChanged = (event) => {
-      toggle()
+      if (props.editByInlineClick === true) {
+        toggle()
+      }
 
       if (event.target.value !== computedValue.value) {
         emit('inline-input-changed', {
@@ -171,6 +179,7 @@ export default {
       handleInputChanged,
       handleKeyDownEnter,
       toggle,
+      actionTitle,
     }
   },
 }

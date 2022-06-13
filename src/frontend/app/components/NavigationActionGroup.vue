@@ -5,7 +5,7 @@
     </a>
     <a
       href="/dashboard"
-      class="block w-full px-4 py-3 text-sm font-normal leading-none text-gray-700 hover:bg-gray-50 md:hidden"
+      class="block w-full px-4 py-3 text-sm font-normal leading-none text-base-700 hover:bg-base-200 md:hidden"
     >
       <HomeIcon class="h-3.5 w-3.5" />
     </a>

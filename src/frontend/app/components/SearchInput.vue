@@ -4,14 +4,14 @@
       <label for="search" class="sr-only">Search</label>
       <div class="relative">
         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-          <SearchIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
+          <SearchIcon class="h-5 w-5 text-base-200" aria-hidden="true" />
         </div>
         <input
           id="search"
           ref="inputFieldRef"
           v-model="computedInputValue"
           name="search"
-          class="block w-full rounded-md border border-transparent bg-white py-1.5 pl-10 pr-3 leading-5 text-gray-500 placeholder-gray-500 focus:border-white focus:text-gray-900 focus:outline-none focus:ring-gray-300 sm:text-sm"
+          class="placeholder-base-2000 block w-full rounded-md border border-transparent bg-white py-1.5 pl-10 pr-3 leading-5 text-base-200 focus:border-white focus:text-base-content focus:outline-none focus:ring-gray-300 sm:text-sm"
           placeholder="Search"
           type="search"
           @keydown.esc="computedInputValue = ''"
