@@ -48,15 +48,15 @@
         class="h-full w-full overflow-hidden border-t-2 border-primary-focus p-3 pt-0"
       >
         <div
-          class="xl:flex-row xl:overflow-hidden flex h-full w-full min-w-full flex-col overflow-y-scroll"
+          class="flex h-full w-full min-w-full flex-col overflow-y-scroll xl:flex-row xl:overflow-hidden"
         >
-          <div class="xl:overflow-y-scroll xl:pr-4 flex flex-grow flex-col px-3">
+          <div class="flex flex-grow flex-col px-3 xl:overflow-y-scroll xl:pr-4">
             <!--    @todo: make this a slot. By default it is empty.            -->
             <BlockList :card-id="componentData?.id" />
             <BlockSelector :card-id="componentData?.id" />
           </div>
           <div
-            class="xl:mt-0 xl:overflow-y-scroll xl:pl-2 xl:pr-4 mt-8 flex flex-shrink-0 flex-col"
+            class="mt-8 flex flex-shrink-0 flex-col xl:mt-0 xl:overflow-y-scroll xl:pl-2 xl:pr-4"
           >
             <!--    @todo: make it a named slot                -->
             <slot />

@@ -3,13 +3,13 @@
     <ONavBar class="absolute left-0 right-0 top-0" />
     <div class="flex h-full w-full flex-col justify-center">
       <AHeader
-        class="md:-translate-y-36 -translate-y-24 transform text-center text-primary-content"
+        class="-translate-y-24 transform text-center text-primary-content md:-translate-y-36"
         :component-data="componentData.header"
       >
         Login
       </AHeader>
       <OLoginCard
-        class="md:-translate-y-36 -translate-y-24 transform"
+        class="-translate-y-24 transform md:-translate-y-36"
         :component-data="componentData.loginCard"
         @a-text-input-changed="inputHandler($event)"
         @a-button-clicked="handleClick($event)"

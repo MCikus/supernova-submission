@@ -7,7 +7,7 @@
       <div class="flex h-full flex-col">
         <div
           v-if="computedTTopicChildrenViewData.parent"
-          class="md:px-6 md:pb-3 md:pt-8 2xl:px-[10.5rem] px-4 pb-7 pt-10"
+          class="px-4 pb-7 pt-10 md:px-6 md:pb-3 md:pt-8 2xl:px-[10.5rem]"
         >
           <AParentCardButton
             :component-data="computedTTopicChildrenViewData"
@@ -91,6 +91,10 @@
         </OCardsContainer>
       </div>
     </template>
+    <template #dialog>
+      <AcceptChangesDialog />
+      <CreateNewTopicDialog />
+    </template>
   </BaseAppLayout>
 </template>
 
@@ -99,6 +103,7 @@ import { defineComponent } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'
+import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopicDialog.vue'
 import AParentCardButton from '@/domain/cards/components/AParentCardButton.vue'
 import OCardsContainer from '@/domain/cards/components/OCardsContainer.vue'
 import MCard from '@/domain/cards/components/MCard.vue'
@@ -106,15 +111,19 @@ import ACreateCardButton from '@/domain/cards/components/ACreateCardButton.vue'
 import Draggable from 'vuedraggable'
 import { useBlocksStore } from '@/domain/blocks/base/services/stores/useBlocksStore.js'
 import { useBlockDefinitionsStore } from '@/domain/blocks/base/services/stores/useBlockDefinitionsStore.js'
+import { useProposalsStore } from '@/domain/updateTopic/services/useProposalsStore.js'
 import { reactive } from 'vue'
 import { log } from '@/app/services/errorService.js'
 import { useAnalyticsInfoStore } from '@/app/services/useAnalyticsInfoStore.js'
 import { storeToRefs } from 'pinia'
+import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
 
 export default defineComponent({
   name: 'PCard',
   components: {
+    AcceptChangesDialog,
     BaseAppLayout,
+    CreateNewTopicDialog,
     Navigation,
     AParentCardButton,
     OCardsContainer,
@@ -151,6 +160,7 @@ export default defineComponent({
     try {
       await useBlocksStore().fetchAllBlocks()
       await useBlockDefinitionsStore().fetchAllBlockDefinitions()
+      await useProposalsStore().findAllProposals()
     } catch (error) {
       // @todo: handle errors properly instead logging them
       log(error)

@@ -1,5 +1,5 @@
 <template>
-  <div class="md:px-4 2xl:px-40 flex grow overflow-x-scroll p-2" :class="[$options.name]">
+  <div class="flex grow overflow-x-scroll p-2 md:px-4 2xl:px-40" :class="[$options.name]">
     <slot name="userCards" />
     <slot name="defaultCard" />
   </div>

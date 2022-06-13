@@ -53,12 +53,14 @@
 <script>
 import { computed, defineComponent } from 'vue'
 import BaseNavigationLayout from '@/app/components/BaseNavigationLayout.vue'
+import { PlusIcon } from '@heroicons/vue/outline'
 import ProfileMenu from '@/app/components/ProfileMenu.vue'
 import SearchInput from '@/app/components/SearchInput.vue'
 import NavigationActionGroup from '@/app/components/NavigationActionGroup.vue'
 import MiljnLogo from './MiljnLogo.vue'
 import NotificationMenu from '@/app/components/NotificationMenu.vue'
 import { useDashboardSearchStore } from '@/app/services/useDashboardSearchStore.js'
+import { useCreateNewTopicDialogStore } from '@/domain/createTopic/services/useCreateNewTopicDialogStore.js'
 import { low, medium, high, useEnergyStore } from '@/app/services/useEnergyStore'
 import highIndicator from '@/app/assets/indicators/high.svg'
 import mediumIndicator from '@/app/assets/indicators/medium.svg'
@@ -71,6 +73,8 @@ export default defineComponent({
   name: componentName,
   components: {
     BaseNavigationLayout,
+    // eslint-disable-next-line vue/no-unused-components
+    PlusIcon,
     ProfileMenu,
     SearchInput,
     NavigationActionGroup,
@@ -78,6 +82,7 @@ export default defineComponent({
     NotificationMenu,
   },
   setup() {
+    const { open: openCreateNewTopicDialog } = useCreateNewTopicDialogStore()
     const energyStore = useEnergyStore()
     const { topicsSearchString } = storeToRefs(useDashboardSearchStore())
     const { energyLevel, energyAmount } = storeToRefs(energyStore)
@@ -97,6 +102,7 @@ export default defineComponent({
 
     return {
       componentName,
+      openCreateNewTopicDialog,
       topicsSearchString,
       energyIntensityIndicator,
       energyAmount,
