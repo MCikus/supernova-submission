@@ -23,6 +23,7 @@
 
               <button
                 class="mt-4 mb-4 flex items-center gap-2 rounded-lg bg-primary-200 px-5 py-[10px] text-sm font-normal text-base-700 hover:bg-primary-300"
+                @click.stop="rechargeEnergyWithDefaultAmount"
               >
                 <span>
                   <svg
@@ -83,8 +84,10 @@ export default defineComponent({
   },
   setup() {
     const { open: openCreateNewTopicDialog } = useCreateNewTopicDialogStore()
-    const energyStore = useEnergyStore()
     const { topicsSearchString } = storeToRefs(useDashboardSearchStore())
+
+    const energyStore = useEnergyStore()
+    const { rechargeEnergyWithDefaultAmount } = energyStore
     const { energyLevel, energyAmount } = storeToRefs(energyStore)
 
     const energyIntensityIndicator = computed(() => {
@@ -96,17 +99,13 @@ export default defineComponent({
       return indicators[energyLevel.value] ?? indicators[medium]
     })
 
-    const changeLevel = (value) => {
-      energyStore.updateEnergyAmount(value)
-    }
-
     return {
       componentName,
       openCreateNewTopicDialog,
       topicsSearchString,
       energyIntensityIndicator,
       energyAmount,
-      changeLevel,
+      rechargeEnergyWithDefaultAmount,
     }
   },
 })

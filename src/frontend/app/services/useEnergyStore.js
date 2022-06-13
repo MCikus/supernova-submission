@@ -10,9 +10,12 @@ export const EnergyLevel = {
   [high]: 1000,
 }
 
+export const initialEnergyAmount = 111111
+export const defaultEnergyRechargeAmount = EnergyLevel[high]
+
 export const useEnergyStore = defineStore('energyStore', {
   state: () => ({
-    energyAmountState: 1212123,
+    energyAmountState: initialEnergyAmount,
   }),
   getters: {
     energyLevel: (state) => {
@@ -31,6 +34,9 @@ export const useEnergyStore = defineStore('energyStore', {
     },
   },
   actions: {
+    rechargeEnergyWithDefaultAmount() {
+      this.energyAmountState = this.energyAmountState + defaultEnergyRechargeAmount
+    },
     readEnergyAmountFromLocalStorage() {
       if (localStorage.getItem('energyStore')) {
         this.energyAmountState =

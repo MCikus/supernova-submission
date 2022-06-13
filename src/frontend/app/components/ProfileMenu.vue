@@ -84,7 +84,7 @@ export default defineComponent({
       userStore.updateUserName(event.target.value)
     }
 
-    const logoutAction = ( closeAction ) => {
+    const logoutAction = (closeAction) => {
       // eslint-disable-next-line no-console
       console.error('🚨', 'logout is not implemented')
       closeAction()
