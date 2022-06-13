@@ -77,6 +77,25 @@ actor {
     blocks_by_id.get(id)
   };
 
+
+  /*
+   * Bulk lookup a set of blocks
+   */
+  public query func block_lookup_bulk(ids : [UUID]) : async [Block] {
+      var list : [Block] = [];
+        for(block_id : UUID in ids.vals()){
+            var block = blocks_by_id.get(block_id);
+                    switch(block) {
+                        case (null) {};
+                        case (?existingBlock) {
+                            list := Array.append<Block>(list, [existingBlock]);
+                        }
+                    };
+        };
+      return list;
+  };
+
+
   /*
    * Deletes a block by id
    */

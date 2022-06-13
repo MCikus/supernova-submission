@@ -28,8 +28,18 @@ export const find = async (cardId: string) => {
   }
 }
 
-export const allByIds = (cardsids: Array<string>) => {
-  throw new Error('allByIds method is not implemented')
+export const allByIds = async (cardsids: Array<string>) => {
+  const cardList = await data_manager.card_lookup_bulk(cardsids)
+
+  return cardList.map((card) => {
+    return {
+      id: card.id,
+      title: card.title,
+      meta: JSON.parse(card.meta),
+      blocks: card.block_ids,
+      children: card.children_card_ids,
+    }
+  })
 }
 
 /**

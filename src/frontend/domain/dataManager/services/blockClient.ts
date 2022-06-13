@@ -16,8 +16,16 @@ export const find = async (blockId: string) => {
   }
 }
 
-export const allByIds = (blocksids: Array<string>) => {
-  throw new Error('allByIds method is not implemented')
+export const allByIds = async (blocksids: Array<string>) => {
+  const blockList = await data_manager.block_lookup_bulk(blocksids)
+
+  return blockList.map((block) => {
+    return {
+      id: block.id,
+      typeId: block.typeId,
+      payload: JSON.parse(block.payload),
+    }
+  })
 }
 
 type Payload = object

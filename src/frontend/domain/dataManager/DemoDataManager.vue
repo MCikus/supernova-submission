@@ -677,6 +677,11 @@ export default defineComponent({
     }
 
     window._resolveCard = resolveCard
+
+    window._importExamples = () => {
+      window._cards.forEach(cardClient.create)
+      window._blocks.forEach(blockClient.create)
+    }
   },
 })
 </script>
