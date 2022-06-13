@@ -2,6 +2,8 @@ import Map "mo:base/HashMap";
 import Text "mo:base/Text";
 import Array "mo:base/Array";
 import Principal "mo:base/Principal";
+import List "mo:base/List";
+import Nat "mo:base/Nat";
 
 actor {
 
@@ -112,8 +114,23 @@ actor {
 
   /*
    * Deletes a card by id
+   *
+   * Deletes children cards recusively
+   * Deletes all blocks
    */
   public func card_delete(id : UUID):async () {
+    var card = cards_by_id.get(id);
+    switch(card) {
+      case (null) {};
+      case (?existingCard) {
+        for(child_id in existingCard.children_card_ids.vals()) {
+          var _y = card_delete(child_id);
+        };
+        for(block_id in existingCard.block_ids.vals()) {
+          var _z = block_delete(block_id);
+        };
+      }
+    };
     var _x = cards_by_id.remove(id);
   };
 
@@ -356,5 +373,90 @@ actor {
     };
 
     return isAdmin;
+  };
+
+  /*
+   * Checks if uuid is valid for new item
+   */
+  public query func idIsValid(id : UUID) : async Bool {
+    return blocks_by_id.get(id) == null and cards_by_id.get(id) == null;
+  };
+
+  /*
+   * Deep clones topic / card tree
+   */
+  public shared({ caller }) func createWorkingCopy(templateID : UUID) : async UUID {
+    await deepClone_card(templateID);
+  };
+
+  public shared({ caller }) func deepClone_card(from : UUID) : async UUID {
+
+
+    var card = cards_by_id.get(from);
+    var newChildrenIds : [UUID] = [];
+    var newBlockIds : [UUID] = [];
+    switch(card) {
+      case (null) {};
+      case (?existingCard) {
+        for(child_id in existingCard.children_card_ids.vals()) {
+          var cardId = await deepClone_card(child_id);
+          newChildrenIds := Array.append<UUID>(newChildrenIds, [cardId]);
+        };
+        for(block_id in existingCard.block_ids.vals()) {
+          var blockId = await deepClone_block(block_id);
+          newBlockIds := Array.append<UUID>(newBlockIds, [blockId]);
+        };
+        var uuid : UUID = await getNextValidUUID();
+        let newCard = {
+          id = uuid;
+          title = existingCard.title;
+          meta = existingCard.meta;
+          block_ids = newBlockIds;
+          children_card_ids = newChildrenIds;
+        };
+        cards_by_id.put(uuid, newCard);
+
+        return uuid;
+      };
+    };
+
+    return "00000000-0000-0000-0000-000000000000";
+  };
+
+  public shared({ caller }) func deepClone_block(from : UUID) : async UUID {
+    var uuid : UUID = await getNextValidUUID();
+    var source_block = blocks_by_id.get(from);
+    switch(source_block) {
+      case (null) {};
+      case (?existingBlock) {
+
+        let block : Block = {
+          id = uuid;
+          typeId = existingBlock.typeId;
+          payload = existingBlock.payload;
+        };
+        var _x = blocks_by_id.put(uuid, block);
+      };
+    };
+    return uuid;
+  };
+
+  public query func getNextValidUUID() : async UUID {
+
+
+    var offset : Nat = 0;
+
+    while(true) {
+
+      var bytes : Nat = blocks_by_id.size() + cards_by_id.size() + 100000000000 + offset;
+      var end : Text = Nat.toText(bytes);
+      var id = "00000000-0000-0000-0000-" # end;
+      if(blocks_by_id.get(id) == null and cards_by_id.get(id) == null) {
+        return id;
+      };
+      offset := offset + 1;
+    };
+
+    return "";
   };
 };

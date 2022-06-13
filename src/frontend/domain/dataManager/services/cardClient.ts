@@ -62,8 +62,8 @@ export const update = (card: Card) => {
   return create(card)
 }
 
-export const remove = (cardId: string) => {
-  throw new Error('update method is not implemented')
+export const remove = async (cardId: string) => {
+  await data_manager.card_delete(cardId);
 }
 
 export const all = () => {
