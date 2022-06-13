@@ -8,10 +8,22 @@
       </div>
     </template>
     <template #right>
-      <div class="flex w-auto grow items-center justify-end space-x-6">
-        <NavigationActionGroup class="hidden md:flex" />
-        <NotificationMenu />
-        <SearchInput :value="topicsSearchString" @input="topicsSearchString = $event" />
+      <div class="flex w-auto grow items-center justify-end">
+        <div class="mr-[65px] flex items-center gap-x-6">
+          <NavigationActionGroup class="hidden md:flex" />
+          <SearchInput :value="topicsSearchString" @input="topicsSearchString = $event" />
+          <NotificationMenu />
+
+          <button
+            class="ml-4 rounded-md border border-none bg-indigo-50 py-2 px-4 text-sm text-indigo-700 shadow-sm duration-150 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-indigo-50 focus:ring-offset-2 focus:ring-offset-[#5F75D7]"
+            @click="openCreateNewTopicDialog"
+          >
+            <span class="flex flex-nowrap items-center">
+              <PlusIcon class="mr-2 h-5 w-5" />
+              New Topic
+            </span>
+          </button>
+        </div>
         <ProfileMenu :show-avatar="true">
           <template #middle>
             <div class="mt-[10px] flex flex-col items-center px-3">
