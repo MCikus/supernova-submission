@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full px-4 py-[1.125rem] md:px-6 xl:px-9 2xl:px-16" :class="componentName">
+  <div class="w-full py-[1.125rem] px-8" :class="componentName">
     <div class="flex flex-row items-center">
       <slot name="left" />
       <slot name="center" />
