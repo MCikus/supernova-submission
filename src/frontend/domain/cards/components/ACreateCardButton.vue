@@ -11,7 +11,7 @@
       <div class="flex items-center justify-center">
         <span
           tabindex="0"
-          class="inline-flex rounded-angularness p-1.5 text-base-300 drop-shadow filter focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-focus group-hover:text-primary-focus"
+          class="inline-flex rounded-angularness p-1.5 text-base-300 drop-shadow filter focus:outline-none focus-visible:ring-2 focus-visible:ring-base-300 group-hover:text-primary-focus"
           :class="[...computedDisabledCss]"
         >
           <PPlusIcon
