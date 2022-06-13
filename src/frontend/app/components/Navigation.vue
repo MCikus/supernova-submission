@@ -15,7 +15,7 @@
           <NotificationMenu />
 
           <button
-            class="ml-6 rounded-md border border-transparent bg-indigo-50 py-2 px-4 text-sm text-indigo-700 shadow-sm duration-150 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-indigo-50 focus:ring-offset-2 focus:ring-offset-[#5F75D7]"
+            class="ml-4 rounded-md border border-none bg-indigo-50 py-2 px-4 text-sm text-indigo-700 shadow-sm duration-150 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-indigo-50 focus:ring-offset-2 focus:ring-offset-[#5F75D7]"
             @click="openCreateNewTopicDialog"
           >
             <span class="flex flex-nowrap items-center">

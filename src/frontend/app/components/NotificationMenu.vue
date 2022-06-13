@@ -9,7 +9,7 @@
         >
           {{ unreadNotifications.length }}
         </span>
-        <BellIcon class="h-[1.125rem] w-[1.125rem] text-white" />
+        <BellIcon class="h-6 w-6 text-white" />
       </button>
     </template>
     <template #items="{ closeMenu }">

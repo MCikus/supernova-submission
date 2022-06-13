@@ -4,7 +4,7 @@
       <label for="search" class="sr-only">Search</label>
       <div class="relative">
         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-          <SearchIcon class="h-5 w-5 text-base-200" aria-hidden="true" />
+          <SearchIcon class="h-[24px] w-[24px] text-base-200" aria-hidden="true" />
         </div>
         <input
           id="search"
@@ -19,7 +19,7 @@
       </div>
     </div>
     <button v-if="!searchInputVisible" @click="openMenu">
-      <SearchIcon class="h-[1.125rem] w-[1.125rem] text-white" />
+      <SearchIcon class="h-[24px] w-[24px] text-white" />
     </button>
   </div>
 </template>
