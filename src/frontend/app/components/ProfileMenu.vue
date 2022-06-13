@@ -40,7 +40,7 @@
         <div class="mb-[2px] pb-4">
           <button
             class="block w-full px-6 py-2 text-left text-sm font-normal leading-none text-base-700 hover:underline"
-            @click="closeMenu"
+            @click="logoutAction(closeMenu)"
           >
             Logout
           </button>
@@ -84,10 +84,17 @@ export default defineComponent({
       userStore.updateUserName(event.target.value)
     }
 
+    const logoutAction = ( closeAction ) => {
+      // eslint-disable-next-line no-console
+      console.error('🚨', 'logout is not implemented')
+      closeAction()
+    }
+
     return {
       componentName,
       userName,
       userNameChanged,
+      logoutAction,
     }
   },
 })
