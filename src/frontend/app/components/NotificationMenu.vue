@@ -5,7 +5,7 @@
         <span class="sr-only">Open options</span>
         <span
           v-if="unreadNotifications.length > 0"
-          class="absolute top-0 right-0 flex h-4 w-4 -translate-y-1/3 translate-x-1/3 items-center justify-center rounded-full bg-red-700 text-xs leading-none text-white"
+          class="absolute top-0 right-0 flex h-4 w-4 -translate-y-1/3 translate-x-1/4 items-center justify-center rounded-full bg-state-warning text-[10px] leading-none text-base-content"
         >
           {{ unreadNotifications.length }}
         </span>
@@ -24,7 +24,7 @@
           {{ notification.title }}
           <span
             v-if="!notification.markAsRead"
-            class="absolute top-1/2 left-2 flex h-2 w-2 -translate-y-1/2 items-center justify-center rounded-full bg-red-300"
+            class="absolute top-1/2 left-2 flex h-2 w-2 -translate-y-1/2 items-center justify-center rounded-full bg-state-warning"
           ></span>
         </div>
         <div class="w-full border-t border-gray-100" />

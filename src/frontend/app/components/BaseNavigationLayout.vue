@@ -1,6 +1,6 @@
 <template>
   <div class="w-full py-[18px] px-8" :class="componentName">
-    <div class="flex flex-row h-[36px] items-center">
+    <div class="flex h-[36px] flex-row items-center">
       <slot name="left" />
       <slot name="center" />
       <slot name="right" />
