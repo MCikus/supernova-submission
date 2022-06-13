@@ -4,6 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import PCard from '@/domain/cards/components/PCard.vue'
 import PTopic from '@/domain/cards/components/PTopic.vue'
 import DemoHome from '@/domain/demo/components/DemoHome.vue'
+import DemoDataManager from '@/domain/dataManager/DemoDataManager.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -20,6 +21,11 @@ const routes: RouteRecordRaw[] = [
     path: '/__canister-demo',
     name: 'DemoHome',
     component: DemoHome,
+  },
+  {
+    path: '/__data-manager',
+    name: 'DemoDataManager',
+    component: DemoDataManager,
   },
 ]
 
