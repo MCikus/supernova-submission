@@ -94,6 +94,7 @@
     </template>
     <template #dialog>
       <AcceptChangesDialog />
+      <ProposeChangesDialog />
       <CreateNewTopicDialog />
     </template>
   </BaseAppLayout>
@@ -105,6 +106,8 @@ import { v4 as uuidv4 } from 'uuid'
 import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'
 import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopicDialog.vue'
+import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
+import ProposeChangesDialog from "@/domain/updateTopic/components/ProposeChangesDialog.vue"
 import AParentCardButton from '@/domain/cards/components/AParentCardButton.vue'
 import OCardsContainer from '@/domain/cards/components/OCardsContainer.vue'
 import MCard from '@/domain/cards/components/MCard.vue'
@@ -117,12 +120,12 @@ import { reactive } from 'vue'
 import { log } from '@/app/services/errorService.js'
 import { useAnalyticsInfoStore } from '@/app/services/useAnalyticsInfoStore.js'
 import { storeToRefs } from 'pinia'
-import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
 
 export default defineComponent({
   name: 'PCard',
   components: {
     AcceptChangesDialog,
+    ProposeChangesDialog,
     BaseAppLayout,
     CreateNewTopicDialog,
     Navigation,
