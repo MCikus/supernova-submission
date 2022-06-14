@@ -39,7 +39,7 @@ import CardListingChildColumn from '@/domain/cards/components/CardListingChildCo
 import { useCardsStore } from '@/domain/cards/services/useCardsStore.js'
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
-import { v4 as uuid } from "uuid"
+import { v4 as uuid } from 'uuid'
 
 export const componentName = 'CardListingColumn'
 
@@ -52,7 +52,7 @@ export default defineComponent({
   setup() {
     const titleCardId = computed(() => useRoute().params.titleCardId)
     const useCards = useCardsStore()
-    const { parents: parentsFromStore, children } = storeToRefs(useCards)
+    const { parents: parentsFromStore } = storeToRefs(useCards)
 
     const parents = computed({
       get() {
@@ -83,7 +83,10 @@ export default defineComponent({
         children: [],
       }
 
-      await useCards.updateParents(titleCardId.value, [...(parents?.value ?? []), parentCardToBeAdded])
+      await useCards.updateParents(titleCardId.value, [
+        ...(parents?.value ?? []),
+        parentCardToBeAdded,
+      ])
       await useCards.createCard(parentCardToBeAdded)
     }
 

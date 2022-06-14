@@ -1,6 +1,5 @@
 <template>
   <Draggable
-
     v-model="children"
     item-key="id"
     v-bind="dragOptions"
@@ -79,7 +78,10 @@ export default defineComponent({
         children: [],
       }
 
-      await useCards.updateChildren(computedParentCardId.value, [...(children?.value ?? []), childCardToBeAdded])
+      await useCards.updateChildren(computedParentCardId.value, [
+        ...(children?.value ?? []),
+        childCardToBeAdded,
+      ])
       await useCards.createCard(childCardToBeAdded)
     }
 

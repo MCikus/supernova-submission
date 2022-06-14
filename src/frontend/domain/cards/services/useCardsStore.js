@@ -38,7 +38,10 @@ export const useCardsStore = defineStore('useCardsStore', {
       const topic = topics.value.find((topic) => topic.id === titleCardId)
       topic.children = [...parentIds]
 
-      console.error('🚨 Updating parents not implemented yet. Missing topicClient.ts', topic)
+      console.error(
+        '🚨 Updating parents not implemented yet. Missing topicClient.ts',
+        topic,
+      )
     },
     async updateChildren(parentCardId, children) {
       this.children[parentCardId] = [...children]
