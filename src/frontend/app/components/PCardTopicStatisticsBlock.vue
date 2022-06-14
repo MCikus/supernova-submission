@@ -81,9 +81,9 @@ export default defineComponent({
   props: {
     statistics,
   },
+  setup: () => ({ componentName }),
   created() {
     console.log(this.statistics?.isMarketingCard?.payload?.value)
   },
-  setup: () => ({ componentName }),
 })
 </script>

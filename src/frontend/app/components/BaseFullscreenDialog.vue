@@ -49,7 +49,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
       required: false,
-    }
+    },
   },
   emits: ['dialogVisibilityChanged'],
   setup(props, { emit }) {

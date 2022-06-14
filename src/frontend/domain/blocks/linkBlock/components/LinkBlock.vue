@@ -1,5 +1,5 @@
 <template>
-  <BlockHandle class="mt-1 mr-1"/>
+  <BlockHandle class="mt-1 mr-1" />
   <div class="flex w-full flex-row rounded-md bg-gray-200" :class="componentName">
     <div v-if="showUrlInput" class="flex grow overflow-hidden">
       <input
@@ -72,7 +72,7 @@
 
 <script>
 import { defineComponent, nextTick, onMounted, reactive, ref } from 'vue'
-import BlockHandle from "@/domain/blocks/base/components/BlockHandle.vue"
+import BlockHandle from '@/domain/blocks/base/components/BlockHandle.vue'
 import { useBlocksStore } from '@/domain/blocks/base/services/stores/useBlocksStore.js'
 import { findOpenGraphData } from '@/domain/blocks/linkBlock/services/openGraphApiClient.js'
 import { log } from '@/app/services/errorService.js'
@@ -82,7 +82,7 @@ export const componentName = 'LinkBlock'
 export default defineComponent({
   name: componentName,
   components: {
-    BlockHandle
+    BlockHandle,
   },
   props: {
     block: {

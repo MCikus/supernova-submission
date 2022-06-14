@@ -13,8 +13,8 @@
     <template #item="{ element: child }">
       <div
         :key="child.id"
-        @click="expandCard(child, children)"
         class="mt-4 h-[176px] w-[320px] rounded-md bg-white p-2 drop-shadow-md"
+        @click="expandCard(child, children)"
       >
         {{ child.title }}
       </div>
@@ -34,8 +34,7 @@ import Draggable from 'vuedraggable'
 import { useCardsStore } from '@/domain/cards/services/useCardsStore.js'
 import { v4 as uuid } from 'uuid'
 import { storeToRefs } from 'pinia'
-import { useCardExpandedDialogStore } from "@/domain/cardExpanded/services/useCardExpandedDialogStore.js"
-
+import { useCardExpandedDialogStore } from '@/domain/cardExpanded/services/useCardExpandedDialogStore.js'
 
 export const componentName = 'CardListingChildColumn'
 
@@ -96,7 +95,7 @@ export default defineComponent({
       drag,
       dragOptions,
       handleAddChildButtonClick,
-      expandCard: useCardExpandedDialog.open
+      expandCard: useCardExpandedDialog.open,
     }
   },
 })

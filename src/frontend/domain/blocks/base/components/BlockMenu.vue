@@ -5,7 +5,7 @@
         class="m-1 flex items-center rounded-sm p-0 text-base-400 hover:text-base-400 focus:outline-none focus:ring-0"
       >
         <span class="sr-only">Open options</span>
-        <DotsVerticalIcon class="h-6 w-6 -m-1" aria-hidden="true" />
+        <DotsVerticalIcon class="-m-1 h-6 w-6" aria-hidden="true" />
       </MenuButton>
     </div>
 

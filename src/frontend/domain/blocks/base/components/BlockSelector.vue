@@ -3,10 +3,11 @@
     <PopoverButton
       ref="selectorButtonRef"
       data-test="popover-button"
-      class="flex flex-nowrap items-center h-fit focus:outline-none"
+      class="flex h-fit flex-nowrap items-center focus:outline-none"
       @click="calculateBlockMenuPosition"
     >
-      <PlusIcon class="h-5 w-5 text-primary mx-1" /><span class="bg-primary w-0.5 h-6 ml-0.5" ></span>
+      <PlusIcon class="mx-1 h-5 w-5 text-primary" />
+      <span class="ml-0.5 h-6 w-0.5 bg-primary"></span>
     </PopoverButton>
 
     <PopoverPanel
@@ -32,7 +33,7 @@
           </span>
           <span class="flex flex-col whitespace-nowrap">
             <span class="text-md font-medium">{{ definition.title }}</span>
-            <span v-if="false" class="text-base-200 text-base">
+            <span v-if="false" class="text-base text-base-200">
               {{ definition.description }}
             </span>
           </span>

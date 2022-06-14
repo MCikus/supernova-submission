@@ -6,30 +6,46 @@
     :disable-close-button="true"
   >
     <template #dialogContent>
-      <div ref="dialogRef" class="flex h-full w-full max-w-5xl flex-col items-start justify-start bg-white rounded-lg">
-        <div class="pt-4 pb-6 px-5 h-[160px] w-full">
-          {{expandedCard.title}} <button @click="closeDialog()">close dialog</button>
+      <div
+        ref="dialogRef"
+        class="flex h-full w-full max-w-5xl flex-col items-start justify-start rounded-lg bg-white"
+      >
+        <div class="h-[160px] w-full px-5 pt-4 pb-6">
+          {{ expandedCard.title }}
+          <button @click="closeDialog()">close dialog</button>
         </div>
         <div class="h-[1px] w-full bg-base-200"></div>
-        <div class="pt-4 pb-6 px-36 w-full grow overflow-y-scroll">
-          <BlockList :card="expandedCard"/>
-          <BlockSelector :card-id="expandedCard.id"/>
+        <div class="w-full grow overflow-y-scroll px-36 pt-4 pb-6">
+          <BlockList :card="expandedCard" />
+          <BlockSelector :card-id="expandedCard.id" />
         </div>
         <div class="h-[1px] w-full bg-base-200"></div>
-        <div class="flex flex-row justify-between items-center w-full pt-4 pb-6 px-5 h-[96px]">
+        <div
+          class="flex h-[96px] w-full flex-row items-center justify-between px-5 pt-4 pb-6"
+        >
           <button
-            @click="previousCard()"
             class="flex flex-nowrap rounded-md border-2 border-[#EEF2FF] px-4 py-2 text-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4338CA] focus:ring-offset-2 focus:ring-offset-white"
-            :class="previousButtonDisabled ? 'bg-gray-100 text-gray-400 pointer-events-none' : 'bg-[#EEF2FF] text-[#4338CA]'"
+            :class="
+              previousButtonDisabled
+                ? 'pointer-events-none bg-gray-100 text-gray-400'
+                : 'bg-[#EEF2FF] text-[#4338CA]'
+            "
+            @click="previousCard()"
           >
-            <ArrowLeftIcon class="h-5 w-5 mr-2"/> Previous
+            <ArrowLeftIcon class="mr-2 h-5 w-5" />
+            Previous
           </button>
           <button
-            @click="nextCard()"
             class="flex flex-nowrap rounded-md border-2 border-[#EEF2FF] px-4 py-2 text-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4338CA] focus:ring-offset-2 focus:ring-offset-white"
-            :class="nextButtonDisabled ? 'bg-gray-100 text-gray-400 pointer-events-none' : 'bg-[#EEF2FF] text-[#4338CA]'"
+            :class="
+              nextButtonDisabled
+                ? 'pointer-events-none bg-gray-100 text-gray-400'
+                : 'bg-[#EEF2FF] text-[#4338CA]'
+            "
+            @click="nextCard()"
           >
-            Next <ArrowRightIcon class="h-5 w-5 ml-2"/>
+            Next
+            <ArrowRightIcon class="ml-2 h-5 w-5" />
           </button>
         </div>
       </div>
@@ -40,8 +56,8 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import BaseFullscreenDialog from '@/app/components/BaseFullscreenDialog.vue'
-import BlockList from "@/domain/blocks/base/components/BlockList.vue"
-import BlockSelector from "@/domain/blocks/base/components/BlockSelector.vue"
+import BlockList from '@/domain/blocks/base/components/BlockList.vue'
+import BlockSelector from '@/domain/blocks/base/components/BlockSelector.vue'
 import { useCardExpandedDialogStore } from '@/domain/cardExpanded/services/useCardExpandedDialogStore.js'
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/outline'
 import { onClickOutside } from '@vueuse/core'
@@ -56,11 +72,12 @@ export default defineComponent({
     BlockList,
     BlockSelector,
     ArrowLeftIcon,
-    ArrowRightIcon
+    ArrowRightIcon,
   },
   setup() {
     const useCardExpandedDialog = useCardExpandedDialogStore()
-    const { dialogIsVisible, expandedCard, nextButtonDisabled, previousButtonDisabled } = storeToRefs(useCardExpandedDialog)
+    const { dialogIsVisible, expandedCard, nextButtonDisabled, previousButtonDisabled } =
+      storeToRefs(useCardExpandedDialog)
     const dialogRef = ref(null)
 
     const closeDialog = () => {
@@ -77,7 +94,7 @@ export default defineComponent({
       nextCard: useCardExpandedDialog.nextCard,
       previousCard: useCardExpandedDialog.previousCard,
       nextButtonDisabled,
-      previousButtonDisabled
+      previousButtonDisabled,
     }
   },
 })

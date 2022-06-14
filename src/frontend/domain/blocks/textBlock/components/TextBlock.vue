@@ -1,10 +1,10 @@
 <template>
-  <div v-if="editor" class="flex flex-nowrap w-full" :class="[componentName]">
+  <div v-if="editor" class="flex w-full flex-nowrap" :class="[componentName]">
     <BlockHandle class="mt-1 mr-1" />
     <div
       class="flex w-full flex-row rounded-md hover:bg-gray-200 hover:bg-opacity-70 focus:outline-none"
     >
-      <div class="flex grow px-2 overflow-hidden">
+      <div class="flex grow overflow-hidden px-2">
         <editor-content class="w-full" :editor="editor" />
       </div>
     </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import BlockHandle from "@/domain/blocks/base/components/BlockHandle.vue"
+import BlockHandle from '@/domain/blocks/base/components/BlockHandle.vue'
 import { defineComponent, ref } from 'vue'
 import { useBlocksStore } from '@/domain/blocks/base/services/stores/useBlocksStore.js'
 import { EditorContent, useEditor } from '@tiptap/vue-3'

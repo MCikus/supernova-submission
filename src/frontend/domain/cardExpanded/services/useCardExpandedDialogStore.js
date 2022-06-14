@@ -6,19 +6,21 @@ export const useCardExpandedDialogStore = defineStore('useCardExpandedDialogStor
     expandedCard: {},
     expandedCardSiblings: [],
     nextButtonDisabled: false,
-    previousButtonDisabled: false
+    previousButtonDisabled: false,
   }),
   actions: {
     open(card, siblingCards) {
       this.expandedCard = card
       this.expandedCardSiblings = siblingCards
 
-      const cardIndex = this.expandedCardSiblings.findIndex(card => card.id === this.expandedCard.id)
+      const cardIndex = this.expandedCardSiblings.findIndex(
+        (card) => card.id === this.expandedCard.id,
+      )
 
-      if(cardIndex >= this.expandedCardSiblings.length){
+      if (cardIndex >= this.expandedCardSiblings.length) {
         this.nextButtonDisabled = true
       }
-      if(cardIndex <= 0){
+      if (cardIndex <= 0) {
         this.previousButtonDisabled = true
       }
 
@@ -32,22 +34,26 @@ export const useCardExpandedDialogStore = defineStore('useCardExpandedDialogStor
       this.dialogIsVisible ? this.close() : this.open(card)
     },
     nextCard() {
-      const nextCardIndex = this.expandedCardSiblings.findIndex(card => card.id === this.expandedCard.id) + 1
+      const nextCardIndex =
+        this.expandedCardSiblings.findIndex((card) => card.id === this.expandedCard.id) +
+        1
       this.previousButtonDisabled = false
-      if(nextCardIndex >= this.expandedCardSiblings.length){
+      if (nextCardIndex >= this.expandedCardSiblings.length) {
         this.nextButtonDisabled = true
         return
       }
       this.expandedCard = this.expandedCardSiblings[nextCardIndex]
     },
     previousCard() {
-      const nextCardIndex = this.expandedCardSiblings.findIndex(card => card.id === this.expandedCard.id) - 1
+      const nextCardIndex =
+        this.expandedCardSiblings.findIndex((card) => card.id === this.expandedCard.id) -
+        1
       this.nextButtonDisabled = false
-      if(nextCardIndex <= 0){
+      if (nextCardIndex <= 0) {
         this.previousButtonDisabled = true
         return
       }
       this.expandedCard = this.expandedCardSiblings[nextCardIndex]
-    }
+    },
   },
 })

@@ -1,6 +1,11 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useBlockDefinitionsStore } from '@/domain/blocks/base/services/stores/useBlockDefinitionsStore.js'
-import { allByIds, create, update, remove } from "@/domain/dataManager/services/blockClient"
+import {
+  allByIds,
+  create,
+  update,
+  remove,
+} from '@/domain/dataManager/services/blockClient'
 import { v4 as uuidv4 } from 'uuid'
 import { log } from '@/app/services/errorService.js'
 
@@ -43,12 +48,9 @@ export const useBlocksStore = defineStore('blocksStore', {
     },
     async reorderBlocks(blockList) {
       this.blocks = blockList
-
     },
     async removeBlock(block) {
-      this.blocks = this.blocks.filter(
-        (block) => block.id !== block.id,
-      )
+      this.blocks = this.blocks.filter((block) => block.id !== block.id)
 
       try {
         await remove(block)
@@ -58,9 +60,7 @@ export const useBlocksStore = defineStore('blocksStore', {
       }
     },
     async updateBlock(blockId, payload) {
-      const blockIndex = this.blocks.findIndex(
-        (block) => block.id === blockId,
-      )
+      const blockIndex = this.blocks.findIndex((block) => block.id === blockId)
 
       this.blocks[blockIndex] = {
         ...this.blocks[blockIndex],

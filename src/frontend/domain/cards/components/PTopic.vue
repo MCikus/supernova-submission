@@ -23,8 +23,8 @@ import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopic
 import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
 import ProposeChangesDialog from '@/domain/updateTopic/components/ProposeChangesDialog.vue'
 import CardListingForATopic from '@/domain/cards/components/CardListingForATopic.vue'
-import CardExpandedDialog from "@/domain/cardExpanded/components/CardExpandedDialog.vue"
-import {useBlockDefinitionsStore} from "@/domain/blocks/base/services/stores/useBlockDefinitionsStore.js"
+import CardExpandedDialog from '@/domain/cardExpanded/components/CardExpandedDialog.vue'
+import { useBlockDefinitionsStore } from '@/domain/blocks/base/services/stores/useBlockDefinitionsStore.js'
 
 export const componentName = 'PTopic'
 
