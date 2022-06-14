@@ -12,7 +12,7 @@
             <div class="flex-shrink-0">
               <SunIcon class="h-6 w-6 text-accent" aria-hidden="true" />
             </div>
-            <div class="flex-1 ml-3">
+            <div class="ml-3 flex-1">
               <p class="max-w-[30ch] text-sm text-base-100">{{ notification.message }}</p>
               <button
                 v-if="notification.action?.text"

@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import PCard from '@/app/components/PCard.vue'
 import DemoHome from '@/domain/demo/components/DemoHome.vue'
+import CallPCardTopicPreviewComponent from '@/app/components/CallPCardTopicPreviewComponent.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -19,6 +20,17 @@ const routes: RouteRecordRaw[] = [
     component: DemoHome,
   },
 ]
+
+if (import.meta.env.DEV === true) {
+  routes.push({
+    path: '/playground/CardListingForATopic',
+    name: 'CardTitle',
+    component: CallPCardTopicPreviewComponent,
+    meta: {
+      isMainRoute: true,
+    },
+  })
+}
 
 export { routes }
 
