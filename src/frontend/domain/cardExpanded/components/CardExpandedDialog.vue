@@ -13,6 +13,7 @@
         <div class="h-[1px] w-full bg-base-200"></div>
         <div class="pt-4 pb-6 px-36 w-full grow overflow-y-scroll">
           <BlockList :card="expandedCard"/>
+          <BlockSelector :card-id="expandedCard.id"/>
         </div>
         <div class="h-[1px] w-full bg-base-200"></div>
         <div class="flex flex-row justify-between items-center w-full pt-4 pb-6 px-5 h-[96px]">
@@ -40,6 +41,7 @@
 import { defineComponent, ref } from 'vue'
 import BaseFullscreenDialog from '@/app/components/BaseFullscreenDialog.vue'
 import BlockList from "@/domain/blocks/base/components/BlockList.vue"
+import BlockSelector from "@/domain/blocks/base/components/BlockSelector.vue"
 import { useCardExpandedDialogStore } from '@/domain/cardExpanded/services/useCardExpandedDialogStore.js'
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/outline'
 import { onClickOutside } from '@vueuse/core'
@@ -52,6 +54,7 @@ export default defineComponent({
   components: {
     BaseFullscreenDialog,
     BlockList,
+    BlockSelector,
     ArrowLeftIcon,
     ArrowRightIcon
   },
