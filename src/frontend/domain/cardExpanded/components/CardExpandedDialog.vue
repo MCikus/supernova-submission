@@ -12,7 +12,7 @@
       >
         <div class="h-[160px] w-full px-5 pt-4 pb-6">
           {{ expandedCard.title }}
-          <button @click="closeDialog()">close dialog</button>
+          <button @click="closeDialog">close dialog</button>
         </div>
         <div class="h-[1px] w-full bg-base-200"></div>
         <div class="w-full grow overflow-y-scroll px-36 pt-4 pb-6">
