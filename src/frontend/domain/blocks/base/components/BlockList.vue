@@ -3,7 +3,6 @@
     <div v-if="blocks.length > 0">
       <Draggable
         v-model="blocks"
-        tag="transition-group"
         item-key="uuid"
         v-bind="dragOptions"
         :component-data="{
