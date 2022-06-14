@@ -7,21 +7,23 @@ export const allNotifications = async () => {
   return [
     {
       id: 'uuid1',
-      message: 'Good news! Your changes to “Become a Miljn Front End Developer” were accepted.',
+      message:
+        'Good news! Your changes to “Become a Miljn Front End Developer” were accepted.',
       timestamp: '',
       isRead: false,
       type: 'info',
     },
     {
       id: 'uuid2',
-      message: 'Another has proposed 12 changes to the topic “Becoming a Front End developer”.',
+      message:
+        'Another has proposed 12 changes to the topic “Becoming a Front End developer”.',
       timestamp: '',
       isRead: false,
       type: 'success',
       action: {
-        text: "Review"
-      }
-    }
+        text: 'Review',
+      },
+    },
   ]
   // return (await httpClient.get(notifications.index))?.data?.data ?? []
 }

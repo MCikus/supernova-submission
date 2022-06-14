@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed max-w-[364px] w-full top-[72px] right-2 max-h-[80vh] z-50">
+  <div class="fixed top-[72px] right-2 z-50 max-h-[80vh] w-full max-w-[364px]">
     <Notification
       v-for="notification in notifications"
       :key="notification.id"

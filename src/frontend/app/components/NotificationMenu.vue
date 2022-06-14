@@ -16,7 +16,7 @@
         <BellIcon class="h-[1.125rem] w-[1.125rem] text-white" />
       </button>
     </template>
-    <template #items="{ closeMenu }">
+    <template #items>
       <NotificationStack />
     </template>
   </BaseDropDown>
