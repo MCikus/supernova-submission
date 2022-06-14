@@ -95,6 +95,7 @@
       <AcceptChangesDialog />
       <ProposeChangesDialog />
       <CreateNewTopicDialog />
+      <CardExpandedDialog />
     </template>
   </BaseAppLayout>
 </template>
@@ -107,6 +108,7 @@ import Navigation from '@/app/components/Navigation.vue'
 import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopicDialog.vue'
 import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
 import ProposeChangesDialog from '@/domain/updateTopic/components/ProposeChangesDialog.vue'
+import CardExpandedDialog from "@/domain/cardExpanded/components/CardExpandedDialog.vue"
 import AParentCardButton from '@/domain/cards/components/AParentCardButton.vue'
 import OCardsContainer from '@/domain/cards/components/OCardsContainer.vue'
 import MCard from '@/domain/cards/components/MCard.vue'
@@ -125,6 +127,7 @@ export default defineComponent({
   components: {
     AcceptChangesDialog,
     ProposeChangesDialog,
+    CardExpandedDialog,
     BaseAppLayout,
     CreateNewTopicDialog,
     Navigation,

@@ -10,6 +10,7 @@
       <AcceptChangesDialog />
       <ProposeChangesDialog />
       <CreateNewTopicDialog />
+      <CardExpandedDialog />
     </template>
   </BaseAppLayout>
 </template>
@@ -22,6 +23,7 @@ import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopic
 import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
 import ProposeChangesDialog from '@/domain/updateTopic/components/ProposeChangesDialog.vue'
 import CardListingForATopic from '@/domain/cards/components/CardListingForATopic.vue'
+import CardExpandedDialog from "@/domain/cardExpanded/components/CardExpandedDialog.vue"
 
 export const componentName = 'PTopic'
 
@@ -30,10 +32,11 @@ export default defineComponent({
   components: {
     BaseAppLayout,
     Navigation,
+    CardListingForATopic,
     AcceptChangesDialog,
     ProposeChangesDialog,
     CreateNewTopicDialog,
-    CardListingForATopic,
+    CardExpandedDialog,
   },
   setup() {
     return {
