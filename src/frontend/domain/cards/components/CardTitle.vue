@@ -11,7 +11,10 @@ export const componentName = 'CardTitle'
 export default defineComponent({
   name: componentName,
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: '',
+    },
   },
   setup: () => ({ componentName }),
 })

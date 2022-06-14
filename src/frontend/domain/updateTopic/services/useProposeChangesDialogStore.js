@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid'
 
 export const useProposeChangesDialogStore = defineStore('useProposeChangesDialogStore', {
   state: () => ({
-    dialogIsVisible: true,
+    dialogIsVisible: false,
     steps: [
       {
         id: uuid(),
