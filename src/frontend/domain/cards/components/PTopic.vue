@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import BaseAppLayout from '@/app/components/BaseAppLayout.vue'
 import Navigation from '@/app/components/Navigation.vue'
 import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopicDialog.vue'
@@ -24,6 +24,7 @@ import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDi
 import ProposeChangesDialog from '@/domain/updateTopic/components/ProposeChangesDialog.vue'
 import CardListingForATopic from '@/domain/cards/components/CardListingForATopic.vue'
 import CardExpandedDialog from "@/domain/cardExpanded/components/CardExpandedDialog.vue"
+import {useBlockDefinitionsStore} from "@/domain/blocks/base/services/stores/useBlockDefinitionsStore.js"
 
 export const componentName = 'PTopic'
 
@@ -39,6 +40,9 @@ export default defineComponent({
     CardExpandedDialog,
   },
   setup() {
+    onMounted(() => {
+      useBlockDefinitionsStore().fetchAllBlockDefinitions()
+    })
     return {
       componentName,
     }
