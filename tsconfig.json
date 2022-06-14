@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "canisters/counter": [".dfx/local/canisters/counter"],
+      "canisters/data_manager": [".dfx/local/canisters/data_manager"],
       "@/*": ["src/frontend/*"],
       "~/*": ["src/frontend/*"]
     }

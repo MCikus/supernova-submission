@@ -5,6 +5,24 @@ export const blockDefinitions = {
   index: `${apiPrefix}/${blockDefinitionsBasename}`,
 }
 
+export const topicsBasename = 'topics'
+export const topics = {
+  index: `${apiPrefix}/${topicsBasename}`,
+  modify(topicId) {
+    return `${apiPrefix}/${topicsBasename}/${topicId}`
+  },
+}
+
+export const cardsBasename = 'cards'
+export const cards = {
+  index(cardId) {
+    return `${apiPrefix}/${cardsBasename}/${cardId}`
+  },
+  modify(cardId) {
+    return `${apiPrefix}/${cardsBasename}/${cardId}`
+  },
+}
+
 export const blocksBasename = 'blocks'
 export const blocks = {
   index: `${apiPrefix}/${blocksBasename}`,

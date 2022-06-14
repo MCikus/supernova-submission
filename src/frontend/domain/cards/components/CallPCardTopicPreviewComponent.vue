@@ -1,23 +1,23 @@
 <template>
-  <PCardTopicPreview :card-props="json_archive"></PCardTopicPreview>
+  <CardTopicPreview :card-props="jsonArchive"></CardTopicPreview>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 export const componentName = 'CallPCardTopicPreviewComponent'
-import PCardTopicPreview from '@/app/components/PCardTopicPreview.vue'
+import CardTopicPreview from '@/domain/cards/components/CardTopicPreview.vue'
 import cardTopicPreview from './card_topic_preview.json'
 
 export default defineComponent({
   name: componentName,
   components: {
-    PCardTopicPreview,
+    CardTopicPreview,
   },
-  setup: () => ({ componentName }),
-  computed: {
-    json_archive() {
-      return cardTopicPreview
-    },
+  setup: () => {
+    return {
+      componentName,
+      jsonArchive: cardTopicPreview,
+    }
   },
 })
 </script>

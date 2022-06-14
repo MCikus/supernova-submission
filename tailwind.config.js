@@ -172,7 +172,6 @@ module.exports = {
       },
       colors: {
         primary: {
-          DEFAULT: '#5976DE',
           default: '#5F75D7',
           focus: '#475FB2',
           content: '#FFFFFF',
@@ -187,7 +186,6 @@ module.exports = {
           disabled: '#D8D8D8',
         },
         accent: {
-          DEFAULT: '#00D577',
           default: '#01D17F',
           focus: '#00C06A',
           content: '#FFFFFF',
@@ -250,7 +248,13 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Raleway', 'Inter', 'Roboto', 'system-ui', '-apple-system'],
+      sans: [
+        'Inter',
+        'Roboto',
+        'system-ui',
+        '-apple-system',
+        ...defaultTheme.fontFamily.sans,
+      ],
     },
     screens: {
       xs: '480px',
