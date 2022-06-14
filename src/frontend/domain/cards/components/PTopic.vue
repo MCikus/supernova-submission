@@ -4,7 +4,7 @@
       <Navigation />
     </template>
     <template #content>
-      <CardListingForATopic/>
+      <CardListingForATopic />
     </template>
     <template #dialog>
       <AcceptChangesDialog />
@@ -21,7 +21,7 @@ import Navigation from '@/app/components/Navigation.vue'
 import CreateNewTopicDialog from '@/domain/createTopic/components/CreateNewTopicDialog.vue'
 import AcceptChangesDialog from '@/domain/updateTopic/components/AcceptChangesDialog.vue'
 import ProposeChangesDialog from '@/domain/updateTopic/components/ProposeChangesDialog.vue'
-import CardListingForATopic from "@/domain/cards/components/CardListingForATopic.vue"
+import CardListingForATopic from '@/domain/cards/components/CardListingForATopic.vue'
 
 export const componentName = 'PTopic'
 

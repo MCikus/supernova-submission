@@ -1,17 +1,18 @@
 <template>
-    <div class="flex relative mx-8 py-2">
-      <span class="absolute top-0 left-0 h-1 w-[134px]" :class="eyebrowColorCss"></span>
-      <h1 @click="handleTitleClick" class="text-base text-[#4C5EAC] leading-none my-3 underline cursor-pointer w-fit">
-        <slot name="title">
-          header title
-        </slot>
-      </h1>
-      <slot name="header-actions"/>
-    </div>
+  <div class="relative mx-8 flex py-2">
+    <span class="absolute top-0 left-0 h-1 w-[134px]" :class="eyebrowColorCss"></span>
+    <h1
+      class="my-3 w-fit cursor-pointer text-base leading-none text-[#4C5EAC] underline"
+      @click="handleTitleClick"
+    >
+      <slot name="title">header title</slot>
+    </h1>
+    <slot name="header-actions" />
+  </div>
 </template>
 
 <script>
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 
 export const componentName = 'CardListingHeader'
 
@@ -21,12 +22,11 @@ export default defineComponent({
     eyebrowColorCss: {
       type: String,
       default: 'bg-[#C79FE7]',
-      required: false
-    }
+      required: false,
+    },
   },
-  emit: ['title-has-been-clicked'],
+  emits: ['title-has-been-clicked'],
   setup(props, { emit }) {
-
     const handleTitleClick = (event) => {
       emit('title-has-been-clicked', event)
     }
