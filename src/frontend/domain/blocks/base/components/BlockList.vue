@@ -1,23 +1,23 @@
 <template>
-  <div class="w-full" :class="[componentName]">
+  <div class="w-full" :class="componentName">
     <div v-if="blocks.length > 0">
       <Draggable
         v-model="blocks"
-        item-key="uuid"
+        item-key="id"
         v-bind="dragOptions"
         :component-data="{
           type: 'transition-group',
-          name: !isDragging ? 'transition-transform duration-500' : null,
+          name: !drag ? 'transition-transform duration-500' : null,
         }"
-        @start="onDragStart"
-        @end="onDragEnd"
+        @start="drag = true"
+        @end="drag = false"
       >
-        <template #item="{ element }">
-          <div :key="element.uuid" class="my-2 flex">
-            <component :is="element.definition.componentName" :block="element">
+        <template #item="{ element: block }">
+          <div :key="block.id" class="my-2 flex">
+            <component :is="block.definition.componentName" :block="block">
               <template #block-menu="{ customBlockMenuItems }">
                 <BlockMenu
-                  :block="element"
+                  :block="block"
                   :custom-block-menu-items="customBlockMenuItems"
                 />
               </template>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, watch, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import Draggable from 'vuedraggable'
 import { useBlocksStore } from '@/domain/blocks/base/services/stores/useBlocksStore.js'
@@ -51,39 +51,46 @@ export default defineComponent({
     LinkBlock,
   },
   props: {
-    cardId: {
-      type: String,
+    card: {
+      type: Object,
+      default: () => ({}),
       required: true,
     },
   },
   setup(props) {
     const blocksStore = useBlocksStore()
-    const { completeCardBlocks } = storeToRefs(blocksStore)
+    const { blocks: blocksFromStore } = storeToRefs(blocksStore)
+    const computedCard = computed(() => props.card)
+
+    const blocks = computed({
+      get() {
+        return blocksFromStore.value
+      },
+      set(value) {
+        blocksStore.reorderBlocks(value, computedCard.value)
+      },
+    })
+
     const dragOptions = {
       animation: 200,
       disabled: false,
       ghostClass: 'opacity-50',
     }
-    const isDragging = ref(false)
+    const drag = ref(false)
 
     onMounted(async () => {
-      await blocksStore.completeBlocksForCard(props.cardId)
+      await blocksStore.findAllBlocks(computedCard.value)
+    })
+
+    watch(computedCard, async () => {
+      await blocksStore.findAllBlocks(computedCard.value)
     })
 
     return {
       componentName,
-      blocks: computed({
-        get() {
-          return completeCardBlocks.value
-        },
-        set(value) {
-          blocksStore.reorderBlockList(value)
-        },
-      }),
+      blocks,
       dragOptions,
-      isDragging,
-      onDragStart: () => (isDragging.value = true),
-      onDragEnd: () => (isDragging.value = false),
+      drag,
     }
   },
 })

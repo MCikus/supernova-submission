@@ -15,6 +15,7 @@
     <template #item="{ element: parent }">
       <div :key="parent.id">
         <div
+          @click="expandCard(parent, parents)"
           class="relative z-20 mx-2.5 h-[176px] w-[320px] rounded-md bg-[#B6C3FF] p-2 drop-shadow-xl"
         >
           {{ parent.title }}
@@ -37,6 +38,8 @@ import { defineComponent, computed, onMounted, ref } from 'vue'
 import Draggable from 'vuedraggable'
 import CardListingChildColumn from '@/domain/cards/components/CardListingChildColumn.vue'
 import { useCardsStore } from '@/domain/cards/services/useCardsStore.js'
+import { useCardExpandedDialogStore } from '@/domain/cardExpanded/services/useCardExpandedDialogStore.js'
+
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
 import { v4 as uuid } from 'uuid'
@@ -53,6 +56,7 @@ export default defineComponent({
     const titleCardId = computed(() => useRoute().params.titleCardId)
     const useCards = useCardsStore()
     const { parents: parentsFromStore } = storeToRefs(useCards)
+    const useCardExpandedDialog = useCardExpandedDialogStore()
 
     const parents = computed({
       get() {
@@ -97,6 +101,7 @@ export default defineComponent({
       drag,
       dragOptions,
       handleAddParentButtonClick,
+      expandCard: useCardExpandedDialog.open,
     }
   },
 })

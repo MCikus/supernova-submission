@@ -8,7 +8,6 @@ export const useCardsStore = defineStore('useCardsStore', {
   state: () => ({
     parents: [],
     children: {},
-    expandedCardId: '',
   }),
   actions: {
     async findAllParentsAndChildren(titleCardId) {
@@ -54,16 +53,6 @@ export const useCardsStore = defineStore('useCardsStore', {
         await update(parent)
       } catch (e) {
         log(e)
-      }
-    },
-    expandCard(payload) {
-      if (this.expandedCardId !== payload) {
-        this.expandedCardId = payload
-      }
-    },
-    collapseCard(payload) {
-      if (this.expandedCardId === payload) {
-        this.expandedCardId = payload
       }
     },
   },
