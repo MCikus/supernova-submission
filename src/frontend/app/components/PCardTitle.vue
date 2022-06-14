@@ -4,12 +4,16 @@
 
 <script>
 import { defineComponent } from 'vue'
+
 export const componentName = 'PCardTitle'
 
 export default defineComponent({
   name: componentName,
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: '',
+    },
   },
   setup: () => ({ componentName }),
 })
