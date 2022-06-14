@@ -4,9 +4,8 @@ import type { RouteRecordRaw } from 'vue-router'
 import PCard from '@/domain/cards/components/PCard.vue'
 import PTopic from '@/domain/cards/components/PTopic.vue'
 import DemoHome from '@/domain/demo/components/DemoHome.vue'
-import CallPCardTopicPreviewComponent from '@/app/components/CallPCardTopicPreviewComponent.vue'
+import CallPCardTopicPreviewComponent from '@/domain/cards/components/CallPCardTopicPreviewComponent.vue'
 import DemoDataManager from '@/domain/dataManager/DemoDataManager.vue'
-
 const routes: RouteRecordRaw[] = [
   {
     path: '/',

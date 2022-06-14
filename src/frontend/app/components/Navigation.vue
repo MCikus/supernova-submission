@@ -1,5 +1,5 @@
 <template>
-  <BaseNavigationLayout class="relative bg-primary" :class="componentName">
+  <BaseNavigationLayout class="bg-primary relative" :class="componentName">
     <template #left>
       <div class="flex w-fit justify-start">
         <a href="/dashboard">
