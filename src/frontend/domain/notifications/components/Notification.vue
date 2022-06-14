@@ -41,6 +41,7 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps } from 'vue';
 import { SunIcon } from '@heroicons/vue/outline'
 import { XIcon } from '@heroicons/vue/solid'
 import {
@@ -48,6 +49,6 @@ import {
   useNotificationsStore,
 } from '@/domain/notifications/services/useNotificationsStore'
 
-const props = defineProps<{ notification: NotificationProps }>()
+defineProps<{ notification: NotificationProps }>()
 const { removeNotification } = useNotificationsStore()
 </script>
