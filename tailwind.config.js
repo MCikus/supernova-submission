@@ -240,7 +240,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Raleway', 'Inter', 'Roboto', 'system-ui', '-apple-system'],
+      sans: ['Inter', 'Raleway', 'Roboto', 'system-ui', '-apple-system'],
     },
     screens: {
       xs: '480px',

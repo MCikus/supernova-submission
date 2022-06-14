@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { find, allByIds, update } from '@/domain/dataManager/services/cardClient'
+import { find, allByIds, create, update } from '@/domain/dataManager/services/cardClient'
 import { useTopicsStore } from '@/app/services/useTopicsStore.js'
 import { storeToRefs } from 'pinia'
 import { log } from '@/app/services/errorService.js'
@@ -23,7 +23,14 @@ export const useCardsStore = defineStore('useCardsStore', {
         log(e)
       }
     },
-    async updateParentsCardOrder(titleCardId, parents) {
+    async createCard(card) {
+      try {
+        await create(card)
+      } catch (e) {
+        log(e)
+      }
+    },
+    async updateParents(titleCardId, parents) {
       const { topics } = storeToRefs(useTopicsStore())
       this.parents = [...parents]
 
@@ -31,13 +38,9 @@ export const useCardsStore = defineStore('useCardsStore', {
       const topic = topics.value.find((topic) => topic.id === titleCardId)
       topic.children = [...parentIds]
 
-      try {
-        await update(topic)
-      } catch (e) {
-        log(e)
-      }
+      console.error('🚨 Updating parents not implemented yet. Missing topicClient.ts', topic)
     },
-    async updateChildrenCardOrder(parentCardId, children) {
+    async updateChildren(parentCardId, children) {
       this.children[parentCardId] = [...children]
 
       const childrenIds = children.map((child) => child.id)

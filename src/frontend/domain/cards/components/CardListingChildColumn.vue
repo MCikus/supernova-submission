@@ -1,6 +1,6 @@
 <template>
   <Draggable
-    v-if="children?.length > 0"
+
     v-model="children"
     item-key="id"
     v-bind="dragOptions"
@@ -32,6 +32,7 @@
 import { defineComponent, computed, ref } from 'vue'
 import Draggable from 'vuedraggable'
 import { useCardsStore } from '@/domain/cards/services/useCardsStore.js'
+import { v4 as uuid } from 'uuid'
 import { storeToRefs } from 'pinia'
 
 export const componentName = 'CardListingChildColumn'
@@ -58,7 +59,7 @@ export default defineComponent({
         return childrenFromStore.value[computedParentCardId.value]
       },
       set(value) {
-        useCards.updateChildrenCardOrder(computedParentCardId.value, value)
+        useCards.updateChildren(computedParentCardId.value, value)
       },
     })
 
@@ -69,8 +70,17 @@ export default defineComponent({
       ghostClass: 'opacity-50',
     }
 
-    const handleAddChildButtonClick = (event) => {
-      console.error('🚨 handleAddChildButtonClick not implemented yet', event)
+    const handleAddChildButtonClick = async () => {
+      const childCardToBeAdded = {
+        id: uuid(),
+        title: '',
+        meta: {},
+        blocks: [],
+        children: [],
+      }
+
+      await useCards.updateChildren(computedParentCardId.value, [...(children?.value ?? []), childCardToBeAdded])
+      await useCards.createCard(childCardToBeAdded)
     }
 
     return {

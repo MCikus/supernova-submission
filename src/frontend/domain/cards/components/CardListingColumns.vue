@@ -1,6 +1,5 @@
 <template>
   <Draggable
-    v-if="parents.length > 0"
     v-model="parents"
     class="flex flex-row"
     :class="componentName"
@@ -40,6 +39,7 @@ import CardListingChildColumn from '@/domain/cards/components/CardListingChildCo
 import { useCardsStore } from '@/domain/cards/services/useCardsStore.js'
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
+import { v4 as uuid } from "uuid"
 
 export const componentName = 'CardListingColumn'
 
@@ -52,14 +52,14 @@ export default defineComponent({
   setup() {
     const titleCardId = computed(() => useRoute().params.titleCardId)
     const useCards = useCardsStore()
-    const { parents: parentsFromStore } = storeToRefs(useCards)
+    const { parents: parentsFromStore, children } = storeToRefs(useCards)
 
     const parents = computed({
       get() {
         return parentsFromStore.value
       },
       set(value) {
-        useCards.updateParentsCardOrder(titleCardId.value, value)
+        useCards.updateParents(titleCardId.value, value)
       },
     })
 
@@ -74,8 +74,17 @@ export default defineComponent({
       await useCards.findAllParentsAndChildren(titleCardId.value)
     })
 
-    const handleAddParentButtonClick = (event) => {
-      console.error('🚨 handleAddParentButtonClick not implemented yet', event)
+    const handleAddParentButtonClick = async () => {
+      const parentCardToBeAdded = {
+        id: uuid(),
+        title: '',
+        meta: {},
+        blocks: [],
+        children: [],
+      }
+
+      await useCards.updateParents(titleCardId.value, [...(parents?.value ?? []), parentCardToBeAdded])
+      await useCards.createCard(parentCardToBeAdded)
     }
 
     return {
