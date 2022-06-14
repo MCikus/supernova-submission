@@ -1,10 +1,12 @@
 <template>
   <div class="fixed top-[72px] right-2 z-50 max-h-[80vh] w-full max-w-[364px]">
-    <Notification
-      v-for="notification in notifications"
-      :key="notification.id"
-      :notification="notification"
-    />
+    <TransitionGroup name="list">
+      <Notification
+        v-for="notification in notifications"
+        :key="notification.id"
+        :notification="notification"
+      />
+    </TransitionGroup>
   </div>
 </template>
 
@@ -30,3 +32,15 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.2s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
+}
+</style>
