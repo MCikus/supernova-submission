@@ -14,11 +14,11 @@
       @end="drag = false"
     >
       <template #item="{ element: parent }">
-        <div :key="parent.id" class="w-[350px]">
-          <div class="relative z-20 mx-2 h-[150px] bg-green-100 drop-shadow-md">
+        <div :key="parent.id">
+          <div class="relative z-20 mx-2 p-2 h-[176px] w-[320px] bg-[#B6C3FF] rounded-md drop-shadow-md">
             {{ parent.title }}
           </div>
-          <div class="no-scrollbar relative z-10 h-full overflow-y-scroll pt-2">
+          <div class="no-scrollbar relative z-10 h-full overflow-y-scroll pt-2 px-2">
             <Draggable
               v-if="parent.children.length > 0"
               :list="children[parent.id]"
@@ -34,7 +34,7 @@
               <template #item="{ element: child }">
                 <div
                   :key="child.id"
-                  class="mx-2 mt-2 h-[150px] bg-blue-300 drop-shadow-md"
+                  class="mt-2 h-[176px] w-[320px] bg-white rounded-md p-2 drop-shadow-md"
                 >
                   {{ child.title }}
                 </div>
@@ -43,7 +43,7 @@
                 <div class="flex w-full justify-center py-4">
                   <button>AddButton</button>
                 </div>
-                <div class="h-[150px]"></div>
+                <div class="h-[176px]"></div>
               </template>
             </Draggable>
           </div>
