@@ -2,7 +2,7 @@
   <Menu as="div" class="relative inline-block text-left" :class="[$options.name]">
     <div>
       <MenuButton
-        class="flex items-center rounded-sm p-1 text-primary hover:text-primary-focus focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2"
+        class="text-primary flex items-center rounded-sm p-1 hover:text-primary-focus focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2"
         @click="handleMenuButtonClick($event)"
       >
         <span class="sr-only">Open options</span>

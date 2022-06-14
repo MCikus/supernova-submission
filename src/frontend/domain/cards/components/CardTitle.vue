@@ -1,10 +1,12 @@
 <template>
-  <h3 class="h-72px w-full text-lg font-medium leading-6 text-gray-900">{{ title }}</h3>
+  <h3 class="h-72px w-full text-lg font-medium font-bold leading-6 text-base-content">
+    {{ title }}
+  </h3>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-export const componentName = 'PCardTitle'
+export const componentName = 'CardTitle'
 
 export default defineComponent({
   name: componentName,

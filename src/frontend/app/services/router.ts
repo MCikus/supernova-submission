@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import PCard from '@/app/components/PCard.vue'
 import DemoHome from '@/domain/demo/components/DemoHome.vue'
-import CallPCardTopicPreviewComponent from '@/app/components/CallPCardTopicPreviewComponent.vue'
+import CallPCardTopicPreviewComponent from '@/domain/cards/components/CallPCardTopicPreviewComponent.vue'
 
 const routes: RouteRecordRaw[] = [
   {

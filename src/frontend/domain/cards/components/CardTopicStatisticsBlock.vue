@@ -17,7 +17,9 @@
         stroke-linejoin="round"
       />
     </svg>
-    <p class="ml-3 text-gray-600">{{ statistics.payload.value.cardCount }} cards</p>
+    <p class="ml-3 text-sm text-base-content">
+      {{ statistics.payload.value.cardCount }} cards
+    </p>
   </div>
   <hr />
   <div class="ml-5 flex py-3">
@@ -36,7 +38,7 @@
         stroke-linejoin="round"
       />
     </svg>
-    <p class="ml-3 text-gray-600">
+    <p class="ml-3 text-sm text-base-content">
       {{ statistics.payload.value.knowledgeContributors }} Knowledge Contributors
     </p>
   </div>
@@ -60,7 +62,7 @@
         stroke-linejoin="round"
       />
     </svg>
-    <p class="ml-3 text-gray-600">
+    <p class="ml-3 text-sm text-base-content">
       {{ statistics.payload.value.mjneContributors }} $MJNE Contributors
     </p>
   </div>
@@ -73,16 +75,13 @@
 
 <script>
 import { defineComponent } from 'vue'
-export const componentName = 'PCardTopicStatisticsBlock'
+export const componentName = 'CardTopicStatisticsBlock'
 
 let statistics
 export default defineComponent({
   name: componentName,
   props: {
     statistics,
-  },
-  created() {
-    console.log(this.statistics?.isMarketingCard?.payload?.value)
   },
   setup: () => ({ componentName }),
 })
