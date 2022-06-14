@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps } from 'vue'
 import { SunIcon } from '@heroicons/vue/outline'
 import { XIcon } from '@heroicons/vue/solid'
 import {
