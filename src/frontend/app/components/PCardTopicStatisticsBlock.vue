@@ -81,9 +81,10 @@ export default defineComponent({
   props: {
     statistics,
   },
+  setup: () => ({ componentName }),
   created() {
+    // eslint-disable-next-line no-console
     console.log(this.statistics?.isMarketingCard?.payload?.value)
   },
-  setup: () => ({ componentName }),
 })
 </script>

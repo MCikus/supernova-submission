@@ -250,7 +250,13 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Inter', 'Roboto', 'system-ui', '-apple-system', ...defaultTheme.fontFamily.sans],
+      sans: [
+        'Inter',
+        'Roboto',
+        'system-ui',
+        '-apple-system',
+        ...defaultTheme.fontFamily.sans,
+      ],
     },
     screens: {
       xs: '480px',
