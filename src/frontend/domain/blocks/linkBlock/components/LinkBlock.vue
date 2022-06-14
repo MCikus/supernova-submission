@@ -1,10 +1,11 @@
 <template>
+  <BlockHandle class="mt-1 mr-1"/>
   <div class="flex w-full flex-row rounded-md bg-gray-200" :class="componentName">
     <div v-if="showUrlInput" class="flex grow overflow-hidden">
       <input
         ref="inputRef"
         v-model="value"
-        class="mx-auto w-full truncate rounded-md bg-gray-200 p-2 leading-8 focus:outline-none"
+        class="mx-auto w-full truncate rounded-md bg-gray-200 px-2 leading-8 focus:outline-none"
         @keydown.enter="handleSubmitUrl"
       />
     </div>
@@ -23,7 +24,7 @@
           :alt="linkPreviewContent.title"
         />
       </div>
-      <div class="flex flex-shrink flex-col overflow-hidden p-2">
+      <div class="flex flex-shrink flex-col overflow-hidden py-1 px-2">
         <h2
           v-if="linkPreviewContent.title && !previewIsLoading"
           class="truncate text-base font-bold leading-[18px]"
@@ -58,19 +59,20 @@
         class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-black border-opacity-30"
       />
     </div>
-    <div v-if="!previewIsLoading" class="text-base-2000">
-      <slot
-        name="block-menu"
-        :customBlockMenuItems="[
-          { id: `edit-${block.uuid}`, title: 'Edit', callback: editUrl },
-        ]"
-      />
-    </div>
+  </div>
+  <div class="mt-1">
+    <slot
+      name="block-menu"
+      :customBlockMenuItems="[
+        { id: `edit-${block.uuid}`, title: 'Edit', callback: editUrl },
+      ]"
+    />
   </div>
 </template>
 
 <script>
 import { defineComponent, nextTick, onMounted, reactive, ref } from 'vue'
+import BlockHandle from "@/domain/blocks/base/components/BlockHandle.vue"
 import { useBlocksStore } from '@/domain/blocks/base/services/stores/useBlocksStore.js'
 import { findOpenGraphData } from '@/domain/blocks/linkBlock/services/openGraphApiClient.js'
 import { log } from '@/app/services/errorService.js'
@@ -79,6 +81,9 @@ export const componentName = 'LinkBlock'
 
 export default defineComponent({
   name: componentName,
+  components: {
+    BlockHandle
+  },
   props: {
     block: {
       type: Object,

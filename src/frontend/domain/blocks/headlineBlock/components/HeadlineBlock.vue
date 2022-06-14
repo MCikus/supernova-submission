@@ -1,5 +1,5 @@
 <template>
-  <div v-if="editor" class="w-full" :class="[componentName]">
+  <div v-if="editor" class="flex flex-nowrap w-full" :class="[componentName]">
     <bubble-menu
       v-if="editor"
       class="space-x-1 rounded-md bg-white"
@@ -20,21 +20,23 @@
         H{{ headlineLevel }}
       </button>
     </bubble-menu>
+    <BlockHandle class="mt-1 mr-1"/>
     <div
       class="flex w-full flex-row rounded-md hover:bg-gray-200 hover:bg-opacity-70 focus:outline-none"
     >
-      <div class="flex grow p-2">
+      <div class="flex grow  px-2 overflow-hidden">
         <editor-content class="w-full" :editor="editor" />
       </div>
-      <div class="text-base-2000">
-        <slot name="block-menu" />
-      </div>
+    </div>
+    <div class="mt-1">
+      <slot name="block-menu" />
     </div>
   </div>
 </template>
 
 <script>
 import { computed, defineComponent, ref } from 'vue'
+import BlockHandle from "@/domain/blocks/base/components/BlockHandle.vue"
 import { useBlocksStore } from '@/domain/blocks/base/services/stores/useBlocksStore.js'
 import { BubbleMenu, EditorContent, useEditor } from '@tiptap/vue-3'
 import OneLinerDoc from '@/domain/blocks/base/components/OneLinerDoc.js'
@@ -48,6 +50,7 @@ export default defineComponent({
   name: componentName,
   components: {
     BubbleMenu,
+    BlockHandle,
     EditorContent,
   },
   props: {
