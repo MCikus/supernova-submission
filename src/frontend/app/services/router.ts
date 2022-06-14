@@ -4,6 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import PCard from '@/domain/cards/components/PCard.vue'
 import PTopic from '@/domain/cards/components/PTopic.vue'
 import DemoHome from '@/domain/demo/components/DemoHome.vue'
+import CallPCardTopicPreviewComponent from '@/app/components/CallPCardTopicPreviewComponent.vue'
 import DemoDataManager from '@/domain/dataManager/DemoDataManager.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -28,6 +29,17 @@ const routes: RouteRecordRaw[] = [
     component: DemoDataManager,
   },
 ]
+
+if (import.meta.env.DEV === true) {
+  routes.push({
+    path: '/playground/CardListingForATopic',
+    name: 'CardTitle',
+    component: CallPCardTopicPreviewComponent,
+    meta: {
+      isMainRoute: true,
+    },
+  })
+}
 
 export { routes }
 
