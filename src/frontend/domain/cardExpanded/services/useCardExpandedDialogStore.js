@@ -42,8 +42,8 @@ export const useCardExpandedDialogStore = defineStore('useCardExpandedDialogStor
         this.nextButtonDisabled = true
       }
       if (nextCardIndex >= this.expandedCardSiblings.length) {
-         return
-       }
+        return
+      }
       this.expandedCard = this.expandedCardSiblings[nextCardIndex]
     },
     previousCard() {

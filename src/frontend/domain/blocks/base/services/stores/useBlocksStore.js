@@ -57,7 +57,7 @@ export const useBlocksStore = defineStore('blocksStore', {
     },
     async reorderBlocks(blockList, card) {
       this.blocks = blockList
-      card.blocks = this.blocks.map(block => block.id)
+      card.blocks = this.blocks.map((block) => block.id)
 
       try {
         await updateCard(card)
@@ -67,7 +67,7 @@ export const useBlocksStore = defineStore('blocksStore', {
       }
     },
     async removeBlock(blockId) {
-      this.blocks = this.blocks.filter(block => block.id !== blockId)
+      this.blocks = this.blocks.filter((block) => block.id !== blockId)
 
       try {
         await remove(blockId)
