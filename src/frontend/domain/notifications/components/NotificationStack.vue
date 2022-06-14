@@ -11,7 +11,7 @@
 <script>
 import { defineComponent } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useNotificationsStore } from '@/app/services/useNotificationsStore'
+import { useNotificationsStore } from '@/domain/notifications/services/useNotificationsStore'
 import Notification from './Notification.vue'
 
 export const componentName = 'NotificationStack'

@@ -26,7 +26,7 @@
 import { computed, defineComponent, onBeforeMount } from 'vue'
 import BaseDropDown from '@/app/components/BaseDropDown.vue'
 import { BellIcon } from '@heroicons/vue/outline'
-import { useNotificationsStore } from '@/app/services/useNotificationsStore'
+import { useNotificationsStore } from '@/domain/notifications/services/useNotificationsStore'
 import { storeToRefs } from 'pinia'
 import NotificationStack from '@/domain/notifications/components/NotificationStack.vue'
 

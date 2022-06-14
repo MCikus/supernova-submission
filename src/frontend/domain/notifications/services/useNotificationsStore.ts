@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import {
   allNotifications,
   updateNotification,
-} from '@/app/services/notificationsApiClient.js'
+} from '@/domain/notifications/services/notificationsApiClient.js'
 import { log } from '@/app/services/errorService.js'
 
 export type NotificationProps = {
@@ -47,7 +47,7 @@ export const useNotificationsStore = defineStore('notificationsStore', {
     },
     removeNotification(notificationId: string) {
       const index = this.findIndexById(notificationId)
-      if (!index) return
+      if (index === -1) return
 
       this.notifications.splice(index, 1)
     },

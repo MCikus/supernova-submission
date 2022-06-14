@@ -60,6 +60,7 @@
         </ProfileMenu>
       </div>
     </template>
+    @/domain/notifications/components/NotificationMenu.vue
   </BaseNavigationLayout>
 </template>
 
@@ -71,7 +72,7 @@ import ProfileMenu from '@/app/components/ProfileMenu.vue'
 import SearchInput from '@/app/components/SearchInput.vue'
 import NavigationActionGroup from '@/app/components/NavigationActionGroup.vue'
 import MiljnLogo from './MiljnLogo.vue'
-import NotificationMenu from '@/app/components/NotificationMenu.vue'
+import NotificationMenu from '@/domain/notifications/components/NotificationMenu.vue'
 import { useDashboardSearchStore } from '@/app/services/useDashboardSearchStore.js'
 import { useCreateNewTopicDialogStore } from '@/domain/createTopic/services/useCreateNewTopicDialogStore.js'
 import { low, medium, high, useEnergyStore } from '@/app/services/useEnergyStore'

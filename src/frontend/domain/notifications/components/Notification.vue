@@ -27,6 +27,7 @@
               <button
                 type="button"
                 class="inline-flex text-base-100 hover:text-gray-500 focus:outline-none"
+                @click="removeNotification(notification.id)"
               >
                 <span class="sr-only">Close</span>
                 <XIcon class="h-6 w-6" aria-hidden="true" />
@@ -40,10 +41,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import { SunIcon } from '@heroicons/vue/outline'
 import { XIcon } from '@heroicons/vue/solid'
-import { NotificationProps } from '@/app/services/useNotificationsStore'
+import { NotificationProps, useNotificationsStore } from '@/domain/notifications/services/useNotificationsStore'
 
 const props = defineProps<{ notification: NotificationProps }>()
+const {removeNotification} = useNotificationsStore()
 </script>
