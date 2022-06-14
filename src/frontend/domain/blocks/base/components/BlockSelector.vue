@@ -62,8 +62,8 @@ export default defineComponent({
     PlusIcon,
   },
   props: {
-    cardId: {
-      type: String,
+    card: {
+      type: Object,
       required: true,
     },
   },
@@ -89,9 +89,9 @@ export default defineComponent({
           : 'top-4'
     }
 
-    const handleBlockClick = (typeId, closePopover) => {
-      blocksStore.addBlockToList(typeId, props.cardId)
+    const handleBlockClick = async (typeId, closePopover) => {
       closePopover()
+      await blocksStore.addBlock(typeId, props.card)
     }
 
     return {

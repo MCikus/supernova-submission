@@ -17,7 +17,7 @@
         <div class="h-[1px] w-full bg-base-200"></div>
         <div class="w-full grow overflow-y-scroll px-36 pt-4 pb-6">
           <BlockList :card="expandedCard" />
-          <BlockSelector :card-id="expandedCard.id" />
+          <BlockSelector :card="expandedCard" />
         </div>
         <div class="h-[1px] w-full bg-base-200"></div>
         <div

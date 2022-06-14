@@ -17,7 +17,7 @@ export const useCardExpandedDialogStore = defineStore('useCardExpandedDialogStor
         (card) => card.id === this.expandedCard.id,
       )
 
-      if (cardIndex >= this.expandedCardSiblings.length) {
+      if (cardIndex >= this.expandedCardSiblings.length - 1) {
         this.nextButtonDisabled = true
       }
       if (cardIndex <= 0) {
@@ -38,10 +38,12 @@ export const useCardExpandedDialogStore = defineStore('useCardExpandedDialogStor
         this.expandedCardSiblings.findIndex((card) => card.id === this.expandedCard.id) +
         1
       this.previousButtonDisabled = false
-      if (nextCardIndex >= this.expandedCardSiblings.length) {
+      if (nextCardIndex >= this.expandedCardSiblings.length - 1) {
         this.nextButtonDisabled = true
-        return
       }
+      if (nextCardIndex >= this.expandedCardSiblings.length) {
+         return
+       }
       this.expandedCard = this.expandedCardSiblings[nextCardIndex]
     },
     previousCard() {
@@ -51,6 +53,8 @@ export const useCardExpandedDialogStore = defineStore('useCardExpandedDialogStor
       this.nextButtonDisabled = false
       if (nextCardIndex <= 0) {
         this.previousButtonDisabled = true
+      }
+      if (nextCardIndex <= -1) {
         return
       }
       this.expandedCard = this.expandedCardSiblings[nextCardIndex]

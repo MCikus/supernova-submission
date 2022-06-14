@@ -64,7 +64,7 @@
     <slot
       name="block-menu"
       :customBlockMenuItems="[
-        { id: `edit-${block.uuid}`, title: 'Edit', callback: editUrl },
+        { id: `edit-${block.id}`, title: 'Edit', callback: editUrl },
       ]"
     />
   </div>
@@ -133,7 +133,7 @@ export default defineComponent({
       showUrlInput.value = false
 
       if (props.block.payload.value !== url) {
-        await blocksStore.updateBlock(props.block.uuid, {
+        await blocksStore.updateBlock(props.block.id, {
           ...props.block,
           payload: { value: url },
         })

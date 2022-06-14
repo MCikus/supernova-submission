@@ -6,6 +6,7 @@ import {
   update,
   remove,
 } from '@/domain/dataManager/services/blockClient'
+import { update as updateCard } from '@/domain/dataManager/services/cardClient'
 import { v4 as uuidv4 } from 'uuid'
 import { log } from '@/app/services/errorService.js'
 
@@ -33,9 +34,8 @@ export const useBlocksStore = defineStore('blocksStore', {
         log(error)
       }
     },
-    addBlock(typeId, cardId) {
+    async addBlock(typeId, card) {
       const { blockDefinitions } = storeToRefs(useBlockDefinitionsStore())
-
       const blockToAdd = {
         id: uuidv4(),
         typeId: typeId,
@@ -45,15 +45,32 @@ export const useBlocksStore = defineStore('blocksStore', {
         },
       }
       this.blocks.push(blockToAdd)
-    },
-    async reorderBlocks(blockList) {
-      this.blocks = blockList
-    },
-    async removeBlock(block) {
-      this.blocks = this.blocks.filter((block) => block.id !== block.id)
+      card.blocks.push(blockToAdd.id)
 
       try {
-        await remove(block)
+        await create(blockToAdd)
+        await updateCard(card)
+      } catch (error) {
+        // @todo: handle errors properly instead logging them #1180
+        log(error)
+      }
+    },
+    async reorderBlocks(blockList, card) {
+      this.blocks = blockList
+      card.blocks = this.blocks.map(block => block.id)
+
+      try {
+        await updateCard(card)
+      } catch (error) {
+        // @todo: handle errors properly instead logging them #1180
+        log(error)
+      }
+    },
+    async removeBlock(blockId) {
+      this.blocks = this.blocks.filter(block => block.id !== blockId)
+
+      try {
+        await remove(blockId)
       } catch (error) {
         // @todo: handle errors properly instead logging them #1180
         log(error)

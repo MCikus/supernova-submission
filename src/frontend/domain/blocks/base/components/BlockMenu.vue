@@ -108,9 +108,9 @@ export default defineComponent({
     return {
       componentName,
       blockDefinitions,
-      deleteBlock: () => blocksStore.removeBlockFromList(props.block.uuid),
+      deleteBlock: () => blocksStore.removeBlock(props.block.id),
       updateBlock: (typeId) =>
-        blocksStore.updateBlock(props.block.uuid, {
+        blocksStore.updateBlock(props.block.id, {
           ...props.block,
           typeId: typeId,
           definition: blockDefinitions.value.find(

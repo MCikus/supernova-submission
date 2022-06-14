@@ -90,7 +90,7 @@ export default defineComponent({
           },
         }
 
-        blocksStore.updateBlock(props.block.uuid, payload)
+        blocksStore.updateBlock(props.block.id, payload)
 
         // fix tiptap losing headline level when text is deleted
         if (!change?.content?.[0]?.attrs?.level) {

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, onUpdated, ref } from 'vue'
+import { computed, defineComponent, onMounted, watch, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import Draggable from 'vuedraggable'
 import { useBlocksStore } from '@/domain/blocks/base/services/stores/useBlocksStore.js'
@@ -60,13 +60,14 @@ export default defineComponent({
   setup(props) {
     const blocksStore = useBlocksStore()
     const { blocks: blocksFromStore } = storeToRefs(blocksStore)
+    const computedCard = computed(() => props.card)
 
     const blocks = computed({
       get() {
         return blocksFromStore.value
       },
       set(value) {
-        blocksStore.reorderBlocks(value)
+        blocksStore.reorderBlocks(value, computedCard.value)
       },
     })
 
@@ -78,11 +79,11 @@ export default defineComponent({
     const drag = ref(false)
 
     onMounted(async () => {
-      await blocksStore.findAllBlocks(props.card)
+      await blocksStore.findAllBlocks(computedCard.value)
     })
 
-    onUpdated(async () => {
-      await blocksStore.findAllBlocks(props.card)
+    watch(computedCard, async () => {
+      await blocksStore.findAllBlocks(computedCard.value)
     })
 
     return {
