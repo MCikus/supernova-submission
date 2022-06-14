@@ -1,11 +1,11 @@
 <template>
   <Transition
     enter-active-class="transition ease-out duration-100"
-    enter-from-class="transform opacity-0 scale-95"
-    enter-to-class="transform opacity-100 scale-100"
+    enter-from-class="transform opacity-0"
+    enter-to-class="transform opacity-100"
     leave-active-class="transition ease-in duration-75"
-    leave-from-class="transform opacity-100 scale-100"
-    leave-to-class="transform opacity-0 scale-95"
+    leave-from-class="transform opacity-100"
+    leave-to-class="transform opacity-0"
   >
     <div
       v-if="isDialogVisible"
@@ -13,6 +13,7 @@
       :class="[componentName, $attrs.class]"
     >
       <button
+        v-if="!disableCloseButton"
         class="absolute top-2 right-2 md:top-10 md:right-10"
         @click="isDialogVisible = false"
       >
@@ -44,6 +45,11 @@ export default defineComponent({
       default: false,
       required: true,
     },
+    disableCloseButton: {
+      type: Boolean,
+      default: false,
+      required: false,
+    }
   },
   emits: ['dialogVisibilityChanged'],
   setup(props, { emit }) {
