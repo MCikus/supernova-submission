@@ -7,7 +7,15 @@
       :openMenu="openMenu"
     >
       <button
-        class="flex items-center rounded-sm p-1 text-primary hover:text-primary-focus focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2"
+        class="
+          flex
+          items-center
+          rounded-sm
+          p-1
+          text-primary
+          hover:text-primary-focus
+          focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2
+        "
         @click="toggleMenu"
       >
         <span class="sr-only">Open options</span>
@@ -24,9 +32,31 @@
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
+        <slot
+        v-if="hasCustomDropdown && isMenuVisible"
+          name="items"
+          :toggleMenu="toggleMenu"
+          :closeMenu="closeMenu"
+          :openMenu="openMenu"
+        >
+          Menu items appear here
+        </slot>
       <div
-        v-if="isMenuVisible"
-        class="absolute -right-2 -bottom-[22px] z-50 w-56 min-w-[240px] translate-y-full overflow-hidden rounded-md bg-white shadow-lg focus:outline-none"
+        v-else-if="isMenuVisible"
+        class="
+          absolute
+          -right-2
+          -bottom-[22px]
+          z-50
+          w-56
+          min-w-[240px]
+          translate-y-full
+          overflow-hidden
+          rounded-md
+          bg-white
+          shadow-lg
+          focus:outline-none
+        "
       >
         <slot
           name="items"
@@ -54,6 +84,9 @@ export default defineComponent({
     DotsVerticalIcon,
   },
   emits: ['opened', 'closed'],
+  props: {
+    hasCustomDropdown: Boolean,
+  },
   setup(props, { emit }) {
     const menuRef = ref(null)
     const isMenuVisible = ref(false)
