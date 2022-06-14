@@ -58,7 +58,6 @@ export default defineComponent({
     const { parents: parentsFromStore } = storeToRefs(useCards)
     const useCardExpandedDialog = useCardExpandedDialogStore()
 
-
     const parents = computed({
       get() {
         return parentsFromStore.value
