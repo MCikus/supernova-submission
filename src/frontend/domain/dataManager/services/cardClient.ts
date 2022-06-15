@@ -42,14 +42,6 @@ export const allByIds = async (cardsids: Array<string>) => {
   })
 }
 
-/**
- * @param Object card
- * @param String card.id
- * @param String card.title
- * @param Object card.meta
- * @param Array<String> card.children
- * @param Array<String> card.blocks
- */
 export const create = async (card: Card) => {
   await data_manager.card_insert(card.id, {
     id: card.id,
@@ -60,14 +52,6 @@ export const create = async (card: Card) => {
   })
 }
 
-/**
- * @param Object card
- * @param String card.cardId
- * @param String card.title
- * @param Object card.meta
- * @param Array<String> card.children
- * @param Array<String> card.blocks
- */
 export const update = (card: Card) => {
   return create(card)
 }

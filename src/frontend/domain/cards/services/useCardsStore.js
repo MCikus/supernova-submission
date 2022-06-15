@@ -38,6 +38,7 @@ export const useCardsStore = defineStore('useCardsStore', {
       const topic = topics.value.find((topic) => topic.id === titleCardId)
       topic.children = [...parentIds]
 
+      // eslint-disable-next-line no-console
       console.error(
         '🚨 Updating parents not implemented yet. Missing topicClient.ts',
         topic,

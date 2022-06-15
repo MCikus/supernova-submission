@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { defineComponent, toRaw, computed } from 'vue'
+import { defineComponent, computed } from 'vue'
 
 export const componentName = 'CardTopicPreviewComponent'
 import CardTitle from '@/domain/cards/components/CardTitle.vue'

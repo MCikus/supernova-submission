@@ -40,6 +40,7 @@ export default defineComponent({
     )
 
     const handleHeaderTitleClick = (event) => {
+      // eslint-disable-next-line no-console
       console.error('🚨 handleHeaderTitleClick not implemented yet', event)
     }
     return {

@@ -62,10 +62,10 @@ export default defineComponent({
   components: {
     DotsVerticalIcon,
   },
-  emits: ['opened', 'closed'],
   props: {
     hasCustomDropdown: Boolean,
   },
+  emits: ['opened', 'closed'],
   setup(props, { emit }) {
     const menuRef = ref(null)
     const isMenuVisible = ref(false)
