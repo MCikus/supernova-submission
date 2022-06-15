@@ -15,8 +15,8 @@
     <template #item="{ element: parent }">
       <div :key="parent.id">
         <div
-          @click="expandCard(parent, parents)"
           class="relative z-20 mx-2.5 h-[176px] w-[320px] rounded-md bg-[#B6C3FF] p-2 drop-shadow-xl"
+          @click="expandCard(parent, parents)"
         >
           {{ parent.title }}
         </div>

@@ -1,8 +1,8 @@
 <template>
-  <div class="text-primary flex h-fit flex-nowrap items-center">
+  <div class="flex h-fit flex-nowrap items-center text-primary">
     <DotsVerticalIcon class="-mr-1.5 h-5 w-5" />
     <DotsVerticalIcon class="-ml-1.5 h-5 w-5" />
-    <span class="bg-primary ml-0.5 h-6 w-0.5"></span>
+    <span class="ml-0.5 h-6 w-0.5 bg-primary"></span>
   </div>
 </template>
 
