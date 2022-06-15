@@ -1,5 +1,9 @@
 <template>
-  <BaseDropDown :class="componentName" @closed="markAllNotificationsAsRead()">
+  <BaseDropDown
+    :class="componentName"
+    :has-custom-dropdown="true"
+    @closed="markAllNotificationsAsRead()"
+  >
     <template #menuButton="{ toggleMenu }">
       <button class="relative" @click="toggleMenu">
         <span class="sr-only">Open options</span>
@@ -12,23 +16,8 @@
         <BellIcon class="h-6 w-6 text-white" />
       </button>
     </template>
-    <template #items="{ closeMenu }">
-      <div
-        v-for="notification in notifications"
-        :key="notification.id"
-        @click="closeMenu"
-      >
-        <div
-          class="relative block w-full truncate py-3 pl-6 pr-4 text-sm font-normal leading-none text-base-700 hover:bg-base-200"
-        >
-          {{ notification.title }}
-          <span
-            v-if="!notification.markAsRead"
-            class="absolute top-1/2 left-2 flex h-2 w-2 -translate-y-1/2 items-center justify-center rounded-full bg-state-warning"
-          ></span>
-        </div>
-        <div class="w-full border-t border-gray-100" />
-      </div>
+    <template #items>
+      <NotificationStack />
     </template>
   </BaseDropDown>
 </template>
@@ -37,8 +26,9 @@
 import { computed, defineComponent, onBeforeMount } from 'vue'
 import BaseDropDown from '@/app/components/BaseDropDown.vue'
 import { BellIcon } from '@heroicons/vue/outline'
-import { useNotificationsStore } from '@/app/services/useNotificationsStore.js'
+import { useNotificationsStore } from '@/domain/notifications/services/useNotificationsStore'
 import { storeToRefs } from 'pinia'
+import NotificationStack from '@/domain/notifications/components/NotificationStack.vue'
 
 export const componentName = 'NotificationMenu'
 export default defineComponent({
@@ -46,15 +36,15 @@ export default defineComponent({
   components: {
     BaseDropDown,
     BellIcon,
+    NotificationStack,
   },
   setup() {
     const notificationStore = useNotificationsStore()
     const { notifications } = storeToRefs(notificationStore)
     const unreadNotifications = computed(() => {
       return (
-        notifications?.value?.filter(
-          (notification) => notification.markAsRead === false,
-        ) ?? []
+        notifications?.value?.filter((notification) => notification.isRead === false) ??
+        []
       )
     })
 

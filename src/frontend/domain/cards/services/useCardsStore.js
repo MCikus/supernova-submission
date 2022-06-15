@@ -13,7 +13,7 @@ export const useCardsStore = defineStore('useCardsStore', {
     async findAllParentsAndChildren(titleCardId) {
       try {
         const topic = await find(titleCardId)
-        this.parents = await allByIds(topic.children)
+        this.parents = await allByIds(topic?.children ?? [])
 
         for (const parent of this.parents) {
           this.children[parent.id] = await allByIds(parent.children)
@@ -37,6 +37,7 @@ export const useCardsStore = defineStore('useCardsStore', {
       const topic = topics.value.find((topic) => topic.id === titleCardId)
       topic.children = [...parentIds]
 
+      // eslint-disable-next-line no-console
       console.error(
         '🚨 Updating parents not implemented yet. Missing topicClient.ts',
         topic,

@@ -34,7 +34,7 @@
           />
           <AButton
             data-test-id="expand-button"
-            class="text-primary bg-transparent p-1 hover:bg-transparent hover:text-primary-focus"
+            class="bg-transparent p-1 text-primary hover:bg-transparent hover:text-primary-focus"
             :is-unstyled="true"
             @click="handleCardExpand"
           >

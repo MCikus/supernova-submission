@@ -1,43 +1,50 @@
 <template>
-  <div v-if="isMarketing?.payload?.value === false">
-    <button
-      type="button"
-      class="mb-4 flex h-38px w-full items-center justify-center rounded-md border border-transparent bg-accent-default text-center text-sm font-medium text-base-100 text-white shadow-sm"
-      @click="getStartedAction()"
+  <div v-if="isMarketingCard">
+    <div
+      class="hover:font-semi-bold flex w-full items-center justify-center pt-27px text-center text-sm text-primary"
     >
-      Get started with topic
-    </button>
-    <div class="flex w-full items-center justify-center text-center text-primary-focus">
-      <u class="mt-[9px] cursor-pointer text-sm" @click="previewTopic()">Preview Topic</u>
+      Coming Soon
     </div>
   </div>
   <div v-else>
-    <div
-      class="flex w-full items-center justify-center pt-27px text-center text-primary-default"
+    <button
+      type="button"
+      class="mb-4 flex h-38px w-full items-center justify-center rounded-md border border-transparent bg-accent text-center text-sm font-medium text-base-100 text-white shadow-sm hover:bg-accent-focus"
+      @click="getStartedAction"
     >
-      Coming Soon
+      Get started with topic
+    </button>
+    <div
+      class="flex w-full items-center justify-center text-center text-primary hover:text-primary-focus"
+    >
+      <u class="mt-[9px] cursor-pointer text-sm" @click="previewTopic">Preview Topic</u>
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+
 export const componentName = 'CardTopicActionsGroup'
 
-let isMarketing
 export default defineComponent({
   name: componentName,
   props: {
-    isMarketing,
+    isMarketingCard: {
+      type: Boolean,
+      default: false,
+    },
+    getStartedAction: {
+      type: Function,
+      // eslint-disable-next-line no-console
+      default: () => console.error('🚨', componentName + ' get started topic is missing'),
+    },
+    previewTopic: {
+      type: Function,
+      // eslint-disable-next-line no-console
+      default: () => console.error('🚨', componentName + ' preview topic is missing'),
+    },
   },
   setup: () => ({ componentName }),
-  methods: {
-    getStartedAction: function () {
-      console.error('🚨', componentName + ' get started topic is missing')
-    },
-    previewTopic: function () {
-      console.error('🚨', componentName + ' preview topic is missing')
-    },
-  },
 })
 </script>

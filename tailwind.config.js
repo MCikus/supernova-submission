@@ -172,7 +172,7 @@ module.exports = {
       },
       colors: {
         primary: {
-          default: '#5F75D7',
+          DEFAULT: '#5F75D7',
           focus: '#475FB2',
           content: '#FFFFFF',
           disabled: '#D8D8D8',
@@ -186,7 +186,7 @@ module.exports = {
           disabled: '#D8D8D8',
         },
         accent: {
-          default: '#01D17F',
+          DEFAULT: '#01D17F',
           focus: '#00C06A',
           content: '#FFFFFF',
           disabled: '#D8D8D8',

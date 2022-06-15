@@ -2,7 +2,7 @@
   <component
     :is="computedTag"
     v-if="!isUnstyled"
-    class="bg-primary inline-flex items-center justify-center rounded-angularness border border-transparent text-primary-content hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2"
+    class="inline-flex items-center justify-center rounded-angularness border border-transparent bg-primary text-primary-content hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2"
     :class="[...computedSizeCss, ...computedDisabledCss, $options.name]"
     :disabled="isDisabled"
     v-bind="computedAttributes"
