@@ -2,10 +2,10 @@
   <Menu as="div" class="relative inline-block text-left" :class="[$options.name]">
     <div>
       <MenuButton
-        class="m-1 flex items-center rounded-sm p-1 text-primary hover:text-primary-focus focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2"
+        class="m-1 flex items-center rounded-sm p-0 text-base-400 hover:text-base-400 focus:outline-none focus:ring-0"
       >
         <span class="sr-only">Open options</span>
-        <DotsVerticalIcon class="h-5 w-5" aria-hidden="true" />
+        <DotsVerticalIcon class="-m-1 h-6 w-6" aria-hidden="true" />
       </MenuButton>
     </div>
 
@@ -108,9 +108,9 @@ export default defineComponent({
     return {
       componentName,
       blockDefinitions,
-      deleteBlock: () => blocksStore.removeBlockFromList(props.block.uuid),
+      deleteBlock: () => blocksStore.removeBlock(props.block.id),
       updateBlock: (typeId) =>
-        blocksStore.updateBlock(props.block.uuid, {
+        blocksStore.updateBlock(props.block.id, {
           ...props.block,
           typeId: typeId,
           definition: blockDefinitions.value.find(

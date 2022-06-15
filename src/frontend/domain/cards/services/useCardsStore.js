@@ -8,13 +8,12 @@ export const useCardsStore = defineStore('useCardsStore', {
   state: () => ({
     parents: [],
     children: {},
-    expandedCardId: '',
   }),
   actions: {
     async findAllParentsAndChildren(titleCardId) {
       try {
         const topic = await find(titleCardId)
-        this.parents = await allByIds(topic.children)
+        this.parents = await allByIds(topic?.children ?? [])
 
         for (const parent of this.parents) {
           this.children[parent.id] = await allByIds(parent.children)
@@ -55,16 +54,6 @@ export const useCardsStore = defineStore('useCardsStore', {
         await update(parent)
       } catch (e) {
         log(e)
-      }
-    },
-    expandCard(payload) {
-      if (this.expandedCardId !== payload) {
-        this.expandedCardId = payload
-      }
-    },
-    collapseCard(payload) {
-      if (this.expandedCardId === payload) {
-        this.expandedCardId = payload
       }
     },
   },

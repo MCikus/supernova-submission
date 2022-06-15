@@ -1,26 +1,25 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useBlockDefinitionsStore } from '@/domain/blocks/base/services/stores/useBlockDefinitionsStore.js'
 import {
-  createOrUpdateBlock,
-  deleteBlock,
-  cardBlocks,
-  updateBlockOrder,
-} from '@/domain/blocks/base/services/blocksApiClient.js'
+  allByIds,
+  create,
+  update,
+  remove,
+} from '@/domain/dataManager/services/blockClient'
+import { update as updateCard } from '@/domain/dataManager/services/cardClient'
 import { v4 as uuidv4 } from 'uuid'
 import { log } from '@/app/services/errorService.js'
 
 export const useBlocksStore = defineStore('blocksStore', {
   state: () => ({
-    completeCardBlocks: [],
+    blocks: [],
   }),
   actions: {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    async fetchAllBlocks() {},
-    async completeBlocksForCard(cardId) {
+    async findAllBlocks(card) {
       const { blockDefinitions } = storeToRefs(useBlockDefinitionsStore())
 
       try {
-        this.completeCardBlocks = (await cardBlocks(cardId)).map((blockData) => {
+        this.blocks = (await allByIds(card.blocks)).map((blockData) => {
           return {
             ...blockData,
             definition: {
@@ -35,59 +34,58 @@ export const useBlocksStore = defineStore('blocksStore', {
         log(error)
       }
     },
-    addBlockToList(typeId, cardId) {
+    async addBlock(typeId, card) {
       const { blockDefinitions } = storeToRefs(useBlockDefinitionsStore())
-
-      // @todo: use only camel case for typeId and cardId
       const blockToAdd = {
-        uuid: uuidv4(),
+        id: uuidv4(),
         typeId: typeId,
-        cardId: cardId,
         payload: {},
         definition: {
           ...blockDefinitions.value.find((definition) => definition.typeId === typeId),
         },
       }
-      this.completeCardBlocks.push(blockToAdd)
-    },
-    async reorderBlockList(blockList) {
-      this.completeCardBlocks = blockList
-      if (blockList.length > 0) {
-        updateBlockOrder(
-          blockList[0].cardId,
-          blockList.map((block) => block.uuid),
-        )
+      this.blocks.push(blockToAdd)
+      card.blocks.push(blockToAdd.id)
+
+      try {
+        await create(blockToAdd)
+        await updateCard(card)
+      } catch (error) {
+        // @todo: handle errors properly instead logging them #1180
+        log(error)
       }
     },
-    async removeBlockFromList(blockId) {
-      this.completeCardBlocks = this.completeCardBlocks.filter(
-        (block) => block.uuid !== blockId,
-      )
+    async reorderBlocks(blockList, card) {
+      this.blocks = blockList
+      card.blocks = this.blocks.map((block) => block.id)
+
       try {
-        await deleteBlock(blockId)
+        await updateCard(card)
+      } catch (error) {
+        // @todo: handle errors properly instead logging them #1180
+        log(error)
+      }
+    },
+    async removeBlock(blockId) {
+      this.blocks = this.blocks.filter((block) => block.id !== blockId)
+
+      try {
+        await remove(blockId)
       } catch (error) {
         // @todo: handle errors properly instead logging them #1180
         log(error)
       }
     },
     async updateBlock(blockId, payload) {
-      const blockIndex = this.completeCardBlocks.findIndex(
-        (block) => block.uuid === blockId,
-      )
+      const blockIndex = this.blocks.findIndex((block) => block.id === blockId)
 
-      this.completeCardBlocks[blockIndex] = {
-        ...this.completeCardBlocks[blockIndex],
+      this.blocks[blockIndex] = {
+        ...this.blocks[blockIndex],
         ...payload,
       }
 
       try {
-        const result = await createOrUpdateBlock({
-          ...this.completeCardBlocks[blockIndex],
-        })
-        this.completeCardBlocks[blockIndex] = {
-          ...this.completeCardBlocks[blockIndex],
-          ...result,
-        }
+        await update(this.blocks[blockIndex])
       } catch (error) {
         // @todo: handle errors properly instead logging them #1180
         log(error)

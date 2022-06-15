@@ -3,10 +3,11 @@
     <PopoverButton
       ref="selectorButtonRef"
       data-test="popover-button"
-      class="rounded-md border-2 border-primary px-2 py-1"
+      class="flex h-fit flex-nowrap items-center focus:outline-none"
       @click="calculateBlockMenuPosition"
     >
-      <PlusIcon class="h-6 w-6 text-primary" />
+      <PlusIcon class="text-primary mx-1 h-5 w-5" />
+      <span class="bg-primary ml-0.5 h-6 w-0.5"></span>
     </PopoverButton>
 
     <PopoverPanel
@@ -31,8 +32,8 @@
             />
           </span>
           <span class="flex flex-col whitespace-nowrap">
-            <span class="text-lg font-bold">{{ definition.title }}</span>
-            <span v-if="false" class="text-base-2000 text-base">
+            <span class="text-md font-medium">{{ definition.title }}</span>
+            <span v-if="false" class="text-base text-base-200">
               {{ definition.description }}
             </span>
           </span>
@@ -61,8 +62,8 @@ export default defineComponent({
     PlusIcon,
   },
   props: {
-    cardId: {
-      type: String,
+    card: {
+      type: Object,
       required: true,
     },
   },
@@ -88,9 +89,9 @@ export default defineComponent({
           : 'top-4'
     }
 
-    const handleBlockClick = (typeId, closePopover) => {
-      blocksStore.addBlockToList(typeId, props.cardId)
+    const handleBlockClick = async (typeId, closePopover) => {
       closePopover()
+      await blocksStore.addBlock(typeId, props.card)
     }
 
     return {
