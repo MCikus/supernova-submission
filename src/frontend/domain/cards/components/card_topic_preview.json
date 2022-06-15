@@ -32,19 +32,19 @@
           "knowledgeContributors": 987,
           "mjneContributors": 877576
         }
-      },
-      "isMarketingCard": {
-        "type": "card_meta",
-        "id": "50c27725-79aa-45fd-9446-627b9498b8cb",
-        "typeId": "3faf7d06-e18b-4dd4-8a80-1674e33b51d9",
-        "payload": {
-          "value": false
-        },
-        "createdAt": "2022-05-25T04:06:33.000000Z",
-        "updatedAt": "2022-05-25T04:06:33.000000Z"
       }
     },
-    "blocks": [],
-    "children": []
-  }
+    "isMarketingCard": {
+      "type": "card_meta",
+      "id": "50c27725-79aa-45fd-9446-627b9498b8cb",
+      "typeId": "3faf7d06-e18b-4dd4-8a80-1674e33b51d9",
+      "payload": {
+        "value": false
+      },
+      "createdAt": "2022-05-25T04:06:33.000000Z",
+      "updatedAt": "2022-05-25T04:06:33.000000Z"
+    }
+  },
+  "blocks": [],
+  "children": []
 }

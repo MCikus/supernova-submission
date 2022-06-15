@@ -7,7 +7,7 @@
       :openMenu="openMenu"
     >
       <button
-        class="text-primary flex items-center rounded-sm p-1 hover:text-primary-focus focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2"
+        class="flex items-center rounded-sm p-1 text-primary hover:text-primary-focus focus:outline-none focus:ring-2 focus:ring-primary-focus focus:ring-offset-2"
         @click="toggleMenu"
       >
         <span class="sr-only">Open options</span>

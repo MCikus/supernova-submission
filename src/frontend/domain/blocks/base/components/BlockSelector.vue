@@ -3,10 +3,10 @@
     <PopoverButton
       ref="selectorButtonRef"
       data-test="popover-button"
-      class="border-primary rounded-md border-2 px-2 py-1"
+      class="rounded-md border-2 border-primary px-2 py-1"
       @click="calculateBlockMenuPosition"
     >
-      <PlusIcon class="text-primary h-6 w-6" />
+      <PlusIcon class="h-6 w-6 text-primary" />
     </PopoverButton>
 
     <PopoverPanel
