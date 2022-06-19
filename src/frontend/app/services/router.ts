@@ -12,21 +12,6 @@ const routes: RouteRecordRaw[] = [
     name: 'Home',
     component: PCard,
   },
-  {
-    path: '/topic/:titleCardId',
-    name: 'Topic',
-    component: PTopic,
-  },
-  {
-    path: '/__canister-demo',
-    name: 'DemoHome',
-    component: DemoHome,
-  },
-  {
-    path: '/__data-manager',
-    name: 'DemoDataManager',
-    component: DemoDataManager,
-  },
 ]
 
 if (import.meta.env.DEV === true) {

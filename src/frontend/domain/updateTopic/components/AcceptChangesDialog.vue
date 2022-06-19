@@ -9,7 +9,7 @@
       <div class="flex h-full w-full max-w-3xl flex-col">
         <div class="h-fit w-full max-w-3xl overflow-hidden overflow-y-scroll">
           <h1 class="text-4xl text-white">{{ proposal?.title }}</h1>
-          <p class="mt-6 text-4xl text-white md:mt-12">{{ proposal?.description }}</p>
+          <p class="mt-6 text-1xl text-white md:mt-12">{{ proposal?.description }}</p>
           <span class="mt-4 block text-sm text-white md:mt-8">
             Submitted by {{ proposal?.proposer }}
           </span>

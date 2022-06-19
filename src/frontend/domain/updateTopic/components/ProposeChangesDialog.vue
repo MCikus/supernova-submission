@@ -16,11 +16,11 @@
         >
           <div
             v-if="step.stepType === 'input'"
-            class="text-4xl text-white"
+            class="text-2xl text-white"
             :class="index > 0 ? 'mt-12' : ''"
             @click="currentStepIndex = index"
           >
-            {{ step.value }}
+            {{ step.placeholder + ': ' + step.value }}
           </div>
         </div>
         <div
@@ -28,7 +28,7 @@
           class="flex w-full flex-nowrap"
           :class="finishedSteps.length > 0 ? 'mt-12' : ''"
         >
-          <span class="mr-6 inline-flex h-10 w-1 bg-[#01D17F]" />
+          <span class="mr-6 inline-flex h-10 w-1 bg-orange-600" />
           <InlineInput
             class="text-4xl text-white placeholder-white placeholder-opacity-50 hover:text-white"
             :multiline="true"
@@ -45,7 +45,7 @@
         >
           <button
             type="button"
-            class="mr-4 rounded-md bg-[#01D17F] px-4 py-2.5 text-sm text-white"
+            class="mr-4 rounded-md bg-orange-600 px-4 py-2.5 text-sm text-white"
             @click="handleButtonClick"
           >
             Next
@@ -61,7 +61,7 @@
         >
           <button
             type="button"
-            class="mr-4 rounded-md bg-[#01D17F] px-4 py-2.5 text-sm text-white"
+            class="mr-4 rounded-md bg-orange-600 px-4 py-2.5 text-sm text-white"
             @click="handleButtonClick"
           >
             Submit your changes
@@ -148,9 +148,11 @@ export default defineComponent({
       e.preventDefault()
       if (currentStep.value.stepType === 'input') {
         executeStepActions()
+
       }
       if (currentStep.value.stepType === 'submit' && e.metaKey === true) {
-        executeStepActions(proposal.value)
+        console.log(steps.value)  // ez object log
+        executeStepActions()
       }
     })
 

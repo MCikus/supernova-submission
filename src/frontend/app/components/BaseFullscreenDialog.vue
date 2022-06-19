@@ -9,16 +9,16 @@
   >
     <div
       v-if="isDialogVisible"
-      class="absolute z-50 flex h-screen w-screen justify-center bg-[#5F75D7] py-10 px-4 md:p-20"
+      class="absolute z-50 flex h-screen w-screen justify-center bg-slate-700 py-10 px-4 md:p-20"
       :class="[componentName, $attrs.class]"
     >
-      <button
+<!--      <button
         v-if="!disableCloseButton"
         class="absolute top-2 right-2 md:top-10 md:right-10"
-        @click="isDialogVisible = false"
+        @click="isDialogVisible = true"
       >
         <XIcon class="h-10 w-10 text-white" />
-      </button>
+      </button>-->
       <slot name="dialogContent">
         <div class="flex h-full w-full items-center justify-center rounded-md bg-white">
           Default Dialog content
@@ -37,7 +37,6 @@ export const componentName = 'BaseFullscreenDialog'
 export default defineComponent({
   name: componentName,
   components: {
-    XIcon,
   },
   props: {
     dialogIsVisible: {
