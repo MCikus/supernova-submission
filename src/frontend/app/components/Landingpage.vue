@@ -13,7 +13,7 @@
           <h1
             class="text-4xl font-extrabold tracking-tight text-slate-50 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl"
           >
-            <span class="block xl:inline">WEB3 Empowered</span>
+            <span class="block xl:inline">WEB3 Empowered </span>
             <span class="block text-slate-50 xl:inline">Marketing Advisor</span>
           </h1>
           <p
@@ -46,7 +46,7 @@
           <div class="mt-10 w-full sm:flex sm:justify-center lg:justify-start">
             <div class="mt-3 min-w-full rounded-md sm:mt-0">
               <a
-                href="#"
+                href="https://internetcomputer.org/docs/current/tokenomics/identity-auth/what-is-ic-identity/"
                 class="flex w-full items-center justify-center rounded-md px-8 py-3 text-base font-medium text-white underline underline-offset-4 md:py-4 md:px-10 md:text-lg"
               >
                 What is an Internet Identity?
