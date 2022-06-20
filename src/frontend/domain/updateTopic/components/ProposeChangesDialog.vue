@@ -148,10 +148,9 @@ export default defineComponent({
       e.preventDefault()
       if (currentStep.value.stepType === 'input') {
         executeStepActions()
-
       }
       if (currentStep.value.stepType === 'submit' && e.metaKey === true) {
-        console.log(steps.value)  // ez object log
+        console.log(steps.value) // ez object log
         executeStepActions()
       }
     })

@@ -12,7 +12,7 @@
       class="absolute z-50 flex h-screen w-screen justify-center bg-slate-700 py-10 px-4 md:p-20"
       :class="[componentName, $attrs.class]"
     >
-<!--      <button
+      <!--      <button
         v-if="!disableCloseButton"
         class="absolute top-2 right-2 md:top-10 md:right-10"
         @click="isDialogVisible = true"
@@ -36,8 +36,7 @@ export const componentName = 'BaseFullscreenDialog'
 
 export default defineComponent({
   name: componentName,
-  components: {
-  },
+  components: {},
   props: {
     dialogIsVisible: {
       type: Boolean,

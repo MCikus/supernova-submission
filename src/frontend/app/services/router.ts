@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
 import PCard from '@/domain/cards/components/PCard.vue'
+import Landingpage from '@/app/components/Landingpage.vue'
+
 import PTopic from '@/domain/cards/components/PTopic.vue'
 import DemoHome from '@/domain/demo/components/DemoHome.vue'
 import DemoDataManager from '@/domain/dataManager/DemoDataManager.vue'
@@ -11,6 +13,11 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'Home',
     component: PCard,
+  },
+  {
+    path: '/landing',
+    name: 'landing',
+    component: Landingpage,
   },
 ]
 
