@@ -1,4 +1,4 @@
-# Miljn App on IC
+# UFO App on IC
 
 ## 1 Runtime environment
 
