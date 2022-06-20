@@ -13,7 +13,7 @@
           <h1
             class="text-4xl font-extrabold tracking-tight text-slate-50 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl"
           >
-            <span class="block xl:inline">WEB3 Empowered </span>
+            <span class="block xl:inline">WEB3 Empowered</span>
             <span class="block text-slate-50 xl:inline">Marketing Advisor</span>
           </h1>
           <p
