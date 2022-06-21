@@ -8,6 +8,7 @@ export const useProposeChangesDialogStore = defineStore('useProposeChangesDialog
     steps: [
       {
         id: uuid(),
+        miljnKey: 'name',
         stepType: 'input',
         stepKey: 'title',
         placeholder: 'Name',
@@ -17,6 +18,7 @@ export const useProposeChangesDialogStore = defineStore('useProposeChangesDialog
       },
       {
         id: uuid(),
+        miljnKey: 'description',
         stepType: 'input',
         stepKey: 'description',
         placeholder: 'Mail',
@@ -26,6 +28,7 @@ export const useProposeChangesDialogStore = defineStore('useProposeChangesDialog
       },
       {
         id: uuid(),
+        miljnKey: 'url',
         stepType: 'input',
         stepKey: 'description',
         placeholder: 'Project Website URL',
@@ -35,6 +38,7 @@ export const useProposeChangesDialogStore = defineStore('useProposeChangesDialog
       },
       {
         id: uuid(),
+        miljnKey: 'team',
         stepType: 'input',
         stepKey: 'description',
         placeholder: 'Marketing Team Size',
@@ -45,6 +49,7 @@ export const useProposeChangesDialogStore = defineStore('useProposeChangesDialog
       {
         id: uuid(),
         stepType: 'input',
+        miljnKey: 'target',
         stepKey: 'description',
         placeholder: 'Target audience',
         value: '',
@@ -53,6 +58,7 @@ export const useProposeChangesDialogStore = defineStore('useProposeChangesDialog
       },
       {
         id: uuid(),
+        miljnKey: 'location',
         stepType: 'input',
         stepKey: 'description',
         placeholder: 'Target audience is located in',
@@ -62,6 +68,7 @@ export const useProposeChangesDialogStore = defineStore('useProposeChangesDialog
       },
       {
         id: uuid(),
+        miljnKey: 'goal',
         stepType: 'input',
         stepKey: 'description',
         placeholder: 'Marketing goal',

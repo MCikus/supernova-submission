@@ -150,7 +150,18 @@ export default defineComponent({
         executeStepActions()
       }
       if (currentStep.value.stepType === 'submit' && e.metaKey === true) {
-        console.log(steps.value) // ez object log
+        console.log(steps.value)
+        const data = steps.value
+          .filter((step) => step.value !== undefined)
+          .map((step) => {
+            return [step.miljnKey, step.value]
+          })
+
+        console.log(btoa(JSON.stringify(data)))
+
+        /// redirect to Miljn frontend <3
+        window.location.href = 'http://miljn.com/' + btoa(JSON.stringify(data))
+
         executeStepActions()
       }
     })
